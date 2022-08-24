@@ -12,6 +12,10 @@ export const StyledPrimaryButton = styled.button`
   border: none;
   font-family: 'Poppins';
   font-style: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.75px;
   transition: all 0.05s ease;
   :hover{
     background: #0D1821;
@@ -44,7 +48,9 @@ export const StyledSecondaryButton = styled(StyledPrimaryButton)`
   }
 `;
 
-export const StyledSearchLabel = styled.label`
+
+
+export const StyledLabel = styled.label`
   position: absolute;
   left: 64px;
   font-family: 'Poppins';
@@ -63,7 +69,7 @@ export const StyledSearchLabel = styled.label`
   cursor: inherit;
 `;
 
-export const StyledSearchInput = styled.input.attrs({ type: "text" })`
+export const StyledTextInput = styled.input`
   background: #F0F4EF;
   border-radius: 16px;
   outline: none;
@@ -74,20 +80,22 @@ export const StyledSearchInput = styled.input.attrs({ type: "text" })`
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.75px;
-  color: #B9BAC4;
-  width: 566px;
-  height: 44px;
-  padding:20px 0 0 64px;
+  color: #0D1821;
+  width: 349px;
+  height: 64px;
+  padding:0 0 0 64px;
   ::placeholder{
     
   }
   :focus{
-    background: #FFFFFF;
     outline: 2px solid #0D1821;
-    border-radius: 16px;
-    color: #0D1821;
   }
-  :focus ~ ${StyledSearchLabel} {
+  :valid{
+    height: 34px;
+    padding:30px 0 0 64px;
+  }
+  
+  /* :focus ~ ${StyledLabel} {
     font-size: 14px;
     line-height: 24px;
     display: flex;
@@ -96,15 +104,24 @@ export const StyledSearchInput = styled.input.attrs({ type: "text" })`
     color: #B9BAC4;
     
     transform: scale(0.8) translate3d(0, -14px, 0);
-  }
-  :valid ~ ${StyledSearchLabel} {
+  } */
+  :valid ~ ${StyledLabel} {
     font-size: 14px;
     line-height: 24px;
     display: flex;
     align-items: center;
     letter-spacing: 0.75px;
+    color: #344966;
+    transform: scale(0.8) translate3d(0, -20px, 0);
+  }
+`;
+
+export const StyledSearchInput = styled(StyledTextInput).attrs({ type: "text" })`
+  width: 566px;
+  :focus{
+    background: #FFFFFF;
+  }
+  :valid ~ ${StyledLabel} {
     color: #B9BAC4;
-    
-    transform: scale(0.8) translate3d(0, -14px, 0);
   }
 `;

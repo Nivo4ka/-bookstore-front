@@ -1,12 +1,26 @@
 import React from 'react';
-// import { Counter } from './features/counter/Counter';
-// import './App.css';
+import Filter from '../Filter/Filter';
+import BookCard from '../BookCard/BookCard';
+import { StyledCatalog } from '../../../styles/HomePage.styles';
 
 const Catalog = () => {
   return (
-    <div>
-
-    </div>
+    <StyledCatalog>
+      <Filter></Filter>
+      <div className='styled__catalog--grid'>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      <BookCard></BookCard>
+      </div>
+      <div className='styled_catalog--pagination'>Пагинация</div>
+    </StyledCatalog>
   );
 }
 

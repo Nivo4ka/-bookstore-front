@@ -10,7 +10,7 @@ import SingUpBanner from '../SingUpBanner/SingUpBanner';
 const MainPage = () => {
   return (
     <StyledMain>
-      <Header></Header>
+      {/* <Header></Header> */}
       <HeaderBanner></HeaderBanner>
       <Catalog></Catalog>
       <SingUpBanner></SingUpBanner>

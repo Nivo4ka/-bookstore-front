@@ -11,8 +11,7 @@ const HeaderBanner = () => {
       <div>
         <h2>Build your library with us</h2>
         <p>Buy two books and get one for free</p>
-        <div><StyledPrimaryButton>Choose a book</StyledPrimaryButton></div>
-
+        <StyledPrimaryButton>Choose a book</StyledPrimaryButton>
       </div>
       <img src={womanWithBook} alt='woman with book'></img>
     </StyledHeaderBanner>
