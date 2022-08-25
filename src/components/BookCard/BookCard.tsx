@@ -1,11 +1,10 @@
 import React from 'react';
 import Filter from '../Filter/Filter';
-import star from '../../../images/icons/Star.svg';
-import star2 from '../../../images/icons/Star2.svg';
-import heart from '../../../images/icons/Heart.svg';
-import bookimg from '../../../images/TheCryingbook.svg';
-import { StyledPrimaryButton } from '../../../styles/BasicThings.styles';
-import { StyledBookCard } from '../../../styles/HomePage.styles';
+import star from '../../images/icons/Star.svg';
+import star2 from '../../images/icons/Star2.svg';
+import heart from '../../images/icons/Heart.svg';
+import bookimg from '../../images/TheCryingbook.svg';
+import { StyledBookCard } from './BookCard.styles';
 
 interface Book {
   title: string;
@@ -17,10 +16,10 @@ interface Book {
 const books: Book = {
   title: 'The Crying book',
   autor: 'Heather Christle',
-  rating: '' + 1.0,
+  rating: `${1.0}`,
   img: bookimg,
   price: 14.99,
-}
+};
 
 const BookCard = () => {
   return (
@@ -51,9 +50,9 @@ const BookCard = () => {
         </ul>
         <p>{books.rating}.0</p>
       </div>
-      <StyledPrimaryButton>$ {books.price} USD</StyledPrimaryButton>
+      <button className='styled__primary__button'>$ {books.price} USD</button>
     </StyledBookCard>
   );
-}
+};
 
 export default BookCard;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledFilter } from '../../../styles/HomePage.styles';
+import { StyledFilter } from './Filter.styles';
 
 const Filter = () => {
   return (
@@ -7,6 +7,6 @@ const Filter = () => {
 
     </StyledFilter>
   );
-}
+};
 
 export default Filter;

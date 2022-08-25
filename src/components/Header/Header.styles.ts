@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const StyledHeader = styled.div`
   display: flex;
@@ -35,6 +35,16 @@ export const StyledHeader = styled.div`
     img{
       position: absolute;
       left: 26px;
+    }
+  }
+
+  .styled__header--search__input{
+    width: 566px;
+    :focus{
+      background: #FFFFFF;
+    }
+    :valid ~ .styled__label {
+      color: #B9BAC4;
     }
   }
   

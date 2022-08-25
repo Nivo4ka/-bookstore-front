@@ -1,14 +1,22 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import search from '../../images/icons/Search.svg';
-import { StyledHeader } from '../../styles/Header.styles';
-import { StyledPrimaryButton, StyledSearchInput, StyledLabel } from '../../styles/BasicThings.styles';
+import { StyledHeader } from './Header.styles';
 
 const Header = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const goToLogIn = () => navigate('/log-in');
+  const goToLogIn = () => {
+    if (location.pathname === '/log-in') {
+      navigate('/sing-up');
+    } else if (location.pathname === '/sing-up') {
+      navigate('/log-in');
+    } else {
+      navigate('/log-in');
+    }
+  };
 
   return (
     <StyledHeader>
@@ -17,13 +25,13 @@ const Header = () => {
         <p>Catalog</p>
         <div className='styled__header-input_area'>
           <img className='' src={search} alt='seach' />
-          <StyledSearchInput id='search' type='text' required />
-          <StyledLabel htmlFor='search'>Search</StyledLabel>
+          <input className='styled__text__input styled__header--search__input' id='search' type='text' required />
+          <label className='styled__label' htmlFor='search'>Search</label>
         </div>
       </div>
-      <StyledPrimaryButton onClick={goToLogIn}>Log In/ Sing Up</StyledPrimaryButton>
+      <button className='styled__primary__button' onClick={goToLogIn}>Log In/ Sing Up</button>
     </StyledHeader>
   );
-}
+};
 
 export default Header;

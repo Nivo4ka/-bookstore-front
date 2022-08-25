@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyledPrimaryButton } from '../../../styles/BasicThings.styles';
-import castle from '../../../images/castle.svg';
-import { StyledSingUpBanner } from '../../../styles/HomePage.styles';
+import castle from '../../images/castle.svg';
+import { StyledSingUpBanner } from './SingUpBanner.styles';
 
 const SingUpBanner = () => {
   return (
@@ -10,11 +9,11 @@ const SingUpBanner = () => {
       <div className='styled__singup__banner--info__area'>
         <h2>Authorize now</h2>
         <p>Authorize now and discover the fabulous world of books</p>
-        <StyledPrimaryButton>Log In/ Sing Up</StyledPrimaryButton>
+        <button className='styled__primary__button'>Log In/ Sing Up</button>
       </div>
 
     </StyledSingUpBanner>
   );
-}
+};
 
 export default SingUpBanner;
