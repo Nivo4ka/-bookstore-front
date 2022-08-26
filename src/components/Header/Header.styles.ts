@@ -47,5 +47,16 @@ export const StyledHeader = styled.div`
       color: #B9BAC4;
     }
   }
+
+  .styled__header--profile{
+    background: #344966;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
   
 `;

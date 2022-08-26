@@ -1,47 +1,26 @@
 import React from 'react';
-import * as yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import services from '../../services/user.service';
+import schemes from '../../types/userSchemes';
 import man from '../../images/man.svg';
 import mail from '../../images/icons/Mail.svg';
 import view from '../../images/icons/View.svg';
 import hide from '../../images/icons/Hide.svg';
 import { StyledSingUpPage } from './SingUpPage.styles';
+import { singUpByPassEmail } from '../../actions/singup';
+import { useAppDispatch } from '../../store/hooks';
 
 const SingUpPage = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const singupSchema = yup.object().shape({
-    password: yup.string()
-      .min(8, 'Too Short!')
-      .matches(/^[a-zA-Z0-9-_]{8,}$/)
-      .required('Enter your password'),
-    repeatPassword: yup.string()
-      .when('password', {
-        is: (val: string) => (!!(val && val.length > 0)),
-        then: yup.string().oneOf(
-          [yup.ref('password')],
-          'Both password need to be the same',
-        ),
-      })
-      .required('Repeat your password without errors'),
-    email: yup.string().email('Invalid email').required('Enter your email'),
-  });
 
   return (
     <Formik
       initialValues={{ email: '', password: '', repeatPassword: '' }}
-      validationSchema={singupSchema}
+      validationSchema={schemes.SingupSchema}
       onSubmit={(values) => {
-        services.singUp(values)
-          .then((response: any) => {
-            localStorage.setItem('user', JSON.stringify(response.data));
-            navigate('/user-page');
-          })
-          .catch((e: Error) => {
-            // console.log(e);
-          });
+        dispatch(singUpByPassEmail(values));
+        navigate('/');
       }}
     >
       {({ errors }) => (

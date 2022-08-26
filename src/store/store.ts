@@ -1,18 +1,24 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-// import counterReducer from '../features/counter/counterSlice';
+import helpers from '../utils/storeHelper';
+import userSlice from './slices/userSlice';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    counter: () => { },
+    user: userSlice,
   },
 });
 
-// export type AppDispatch = typeof store.dispatch;
-// export type RootState = ReturnType<typeof store.getState>;
-// export type AppThunk<ReturnType = void> = ThunkAction<
-//   ReturnType,
-//   RootState,
-//   unknown,
-//   Action<string>
-// >;
+store.subscribe(() => {
+  return helpers.saveState(store.getState().user);
+});
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+
+export default store;

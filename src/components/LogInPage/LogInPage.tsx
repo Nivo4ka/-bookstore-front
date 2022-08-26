@@ -1,38 +1,26 @@
 import React, { useState } from 'react';
-import * as yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import services from '../../services/user.service';
-import { IUserData, IUserLogin } from '../../types/user.datatype';
+import schemes from '../../types/userSchemes';
 import { StyledLogInPage } from './LogInPage.styles';
 import man from '../../images/man.svg';
 import mail from '../../images/icons/Mail.svg';
 import view from '../../images/icons/View.svg';
 import hide from '../../images/icons/Hide.svg';
+import { loginByPassEmail } from '../../actions/login';
+import { useAppDispatch } from '../../store/hooks';
 
 const LogInPage = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const LoginSchema = yup.object().shape({
-    password: yup.string()
-      .min(8, 'Too Short!')
-      .required('Enter your password'),
-    email: yup.string().email('Invalid email').required('Enter your email'),
-  });
 
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
-      validationSchema={LoginSchema}
+      validationSchema={schemes.LoginSchema}
       onSubmit={(values) => {
-        services.login(values)
-          .then((response: any) => {
-            localStorage.setItem('user', JSON.stringify(response.data));
-            navigate('/user-page');
-          })
-          .catch((e: Error) => {
-            // console.log(e);
-          });
+        dispatch(loginByPassEmail(values));
+        navigate('/');
       }}
     >
       {({ errors }) => (

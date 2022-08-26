@@ -19,6 +19,7 @@ export interface IUserSingUp {
 export interface IUserPatch {
   fullName?: string,
   birthDay?: string,
+  email?: string,
 }
 
 export interface IUserData {
