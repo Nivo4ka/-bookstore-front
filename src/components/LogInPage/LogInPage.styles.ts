@@ -1,7 +1,6 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
-import { IUserLogin } from '../../types/user.datatype';
+import styled, { css } from 'styled-components';
 
-export const StyledLogInPage = styled.div<{ error1: string, error2: string }>`
+export const StyledLogInPage = styled.div<{ error1: string; error2: string }>`
   width: 100%;
   display: flex;
   flex-direction: row;

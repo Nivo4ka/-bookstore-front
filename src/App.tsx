@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import Footer from './components/Footer/Footer';
 import { StyledApp } from './App.styles';
@@ -8,11 +8,28 @@ import SingUpPage from './components/SingUpPage/SingUpPage';
 import LogInPage from './components/LogInPage/LogInPage';
 import UserPage from './components/UserPage/UserPage';
 import PrivateRoute from './Private';
+import { useAppDispatch } from './store/hooks';
+import loginByToken from './actions/loginByToken';
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    (async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        await dispatch(loginByToken());
+      }
+      setLoading(false);
+    })();
+  }, []);
+
+  if (loading) {
+    return null;
+  }
   return (
     <StyledApp>
-      <div className='styled__app--container'>
+      <div className="styled__app--container">
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -20,13 +37,17 @@ const App = () => {
           <Route path="/log-in" element={<LogInPage />} />
           <Route
             path="/user-page"
-            element={<PrivateRoute component={UserPage} />}
+            element={
+              (<PrivateRoute>
+                <UserPage />
+              </PrivateRoute>)
+            }
           />
           {/* <PrivateRoute path="/protected" element={<UserPage />} /> */}
           {/* <Route path="/Games" element={<Games />} /> */}
         </Routes>
       </div>
-      <Footer></Footer>
+      <Footer />
     </StyledApp>
   );
 };

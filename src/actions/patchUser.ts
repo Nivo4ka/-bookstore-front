@@ -1,9 +1,8 @@
-import services from '../services/user.service';
-import { IUserLogin } from '../types/user.datatype';
+import services from '../api/services/user.service';
+import type { IUserLogin } from '../types/user.datatype';
 import { addUser } from '../store/slices/userSlice';
-import { AppThunk } from '../store/store';
 
-export const loginByPassEmail = (values: IUserLogin): AppThunk => (useAppDispatch: any) => {
+export const loginByPassEmail = (values: IUserLogin) => (useAppDispatch: any) => {
   services.patchUser(values)
     .then((response: any) => {
       useAppDispatch(addUser(response.data));

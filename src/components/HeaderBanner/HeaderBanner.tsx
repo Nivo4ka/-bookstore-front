@@ -8,9 +8,9 @@ const HeaderBanner = () => {
       <div>
         <h2>Build your library with us</h2>
         <p>Buy two books and get one for free</p>
-        <button className='styled__primary__button'>Choose a book</button>
+        <button className="styled__primary__button">Choose a book</button>
       </div>
-      <img src={womanWithBook} alt='woman with book'></img>
+      <img src={womanWithBook} alt="woman with book" />
     </StyledHeaderBanner>
   );
 };

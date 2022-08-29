@@ -1,16 +1,14 @@
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../store/hooks';
-import services from '../services/user.service';
-import { IUserSingUp } from '../types/user.datatype';
-import { addUser } from '../store/slices/userSlice';
-import { AppThunk } from '../store/store';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import services from '../api/services/user.service';
+import type { IUserSingUp } from '../types/user.datatype';
 
-export const singUpByPassEmail = (values: IUserSingUp): AppThunk => (useAppDispatch: any) => {
-  services.singUp(values)
-    .then((response: any) => {
-      useAppDispatch(addUser(response.data));
-    })
-    .catch((e: Error) => {
-      // console.log(e);
-    });
-};
+const singUpByPassEmail = createAsyncThunk(
+  'user/singup',
+  async (values: IUserSingUp) => {
+    const data = await services.singUp(values);
+    localStorage.setItem('token', data.data.token || '');
+    return data.data.user;
+  },
+);
+
+export default singUpByPassEmail;

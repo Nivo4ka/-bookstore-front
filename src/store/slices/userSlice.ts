@@ -1,24 +1,47 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import helpers from '../../utils/storeHelper';
 import { IUserData } from '../../types/user.datatype';
-import { RootState } from '../store';
+import loginByPassEmail from '../../actions/login';
+import singUpByPassEmail from '../../actions/singup';
+import loginByToken from '../../actions/loginByToken';
 
-const oldState = helpers.loadState();
+const initialState: IUserData = {
+  user: {
+    id: 0,
+    fullName: '',
+    birthDay: '',
+    email: '',
+  },
+};
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: oldState,
+  initialState,
   reducers: {
     addUser: (state, action: PayloadAction<IUserData>) => {
-      if (action.payload.token) state.token = action.payload.token;// eslint-disable-line no-param-reassign, max-len
-      if (action.payload.user)state.user = action.payload.user;// eslint-disable-line no-param-reassign, max-len
+      if (action.payload.user) state.user = action.payload.user;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginByPassEmail.fulfilled, (state, { payload }) => {
+      if (payload) state.user = payload;
+    });
+    // builder.addCase(loginByPassEmail.rejected, (state, { payload }) => {
+    //   // eslint-disable-next-line no-console
+    //   // console.log('rejected');
+    // });
+    // builder.addCase(loginByPassEmail.pending, (state, { payload }) => {
+    //   // eslint-disable-next-line no-console
+    //   // console.log('pending');
+    // });
+    builder.addCase(singUpByPassEmail.fulfilled, (state, { payload }) => {
+      if (payload) state.user = payload;
+    });
+    builder.addCase(loginByToken.fulfilled, (state, { payload }) => {
+      if (payload) state.user = payload;
+    });
   },
 });
 
 export const { addUser } = userSlice.actions;
-
-export const selectToken = (state: RootState) => state.user.token;
-export const selectUser = (state: RootState) => state.user.user;
 
 export default userSlice.reducer;

@@ -6,9 +6,9 @@ import map from '../../images/map.svg';
 const Footer = () => {
   return (
     <StyledFooter>
-      <div className='styled__footer--container'>
+      <div className="styled__footer--container">
         <div>
-          <img src={logo2} alt='logo'></img>
+          <img src={logo2} alt="logo" />
           <p>tranthuy.nute@gmail.com</p>
           <p>(480) 555-0103</p>
         </div>
@@ -28,7 +28,7 @@ const Footer = () => {
         </ul>
         <div>
           <p>6391 Elgin St. Celina, Delaware 10299</p>
-          <img src={map} alt='map'></img>
+          <img src={map} alt="map" />
         </div>
       </div>
     </StyledFooter>

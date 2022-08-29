@@ -6,20 +6,20 @@ import { StyledCatalog } from './Catalog.styles';
 const Catalog = () => {
   return (
     <StyledCatalog>
-      <Filter></Filter>
-      <div className='styled__catalog--grid'>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
-      <BookCard></BookCard>
+      <Filter />
+      <div className="styled__catalog--grid">
+      <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
+      <BookCard />
       </div>
-      <div className='styled_catalog--pagination'>Пагинация</div>
+      <div className="styled_catalog--pagination">Пагинация</div>
     </StyledCatalog>
   );
 };

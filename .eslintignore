@@ -1,3 +1,4 @@
 node_modules/*
-build/
-index.html
+build
+lock_node_version.js
+craco.config.js

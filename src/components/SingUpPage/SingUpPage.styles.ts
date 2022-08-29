@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const StyledSingUpPage = styled.div<{ email: string, password: string, repeatPassword: string }>`
+export const StyledSingUpPage = styled.div<{ email: string; password: string; repeatPassword: string }>`
   width: 100%;
   display: flex;
   flex-direction: row;

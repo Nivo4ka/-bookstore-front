@@ -30,6 +30,8 @@ module.exports = {
     'react/no-direct-mutation-state': 2,
     'styled-components-config/rule-name': 'off',
     'eol-last': ['error', 'always'],
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state', 'config'] }],
     semi: ['error', 'always'],
     'no-plusplus': 'off',
     'operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],

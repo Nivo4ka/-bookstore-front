@@ -29,19 +29,19 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <img src={logo} alt='logo-img' onClick={goToMainPage} />
-      <div className='styled__header-catalog_input_area'>
+      <img src={logo} alt="logo-img" onClick={goToMainPage} />
+      <div className="styled__header-catalog_input_area">
         <p>Catalog</p>
-        <div className='styled__header-input_area'>
-          <img className='' src={search} alt='seach' />
-          <input className='styled__text__input styled__header--search__input' id='search' type='text' required />
-          <label className='styled__label' htmlFor='search'>Search</label>
+        <div className="styled__header-input_area">
+          <img className="" src={search} alt="seach" />
+          <input className="styled__text__input styled__header--search__input" id="search" type="text" required />
+          <label className="styled__label" htmlFor="search">Search</label>
         </div>
       </div>
-      <div className='styled__header--profile' onClick={goToUserPage}>
-        <img src={profile} alt='profile'></img>
+      <div className="styled__header--profile" onClick={goToUserPage}>
+        <img src={profile} alt="profile" />
       </div>
-      <button className='styled__primary__button' onClick={goToLogIn}>Log In/ Sing Up</button>
+      <button className="styled__primary__button" onClick={goToLogIn}>Log In/ Sing Up</button>
     </StyledHeader>
   );
 };

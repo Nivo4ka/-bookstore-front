@@ -3,9 +3,7 @@ import { StyledFilter } from './Filter.styles';
 
 const Filter = () => {
   return (
-    <StyledFilter>
-
-    </StyledFilter>
+    <StyledFilter />
   );
 };
 

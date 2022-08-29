@@ -7,9 +7,9 @@ import SingUpBanner from '../SingUpBanner/SingUpBanner';
 const MainPage = () => {
   return (
     <StyledMain>
-      <HeaderBanner></HeaderBanner>
-      <Catalog></Catalog>
-      <SingUpBanner></SingUpBanner>
+      <HeaderBanner />
+      <Catalog />
+      <SingUpBanner />
     </StyledMain>
   );
 };

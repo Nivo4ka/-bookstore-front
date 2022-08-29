@@ -72,4 +72,39 @@ export const StyledUserPage = styled.div`
   .styled__text__input{
     width: 458px;
   }
+
+  .styled__text__div{
+    background: #F0F4EF;
+    border-radius: 16px;
+    width: 100%;
+    height: 64px;
+    padding:30px 0 0 64px;
+    p{
+      font-size: 16px;
+      line-height: 28px;
+      letter-spacing: 0.75px;
+      color: #0D1821;
+      font-weight: 400;
+    }
+  }
+
+  .styled__user__page--div__container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    img{
+      position: absolute;
+      left: 26px;
+    }
+    .styled__label{
+      font-size: 14px;
+      line-height: 24px;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.75px;
+      color: #344966;
+      transform: scale(0.8) translate3d(0, -20px, 0);
+    }
+  }
 `;

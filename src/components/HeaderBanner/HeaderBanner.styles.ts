@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import books from '../../images/unsplash_DgQf1dUKUTM.svg';
 
 export const StyledHeaderBanner = styled.div`

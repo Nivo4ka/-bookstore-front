@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import fairy from '../../images/fairy.svg';
 
 export const StyledSingUpBanner = styled.div`
