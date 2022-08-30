@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import services from '../api/services/user.service';
-import type { IUserSingUp } from '../types/user.datatype';
+import services from '../../../../api/services/user.service';
+import type { IUserSingUp } from '../../../../types/user.datatype';
 
 const singUpByPassEmail = createAsyncThunk(
   'user/singup',

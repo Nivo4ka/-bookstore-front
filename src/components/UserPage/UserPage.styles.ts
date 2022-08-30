@@ -69,22 +69,37 @@ export const StyledUserPage = styled.div`
     margin-bottom: 40px;
   }
 
-  .styled__text__input{
-    width: 458px;
+  .styled__user__page-styled__text__input{
+    width: 458px !important;
   }
 
   .styled__text__div{
     background: #F0F4EF;
     border-radius: 16px;
-    width: 100%;
+    width: 522px;
     height: 64px;
     padding:30px 0 0 64px;
+    box-sizing: border-box;
+    text-align: start;
     p{
       font-size: 16px;
       line-height: 28px;
       letter-spacing: 0.75px;
       color: #0D1821;
       font-weight: 400;
+    }
+    input{
+      box-sizing: border-box;
+      background: #F0F4EF;
+      outline: none;
+      border: none;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 28px;
+      letter-spacing: 0.75px;
+      color: #0D1821;
     }
   }
 
@@ -93,6 +108,8 @@ export const StyledUserPage = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    display: flex;
+    box-sizing: border-box;
     img{
       position: absolute;
       left: 26px;
@@ -106,5 +123,11 @@ export const StyledUserPage = styled.div`
       color: #344966;
       transform: scale(0.8) translate3d(0, -20px, 0);
     }
+
+    
+  }
+
+  .custom__button {
+    background-color: blue;
   }
 `;

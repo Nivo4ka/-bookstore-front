@@ -7,12 +7,13 @@ import Header from './components/Header/Header';
 import SingUpPage from './components/SingUpPage/SingUpPage';
 import LogInPage from './components/LogInPage/LogInPage';
 import UserPage from './components/UserPage/UserPage';
-import PrivateRoute from './Private';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import { useAppDispatch } from './store/hooks';
-import loginByToken from './actions/loginByToken';
+import loginByToken from './store/slices/user/thunks/loginByToken';
+import loading from './images/icons/Loading.svg';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
   useEffect(() => {
     (async () => {
@@ -20,12 +21,18 @@ const App = () => {
       if (token) {
         await dispatch(loginByToken());
       }
-      setLoading(false);
+      setIsLoading(false);
     })();
-  }, []);
+  }, [dispatch]);
 
-  if (loading) {
-    return null;
+  if (isLoading) {
+    return (
+      <StyledApp>
+        <div className="loading__container">
+          <img className="loading" src={loading} alt="loading" />
+        </div>
+      </StyledApp>
+    );
   }
   return (
     <StyledApp>
@@ -40,11 +47,9 @@ const App = () => {
             element={
               (<PrivateRoute>
                 <UserPage />
-              </PrivateRoute>)
+               </PrivateRoute>)
             }
           />
-          {/* <PrivateRoute path="/protected" element={<UserPage />} /> */}
-          {/* <Route path="/Games" element={<Games />} /> */}
         </Routes>
       </div>
       <Footer />

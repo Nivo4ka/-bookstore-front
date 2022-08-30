@@ -7,8 +7,10 @@ import mail from '../../images/icons/Mail.svg';
 import view from '../../images/icons/View.svg';
 // import hide from '../../images/icons/Hide.svg';
 import { StyledSingUpPage } from './SingUpPage.styles';
-import singUpByPassEmail from '../../actions/singup';
+import singUpByPassEmail from '../../store/slices/user/thunks/singup';
 import { useAppDispatch } from '../../store/hooks';
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 const singupSchema = yup.object().shape({
   password: yup.string()
@@ -34,9 +36,14 @@ const SingUpPage = () => {
   const formik = useFormik({
     initialValues: { email: '', password: '', repeatPassword: '' },
     validationSchema: singupSchema,
-    onSubmit: (values) => {
-      dispatch(singUpByPassEmail(values));
-      navigate('/');
+    onSubmit: async (values) => {
+      try {
+        await dispatch(singUpByPassEmail(values)).unwrap();
+        navigate('/');
+        // handle result here
+      } catch (rejectedValueOrSerializedError) {
+        // handle error here
+      }
     },
   });
 
@@ -51,54 +58,54 @@ const SingUpPage = () => {
         <h2>Sign Up</h2>
 
         <form onSubmit={formik.handleSubmit}>
-          <div className="styled__singup__page--input__container">
-            <img src={mail} alt="mail" />
-            <input
-              type="text"
-              name="email"
-              className="styled__text__input"
-              id="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              required
-            />
-            <label className="styled__label" htmlFor="email" id="email_label">Email</label>
+          <Input
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            placeHolder="Email"
+            nameInput="email"
+            icon={mail}
+            type="text"
+          />
+          <div
+            className="styled__singup__page--error__info"
+            id="email__error"
+          >
+            {formik.errors.email || 'Enter your email'}
           </div>
-          <div className="styled__singup__page--error__info" id="email__error">{formik.errors.email || 'Enter your email'}</div>
 
-          <div className="styled__singup__page--input__container">
-            <img src={view} alt="view" />
-            <input
-              type="text"
-              name="password"
-              className="styled__text__input"
-              id="password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              required
-            />
-            <label className="styled__label" htmlFor="password">Password</label>
+          <Input
+            onChange={formik.handleChange}
+            className="styled__user__page-styled__text__input"
+            value={formik.values.password}
+            placeHolder="Password"
+            nameInput="password"
+            icon={view}
+            type="text"
+          />
+          <div
+            className="styled__singup__page--error__info"
+            id="password__error"
+          >
+            {formik.errors.password || 'Enter your password'}
           </div>
-          <div className="styled__singup__page--error__info" id="password__error">{formik.errors.password || 'Enter your password'}</div>
 
-          <div className="styled__singup__page--input__container">
-            <img src={view} alt="view" />
-            <input
-              type="text"
-              name="repeatPassword"
-              className="styled__text__input"
-              id="repeatPassword"
-              onChange={formik.handleChange}
-              value={formik.values.repeatPassword}
-              required
-            />
-            <label className="styled__label" htmlFor="repeatPassword">Password replay</label>
+          <Input
+            onChange={formik.handleChange}
+            className="styled__user__page-styled__text__input"
+            value={formik.values.repeatPassword}
+            placeHolder="Password replay"
+            nameInput="repeatPassword"
+            icon={view}
+            type="text"
+          />
+          <div
+            className="styled__singup__page--error__info"
+            id="repeatPassword__error"
+          >
+            {formik.errors.repeatPassword || 'Repeat your password without errors'}
           </div>
-          <div className="styled__singup__page--error__info" id="repeatPassword__error">{formik.errors.repeatPassword || 'Repeat your password without errors'}</div>
 
-          <button type="submit" className="styled__primary__button">
-            Sign Up
-          </button>
+          <Button type="submit">Sign Up</Button>
         </form>
       </div>
       <img src={man} alt="man" />

@@ -15,4 +15,25 @@ export const StyledApp = styled.div`
     box-sizing: border-box;
     min-height: calc(100vh - 341px);
   }
+  .loading__container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .loading{
+      width: 60px;
+      /* width: 100%; */
+      animation: loading-anim 1.2s linear infinite;
+    }
+    @keyframes loading-anim{
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
 `;

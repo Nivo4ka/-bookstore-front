@@ -1,8 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IUserData } from '../../types/user.datatype';
-import loginByPassEmail from '../../actions/login';
-import singUpByPassEmail from '../../actions/singup';
-import loginByToken from '../../actions/loginByToken';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import loginByPassEmail from './thunks/login';
+import singUpByPassEmail from './thunks/singup';
+import loginByToken from './thunks/loginByToken';
+import type { IUserData } from '../../../types/user.datatype';
 
 const initialState: IUserData = {
   user: {
@@ -22,12 +23,11 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loginByPassEmail.fulfilled, (state, { payload }) => {
-      if (payload) state.user = payload;
+    builder.addCase(loginByPassEmail.fulfilled, (state, action) => {
+      if (action.payload) state.user = action.payload;
     });
-    // builder.addCase(loginByPassEmail.rejected, (state, { payload }) => {
-    //   // eslint-disable-next-line no-console
-    //   // console.log('rejected');
+    // builder.addCase(loginByPassEmail.rejected, (state, action) => {
+    //   // if (action.error) state.error = action.error;
     // });
     // builder.addCase(loginByPassEmail.pending, (state, { payload }) => {
     //   // eslint-disable-next-line no-console

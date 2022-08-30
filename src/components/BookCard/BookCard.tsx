@@ -5,14 +5,14 @@ import heart from '../../images/icons/Heart.svg';
 import bookimg from '../../images/TheCryingbook.svg';
 import { StyledBookCard } from './BookCard.styles';
 
-interface Book {
+interface IBook {
   title: string;
   autor: string;
   rating: string;
   img: string;
   price: number;
 }
-const books: Book = {
+const books: IBook = {
   title: 'The Crying book',
   autor: 'Heather Christle',
   rating: `${1.0}`,

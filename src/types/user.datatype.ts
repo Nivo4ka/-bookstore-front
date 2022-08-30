@@ -26,6 +26,12 @@ export interface IUserPatch {
   email: string;
 }
 
+export interface IError {
+  code?: string;
+  message?: string;
+  name?: string;
+}
+
 export interface IUserData {
   token?: string;
   user?: IUser;

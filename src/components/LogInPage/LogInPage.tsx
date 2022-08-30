@@ -7,8 +7,10 @@ import man from '../../images/man.svg';
 import mail from '../../images/icons/Mail.svg';
 import view from '../../images/icons/View.svg';
 // import hide from '../../images/icons/Hide.svg';
-import loginByPassEmail from '../../actions/login';
+import loginByPassEmail from '../../store/slices/user/thunks/login';
 import { useAppDispatch } from '../../store/hooks';
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 const loginSchema = yup.object().shape({
   password: yup.string()
@@ -24,9 +26,14 @@ const LogInPage = () => {
   const formik = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      dispatch(loginByPassEmail(values));
-      navigate('/');
+    onSubmit: async (values) => {
+      try {
+        await dispatch(loginByPassEmail(values)).unwrap();
+        navigate('/');
+        // handle result here
+      } catch (rejectedValueOrSerializedError) {
+        // handle error here
+      }
     },
   });
 
@@ -37,39 +44,27 @@ const LogInPage = () => {
     >
       <div>
         <h2>Log In</h2>
-
         <form onSubmit={formik.handleSubmit}>
-          <div className="styled__login__page--input__container">
-            <img src={mail} alt="mail" />
-            <input
-              type="text"
-              name="email"
-              className="styled__text__input"
-              id="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              required
-            />
-            <label className="styled__label" htmlFor="email" id="email_label">Email</label>
-          </div>
+          <Input
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            placeHolder="Email"
+            nameInput="email"
+            icon={mail}
+            type="text"
+          />
           <div className="styled__login__page--error__info" id="email__error">{formik.errors.email || 'Enter your email'}</div>
-          <div className="styled__login__page--input__container">
-            <img src={view} alt="view" />
-            <input
-              type="text"
-              name="password"
-              className="styled__text__input"
-              id="password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              required
-            />
-            <label className="styled__label" htmlFor="password">Password</label>
-          </div>
+          <Input
+            onChange={formik.handleChange}
+            className="styled__user__page-styled__text__input"
+            value={formik.values.password}
+            placeHolder="Password"
+            nameInput="password"
+            icon={view}
+            type="text"
+          />
           <div className="styled__login__page--error__info" id="password__error">{formik.errors.password || 'Enter your password'}</div>
-          <button type="submit" className="styled__primary__button">
-            Log In
-          </button>
+          <Button type="submit">Log In</Button>
         </form>
       </div>
       <img src={man} alt="man" />
