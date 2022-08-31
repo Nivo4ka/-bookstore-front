@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-export const StyledSingUpPage = styled.div<{ email: string; password: string; repeatPassword: string }>`
+export const StyledSingUpPage = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -30,69 +30,4 @@ export const StyledSingUpPage = styled.div<{ email: string; password: string; re
 
   }
 
-  .styled__singup__page--error__info{
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
-    color: #344966;
-    align-items: center;
-    letter-spacing: 0.75px;
-    margin: 9px 0 30px 0;
-  }
-
-  ${({ email }) => {
-    if (email) {
-      return css`
-        #email{
-          outline: 2px solid #ED2E7E;
-          background: #FFF2F7;
-          :valid ~ .styled__label{
-            color: #C30052;
-
-          }
-
-        }
-        #email__error{
-          color: #C30052;
-        }
-      `;
-    }
-  }}
-  ${({ password }) => {
-    if (password) {
-      return css`
-        #password{
-          outline: 2px solid #ED2E7E;
-          background: #FFF2F7;
-          :valid ~ .styled__label{
-            color: #C30052;
-
-          }
-
-        }
-        #password__error{
-          color: #C30052;
-        }
-      `;
-    }
-  }}
-
-${({ repeatPassword }) => {
-    if (repeatPassword) {
-      return css`
-        #repeatPassword{
-          outline: 2px solid #ED2E7E;
-          background: #FFF2F7;
-          :valid ~ .styled__label{
-            color: #C30052;
-
-          }
-
-        }
-        #repeatPassword__error{
-          color: #C30052;
-        }
-      `;
-    }
-  }}
 `;

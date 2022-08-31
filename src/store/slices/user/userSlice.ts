@@ -1,9 +1,12 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
+// import type { PayloadAction } from '@reduxjs/toolkit';
+import type { AxiosError } from 'axios';
 import { createSlice } from '@reduxjs/toolkit';
 import loginByPassEmail from './thunks/login';
 import singUpByPassEmail from './thunks/singup';
 import loginByToken from './thunks/loginByToken';
+import patchUserInfo from './thunks/patchUserInfo';
 import type { IUserData } from '../../../types/user.datatype';
+import patchUserPassword from './thunks/patchUserPassword';
 
 const initialState: IUserData = {
   user: {
@@ -17,18 +20,17 @@ const initialState: IUserData = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    addUser: (state, action: PayloadAction<IUserData>) => {
-      if (action.payload.user) state.user = action.payload.user;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loginByPassEmail.fulfilled, (state, action) => {
       if (action.payload) state.user = action.payload;
+      // eslint-disable-next-line no-console
+      console.log(action);
     });
-    // builder.addCase(loginByPassEmail.rejected, (state, action) => {
-    //   // if (action.error) state.error = action.error;
-    // });
+    builder.addCase(loginByPassEmail.rejected, (state, action) => {
+      // eslint-disable-next-line no-console
+      console.log(action.error);
+    });
     // builder.addCase(loginByPassEmail.pending, (state, { payload }) => {
     //   // eslint-disable-next-line no-console
     //   // console.log('pending');
@@ -39,9 +41,13 @@ export const userSlice = createSlice({
     builder.addCase(loginByToken.fulfilled, (state, { payload }) => {
       if (payload) state.user = payload;
     });
+    builder.addCase(patchUserInfo.fulfilled, (state, { payload }) => {
+      if (payload) state.user = payload;
+    });
+    builder.addCase(patchUserPassword.fulfilled, (state, { payload }) => {
+      if (payload) state.user = payload;
+    });
   },
 });
-
-export const { addUser } = userSlice.actions;
 
 export default userSlice.reducer;

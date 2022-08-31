@@ -130,4 +130,8 @@ export const StyledUserPage = styled.div`
   .custom__button {
     background-color: blue;
   }
+
+  .styled__user__page--form__container{
+    margin-bottom: 100px;
+  }
 `;

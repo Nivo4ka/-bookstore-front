@@ -5,7 +5,7 @@ const loginByToken = createAsyncThunk(
   'user/loginByToken',
   async () => {
     const data = await services.loginByToken();
-    localStorage.setItem('token', data.data.token || '');
+    // localStorage.setItem('token', data.data.token || '');
     return data.data.user;
   },
 );

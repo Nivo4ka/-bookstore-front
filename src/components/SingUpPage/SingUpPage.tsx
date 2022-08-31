@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import man from '../../images/man.svg';
 import mail from '../../images/icons/Mail.svg';
@@ -15,7 +15,7 @@ import Button from '../Button/Button';
 const singupSchema = yup.object().shape({
   password: yup.string()
     .min(8, 'Too Short!')
-    .matches(/^[a-zA-Z0-9-_]{8,}$/)
+    .matches(/^[a-zA-Z0-9-_]{8,}$/, 'The password must consist of numbers and latin characters')
     .required('Enter your password'),
   repeatPassword: yup.string()
     .when('password', {
@@ -29,9 +29,14 @@ const singupSchema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Enter your email'),
 });
 
+interface IState {
+  from?: { pathname: string };
+}
+
 const SingUpPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const formik = useFormik({
     initialValues: { email: '', password: '', repeatPassword: '' },
@@ -39,7 +44,12 @@ const SingUpPage = () => {
     onSubmit: async (values) => {
       try {
         await dispatch(singUpByPassEmail(values)).unwrap();
-        navigate('/');
+        const { from } = location.state as IState;
+        if (from) {
+          navigate(from.pathname);
+        } else {
+          navigate('/');
+        }
         // handle result here
       } catch (rejectedValueOrSerializedError) {
         // handle error here
@@ -49,14 +59,9 @@ const SingUpPage = () => {
 
   return (
 
-    <StyledSingUpPage
-      email={formik.errors.email || ''}
-      password={formik.errors.password || ''}
-      repeatPassword={formik.errors.repeatPassword || ''}
-    >
+    <StyledSingUpPage>
       <div>
         <h2>Sign Up</h2>
-
         <form onSubmit={formik.handleSubmit}>
           <Input
             onChange={formik.handleChange}
@@ -65,14 +70,8 @@ const SingUpPage = () => {
             nameInput="email"
             icon={mail}
             type="text"
+            error={formik.errors.email}
           />
-          <div
-            className="styled__singup__page--error__info"
-            id="email__error"
-          >
-            {formik.errors.email || 'Enter your email'}
-          </div>
-
           <Input
             onChange={formik.handleChange}
             className="styled__user__page-styled__text__input"
@@ -81,14 +80,8 @@ const SingUpPage = () => {
             nameInput="password"
             icon={view}
             type="text"
+            error={formik.errors.password}
           />
-          <div
-            className="styled__singup__page--error__info"
-            id="password__error"
-          >
-            {formik.errors.password || 'Enter your password'}
-          </div>
-
           <Input
             onChange={formik.handleChange}
             className="styled__user__page-styled__text__input"
@@ -97,14 +90,8 @@ const SingUpPage = () => {
             nameInput="repeatPassword"
             icon={view}
             type="text"
+            error={formik.errors.repeatPassword}
           />
-          <div
-            className="styled__singup__page--error__info"
-            id="repeatPassword__error"
-          >
-            {formik.errors.repeatPassword || 'Repeat your password without errors'}
-          </div>
-
           <Button type="submit">Sign Up</Button>
         </form>
       </div>

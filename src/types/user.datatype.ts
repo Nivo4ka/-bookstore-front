@@ -8,28 +8,19 @@ export interface IUser {
 export interface IUserLogin {
   email: string;
   password: string;
+  repeatPassword?: string;
 }
 
 export interface IUserLoginByToken {
   token: string;
 }
 
-export interface IUserSingUp {
-  email: string;
-  password: string;
-  repeatPassword: string;
-}
-
 export interface IUserPatch {
   fullName?: string;
-  birthDay?: string;
-  email: string;
-}
-
-export interface IError {
-  code?: string;
-  message?: string;
-  name?: string;
+  email?: string;
+  password?: string;
+  newPassword?: string;
+  repeatNewPassword?: string;
 }
 
 export interface IUserData {

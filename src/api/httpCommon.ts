@@ -15,4 +15,12 @@ instace.interceptors.request.use((config) => {
   return config;
 });
 
+instace.interceptors.response.use((config) => {
+  const token = config.data.token;
+  if (token) {
+    localStorage.setItem('token', token);
+  }
+  return config;
+});
+
 export default instace;

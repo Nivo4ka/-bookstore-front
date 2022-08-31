@@ -1,10 +1,11 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
 
 const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const userInfo = useAppSelector((state) => state.user.user?.email);
-  return userInfo ? children : <Navigate to="/log-in" />;
+  const location = useLocation();
+  return userInfo ? children : <Navigate to="/log-in" state={{ from: location }} replace />;
 };
 
 export default PrivateRoute;

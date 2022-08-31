@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledInput = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
+export const StyledInput = styled.div<{ error?: string; name: string }>`
+
+  .styled__input--container{
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
   margin-bottom: 20px;
   img{
     position: absolute;
@@ -71,4 +75,32 @@ export const StyledInput = styled.div`
     }
   }
 
+  .error__info{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #344966;
+    align-items: center;
+    letter-spacing: 0.75px;
+    margin: 9px 0 15px 0;
+  }
+
+  ${
+  (p) => {
+    if (p.error) {
+      return css`
+        #${p.name}{
+          outline: 2px solid #ED2E7E;
+          background: #FFF2F7;
+          :valid ~ .styled__label{
+            color: #C30052;
+          }
+        }
+        #${p.name}__error{
+          color: #C30052;
+        }
+      `;
+    }
+  }
+}
 `;
