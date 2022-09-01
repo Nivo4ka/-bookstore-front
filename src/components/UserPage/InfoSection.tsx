@@ -50,8 +50,8 @@ const InfoSection: React.FC<PropsType> = (props) => {
             value={props.fullName}
             placeHolder="Name"
             nameInput="fullName"
-            icon={profile}
-            type="text"
+            icon1={profile}
+            type1="text"
             error={props.errors?.fullName}
           />
           <Input
@@ -60,8 +60,8 @@ const InfoSection: React.FC<PropsType> = (props) => {
             value={props.email}
             placeHolder="Email"
             nameInput="email"
-            icon={mail}
-            type="text"
+            icon1={mail}
+            type1="text"
             error={props.errors?.email}
           />
          </div>)

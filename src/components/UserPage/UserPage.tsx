@@ -53,6 +53,7 @@ const UserPage = () => {
     onSubmit: async (values) => {
       try {
         await dispatch(patchUserInfo(values)).unwrap();
+        setIsChangeInfoOrPassword('none');
       } catch (err) {
         // handle error here
       }
@@ -62,11 +63,16 @@ const UserPage = () => {
   const formikPassword = useFormik({
     initialValues: { password: '', newPassword: '', repeatNewPassword: '' },
     validationSchema: patchPasswordSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { setErrors }) => {
       try {
         await dispatch(patchUserPassword(values)).unwrap();
+        setIsChangeInfoOrPassword('none');
       } catch (err) {
-        // handle error here
+        if (err.message) {
+          if (err.message.includes('password')) {
+            setErrors({ password: err.message });
+          }
+        }
       }
     },
   });
@@ -84,7 +90,6 @@ const UserPage = () => {
     } if (isChangeInfoOrPassword === 'password') {
       formikPassword.handleSubmit(e);
     }
-    setIsChangeInfoOrPassword('none');
   };
 
   return (

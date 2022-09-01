@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import man from '../../images/man.svg';
 import mail from '../../images/icons/Mail.svg';
 import view from '../../images/icons/View.svg';
-// import hide from '../../images/icons/Hide.svg';
+import hide from '../../images/icons/Hide.svg';
 import { StyledSingUpPage } from './SingUpPage.styles';
 import singUpByPassEmail from '../../store/slices/user/thunks/singup';
 import { useAppDispatch } from '../../store/hooks';
@@ -41,7 +41,7 @@ const SingUpPage = () => {
   const formik = useFormik({
     initialValues: { email: '', password: '', repeatPassword: '' },
     validationSchema: singupSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { setErrors }) => {
       try {
         await dispatch(singUpByPassEmail(values)).unwrap();
         const { from } = location.state as IState;
@@ -50,9 +50,12 @@ const SingUpPage = () => {
         } else {
           navigate('/');
         }
-        // handle result here
-      } catch (rejectedValueOrSerializedError) {
-        // handle error here
+      } catch (err) {
+        if (err.message) {
+          if (err.message.includes('email')) {
+            setErrors({ email: err.message });
+          }
+        }
       }
     },
   });
@@ -68,8 +71,8 @@ const SingUpPage = () => {
             value={formik.values.email}
             placeHolder="Email"
             nameInput="email"
-            icon={mail}
-            type="text"
+            icon1={mail}
+            type1="text"
             error={formik.errors.email}
           />
           <Input
@@ -78,8 +81,10 @@ const SingUpPage = () => {
             value={formik.values.password}
             placeHolder="Password"
             nameInput="password"
-            icon={view}
-            type="text"
+            icon1={hide}
+            icon2={view}
+            type1="password"
+            type2="text"
             error={formik.errors.password}
           />
           <Input
@@ -88,8 +93,10 @@ const SingUpPage = () => {
             value={formik.values.repeatPassword}
             placeHolder="Password replay"
             nameInput="repeatPassword"
-            icon={view}
-            type="text"
+            icon1={hide}
+            icon2={view}
+            type1="password"
+            type2="text"
             error={formik.errors.repeatPassword}
           />
           <Button type="submit">Sign Up</Button>

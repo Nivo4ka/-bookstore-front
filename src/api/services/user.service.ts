@@ -10,11 +10,11 @@ const singUp = (info: IUserLogin) => {
 };
 
 const patchUserInfo = (data: IUserPatch) => {
-  return instace.patch<IUserData>('/user/info/me', data);
+  return instace.patch<IUserData>('/user/me', data);
 };
 
 const patchUserPassword = (data: IUserPatch) => {
-  return instace.patch<IUserData>('/user/password/me', data);
+  return instace.patch<IUserData>('/user/password', data);
 };
 
 const loginByToken = () => {

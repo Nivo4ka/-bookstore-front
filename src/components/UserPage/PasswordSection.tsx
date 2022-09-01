@@ -1,6 +1,6 @@
 import React from 'react';
 import type { FormikErrors } from 'formik';
-// import view from '../../images/icons/View.svg';
+import view from '../../images/icons/View.svg';
 import hide from '../../images/icons/Hide.svg';
 import Input from '../Input/Input';
 
@@ -44,8 +44,10 @@ const PasswordSection: React.FC<PropsType> = (props) => {
             value={props.password}
             placeHolder="Password"
             nameInput="password"
-            icon={hide}
-            type="password"
+            icon1={hide}
+            icon2={view}
+            type1="password"
+            type2="text"
             error={props.errors?.password}
           />
           <Input
@@ -54,8 +56,10 @@ const PasswordSection: React.FC<PropsType> = (props) => {
             value={props.newPassword}
             placeHolder="New password"
             nameInput="newPassword"
-            icon={hide}
-            type="password"
+            icon1={hide}
+            icon2={view}
+            type1="password"
+            type2="text"
             error={props.errors?.newPassword}
           />
           <Input
@@ -64,8 +68,10 @@ const PasswordSection: React.FC<PropsType> = (props) => {
             value={props.repeatNewPassword}
             placeHolder="Password replay"
             nameInput="repeatNewPassword"
-            icon={hide}
-            type="password"
+            icon1={hide}
+            icon2={view}
+            type1="password"
+            type2="text"
             error={props.errors?.repeatNewPassword}
           />
          </div>)

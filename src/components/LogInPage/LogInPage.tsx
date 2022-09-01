@@ -2,12 +2,11 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { AxiosError } from 'axios';
 import { StyledLogInPage } from './LogInPage.styles';
 import man from '../../images/man.svg';
 import mail from '../../images/icons/Mail.svg';
 import view from '../../images/icons/View.svg';
-// import hide from '../../images/icons/Hide.svg';
+import hide from '../../images/icons/Hide.svg';
 import loginByPassEmail from '../../store/slices/user/thunks/login';
 import { useAppDispatch } from '../../store/hooks';
 import Input from '../Input/Input';
@@ -32,23 +31,24 @@ const LogInPage = () => {
   const formik = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: loginSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { setErrors }) => {
       try {
         await dispatch(loginByPassEmail(values)).unwrap();
-        // eslint-disable-next-line no-console
         const { from } = location.state as IState;
         if (from) {
           navigate(from.pathname);
         } else {
           navigate('/');
         }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        // eslint-disable-next-line no-console
-        // console.log(err);
-        // eslint-disable-next-line no-alert
-        // alert(err.message);
-        // handle error here
+      } catch (err) {
+        if (err.message) {
+          if (err.message.includes('password')) {
+            setErrors({ password: err.message });
+          }
+          if (err.message.includes('User')) {
+            setErrors({ email: err.message });
+          }
+        }
       }
     },
   });
@@ -63,8 +63,8 @@ const LogInPage = () => {
             value={formik.values.email}
             placeHolder="Email"
             nameInput="email"
-            icon={mail}
-            type="text"
+            icon1={mail}
+            type1="text"
             error={formik.errors.email}
           />
           <Input
@@ -73,8 +73,10 @@ const LogInPage = () => {
             value={formik.values.password}
             placeHolder="Password"
             nameInput="password"
-            icon={view}
-            type="text"
+            icon1={hide}
+            icon2={view}
+            type1="password"
+            type2="text"
             error={formik.errors.password}
           />
           <Button type="submit">Log In</Button>
