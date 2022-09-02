@@ -20,21 +20,23 @@ export const StyledUserPage = styled.div`
     background-size: 151px;
     background-image:url(${profile});
     background-position: center center;
-    /* justify-content: flex-end; */
+    overflow: hodden;
+    .styled-user-page__avatar{
+      object-fit: cover;
+      border-radius:16px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .styled-user-page__input-file{
+    display: none;
   }
 
   .styled__user__page--change__img{
     position: absolute;
     bottom: 20px;
     right: 20px;
-    background: #344966;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
   }
 
   .styled__user__page--place__with__changes{

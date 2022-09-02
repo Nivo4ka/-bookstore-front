@@ -4,6 +4,7 @@ import star2 from '../../images/icons/Star2.svg';
 import heart from '../../images/icons/Heart.svg';
 import bookimg from '../../images/TheCryingbook.svg';
 import { StyledBookCard } from './BookCard.styles';
+import ImgButton from '../ImgButton/ImgButton';
 
 interface IBook {
   title: string;
@@ -23,9 +24,11 @@ const books: IBook = {
 const BookCard = () => {
   return (
     <StyledBookCard>
-      <div className="styled__bookcard--favorite">
-        <img src={heart} alt="heart" />
-      </div>
+      <ImgButton
+        src={heart}
+        isNotSelected
+        className="styled__bookcard--favorite"
+      />
       <img className="styled__bookcard--bookimg" src={books.img} alt={books.title} />
       <p className="styled__bookcard--title">{books.title}</p>
       <p className="styled__bookcard--autor">{books.autor}</p>

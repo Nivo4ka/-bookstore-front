@@ -44,12 +44,12 @@ const SingUpPage = () => {
     onSubmit: async (values, { setErrors }) => {
       try {
         await dispatch(singUpByPassEmail(values)).unwrap();
-        const { from } = location.state as IState;
-        if (from) {
-          navigate(from.pathname);
-        } else {
-          navigate('/');
+        let path = '/';
+        if (location.state) {
+          const { from } = location.state as IState;
+          path = from?.pathname ?? '/';
         }
+        navigate(path);
       } catch (err) {
         if (err.message) {
           if (err.message.includes('email')) {

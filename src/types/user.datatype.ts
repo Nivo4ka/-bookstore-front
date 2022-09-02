@@ -1,7 +1,7 @@
 export interface IUser {
   id: number;
   fullName: string;
-  birthDay: string;
+  avatar: string;
   email: string;
 }
 
@@ -21,6 +21,10 @@ export interface IUserPatch {
   password?: string;
   newPassword?: string;
   repeatNewPassword?: string;
+}
+
+export interface IUserPatchImg {
+  file: ArrayBuffer | string;
 }
 
 export interface IUserData {

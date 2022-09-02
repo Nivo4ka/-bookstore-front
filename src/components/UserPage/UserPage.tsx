@@ -9,6 +9,8 @@ import InfoSection from './InfoSection';
 import PasswordSection from './PasswordSection';
 import patchUserPassword from '../../store/slices/user/thunks/patchUserPassword';
 import patchUserInfo from '../../store/slices/user/thunks/patchUserInfo';
+import patchUserImg from '../../store/slices/user/thunks/patchUserImg';
+import ImgButton from '../ImgButton/ImgButton';
 
 const patchUserSchema = yup.object().shape({
   fullName: yup.string().required('Enter your name'),
@@ -82,6 +84,8 @@ const UserPage = () => {
     } else {
       setIsChangeInfoOrPassword(nameChange);
     }
+    formikInfo.resetForm();
+    formikPassword.resetForm();
   };
 
   const onSubmitInfoOrPassword = (e: React.FormEvent<HTMLFormElement>) => {
@@ -92,13 +96,28 @@ const UserPage = () => {
     }
   };
 
+  const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = () => {
+        dispatch(patchUserImg({ file: reader.result! }));
+      };
+    }
+  };
+
   return (
     <StyledUserPage>
       <div className="styled__user__page--user__photo">
-        {/* <img></img> */}
-        <div className="styled__user__page--change__img">
-          <img src={camera} alt="camera" />
-        </div>
+        {userInfo && userInfo.avatar && <img className="styled-user-page__avatar" src={userInfo?.avatar} alt={userInfo.avatar} />}
+        <label htmlFor="file">
+          <ImgButton
+            src={camera}
+            // isNotSelected
+            className="styled__user__page--change__img"
+          />
+            <input className="styled-user-page__input-file" type="file" id="file" name="file" onChange={onChangeImg} />
+        </label>
       </div>
       <div className="styled__user__page--form__container">
         <form onSubmit={onSubmitInfoOrPassword}>

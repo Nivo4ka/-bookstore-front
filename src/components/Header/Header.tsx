@@ -3,9 +3,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import search from '../../images/icons/Search.svg';
 import profile from '../../images/icons/User_profile2.svg';
+import heart from '../../images/icons/Heart.svg';
+import cart from '../../images/icons/Cart.svg';
 import { StyledHeader } from './Header.styles';
+import { useAppSelector } from '../../store/hooks';
+import Button from '../Button/Button';
+import ImgButton from '../ImgButton/ImgButton';
 
 const Header = () => {
+  const userInfo = useAppSelector((state) => state.user.user);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,10 +44,29 @@ const Header = () => {
           <label className="styled__label" htmlFor="search">Search</label>
         </div>
       </div>
-      <div className="styled__header--profile" onClick={goToUserPage}>
-        <img src={profile} alt="profile" />
-      </div>
-      <button className="styled__primary__button" onClick={goToLogIn}>Log In/ Sing Up</button>
+
+      {
+        userInfo?.email
+          ? (<div className="styled-header_menu">
+            <ImgButton
+              src={profile}
+              onClick={goToUserPage}
+              className="styled__header-img-button"
+            />
+            <ImgButton
+              src={heart}
+              onClick={goToUserPage}
+              className="styled__header-img-button"
+            />
+            <ImgButton
+              src={cart}
+              onClick={goToUserPage}
+              className="styled__header-img-button"
+            />
+             </div>)
+          : <Button onClick={goToLogIn}>Log In/ Sing Up</Button>
+      }
+
     </StyledHeader>
   );
 };

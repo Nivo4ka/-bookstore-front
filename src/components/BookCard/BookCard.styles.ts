@@ -8,14 +8,6 @@ export const StyledBookCard = styled.div`
     position: absolute;
     top: 20px;
     left: 20px;
-    background: #344966;
-    opacity: 0.5;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .styled__bookcard--bookimg{

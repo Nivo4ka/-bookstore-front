@@ -6,12 +6,13 @@ import loginByToken from './thunks/loginByToken';
 import patchUserInfo from './thunks/patchUserInfo';
 import type { IUserData } from '../../../types/user.datatype';
 import patchUserPassword from './thunks/patchUserPassword';
+import patchUserImg from './thunks/patchUserImg';
 
 const initialState: IUserData = {
   user: {
     id: 0,
     fullName: '',
-    birthDay: '',
+    avatar: '',
     email: '',
   },
 };
@@ -24,15 +25,9 @@ export const userSlice = createSlice({
     builder.addCase(loginByPassEmail.fulfilled, (state, action) => {
       if (action.payload) state.user = action.payload;
     });
-    builder.addCase(loginByPassEmail.rejected, () => {
-      //
-    });
 
     builder.addCase(singUpByPassEmail.fulfilled, (state, { payload }) => {
       if (payload) state.user = payload;
-    });
-    builder.addCase(singUpByPassEmail.rejected, () => {
-      //
     });
 
     builder.addCase(loginByToken.fulfilled, (state, { payload }) => {
@@ -43,11 +38,12 @@ export const userSlice = createSlice({
       if (payload) state.user = payload;
     });
 
-    builder.addCase(patchUserPassword.fulfilled, (state, { payload }) => {
+    builder.addCase(patchUserImg.fulfilled, (state, { payload }) => {
       if (payload) state.user = payload;
     });
-    builder.addCase(patchUserPassword.rejected, () => {
-      //
+
+    builder.addCase(patchUserPassword.fulfilled, (state, { payload }) => {
+      if (payload) state.user = payload;
     });
   },
 });

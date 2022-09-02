@@ -57,6 +57,16 @@ export const StyledHeader = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-left: 27px;
+  }
+
+  .styled__header-img-button{
+    margin-left: 27px;
+  }
+
+  .styled-header_menu{
+    display: flex;
+    flex-direction: row;
   }
   
 `;
