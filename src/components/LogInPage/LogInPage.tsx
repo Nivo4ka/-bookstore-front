@@ -69,7 +69,6 @@ const LogInPage = () => {
           />
           <Input
             onChange={formik.handleChange}
-            className="styled__user__page-styled__text__input"
             value={formik.values.password}
             placeHolder="Password"
             nameInput="password"

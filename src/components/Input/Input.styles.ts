@@ -1,19 +1,26 @@
 import styled, { css } from 'styled-components';
 
 export const StyledInput = styled.div<{ error?: string; name: string }>`
-
-  .styled__input--container{
+  .styled-input__container{
     position: relative;
     display: flex;
     align-items: center;
   }
+
+  ${(p) => {
+    if (p.name !== 'search') {
+      return css`
+      margin-bottom: 20px;
+      `;
+    }
+  }
+}
   
-  margin-bottom: 20px;
   img{
     position: absolute;
     left: 26px;
   }
-  .styled__label{
+  .styled-input__label{
     position: absolute;
     left: 64px;
     font-family: 'Poppins';
@@ -22,13 +29,11 @@ export const StyledInput = styled.div<{ error?: string; name: string }>`
     color: #B9BAC4;
     font-weight: 400;
     font-size: 16px;
-    transform-origin: left bottom;
-    transform: scale(1) translate3d(0, 0, 0);
     transition: 200ms ease all;
     cursor: inherit;
   }
 
-  .styled__text__input{
+  .styled-input__input{
     background: #F0F4EF;
     border-radius: 16px;
     outline: none;
@@ -53,29 +58,18 @@ export const StyledInput = styled.div<{ error?: string; name: string }>`
       height: 42px;
       padding:22px 0 0 64px;
     }
-  
-  /* :focus ~ .styled__label {
-    font-size: 14px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.75px;
-    color: #B9BAC4;
-    
-    transform: scale(0.8) translate3d(0, -14px, 0);
-  } */
-    :valid ~ .styled__label {
+    :valid ~ .styled-input__label {
       font-size: 14px;
       line-height: 24px;
       display: flex;
       align-items: center;
       letter-spacing: 0.75px;
       color: #344966;
-      transform: scale(0.8) translate3d(0, -20px, 0);
+      transform: translate(0, -12px);
     }
   }
 
-  .error__info{
+  .styled-input__error-info{
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
@@ -83,10 +77,17 @@ export const StyledInput = styled.div<{ error?: string; name: string }>`
     align-items: center;
     letter-spacing: 0.75px;
     margin: 9px 0 15px 0;
+    ${(p) => {
+    if (p.name === 'search') {
+      return css`
+      display: none;
+      `;
+    }
+  }
+}
   }
 
-  ${
-  (p) => {
+  ${(p) => {
     if (p.error) {
       return css`
         #${p.name}{

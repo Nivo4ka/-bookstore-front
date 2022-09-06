@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import camera from '../../images/icons/Camera.svg';
 import { StyledUserPage } from './UserPage.styles';
 import Button from '../Button/Button';
-import InfoSection from './InfoSection';
-import PasswordSection from './PasswordSection';
+import InfoSection from '../InfoSection/InfoSection';
+import PasswordSection from '../InfoSection/PasswordSection';
 import patchUserPassword from '../../store/slices/user/thunks/patchUserPassword';
 import patchUserInfo from '../../store/slices/user/thunks/patchUserInfo';
 import patchUserImg from '../../store/slices/user/thunks/patchUserImg';
@@ -108,24 +108,29 @@ const UserPage = () => {
 
   return (
     <StyledUserPage>
-      <div className="styled__user__page--user__photo">
-        {userInfo && userInfo.avatar && <img className="styled-user-page__avatar" src={userInfo?.avatar} alt={userInfo.avatar} />}
+      <div className="styled-user-page__user-photo">
+        {userInfo && userInfo.avatar &&
+          (<img
+            className="styled-user-page__avatar"
+            src={userInfo?.avatar}
+            alt={userInfo.avatar}
+          />)}
         <label htmlFor="file">
           <ImgButton
             src={camera}
             // isNotSelected
-            className="styled__user__page--change__img"
+            className="styled-user-page__change-img"
           />
-            <input className="styled-user-page__input-file" type="file" id="file" name="file" onChange={onChangeImg} />
+          <input className="styled-user-page__input-file" type="file" id="file" name="file" onChange={onChangeImg} />
         </label>
       </div>
-      <div className="styled__user__page--form__container">
+      <div className="styled-user-page__form-container">
         <form onSubmit={onSubmitInfoOrPassword}>
           <div>
-            <div className="styled__user__page--place__with__changes">
+            <div className="styled-user-page__place-with-changes">
               <p>Personal information</p>
               <p
-                className="styled__user__page--switch__to__change"
+                className="styled-user-page__switch-to-change"
                 onClick={() => onChangeInfoOrPassword('info')}
               >Change information
               </p>
@@ -137,10 +142,10 @@ const UserPage = () => {
               email={formikInfo.values.email}
               errors={formikInfo.errors}
             />
-            <div className="styled__user__page--place__with__changes">
+            <div className="styled-user-page__place-with-changes">
               <p>Password</p>
               <p
-                className="styled__user__page--switch__to__change"
+                className="styled-user-page__switch-to-change"
                 onClick={() => onChangeInfoOrPassword('password')}
               >Change password
               </p>

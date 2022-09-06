@@ -11,7 +11,7 @@ export const StyledSingUpBanner = styled.div`
   height: 400px;
   background-repeat: no-repeat;
   background-color: #F0F4EF;
-  margin-bottom: 130px;
+  margin-bottom: 150px;
   background-size: auto;
   background-image:url(${fairy});
   background-position: bottom right;
@@ -35,7 +35,7 @@ export const StyledSingUpBanner = styled.div`
     width: 415px;
     margin-bottom: 50px;
   }
-  .styled__singup__banner--info__area{
+  .styled-singup-banner__info-area{
     height: 100%;
     margin-right: 108px;
   }

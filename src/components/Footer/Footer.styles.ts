@@ -9,7 +9,7 @@ export const StyledFooter = styled.div`
   height: 341px;
   background-color: #0D1821;
 
-  .styled__footer--container{
+  .styled-footer__container{
     width: 1280px;
     margin: 0 auto;
     display: flex;

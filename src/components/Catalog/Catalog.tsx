@@ -7,7 +7,7 @@ const Catalog = () => {
   return (
     <StyledCatalog>
       <Filter />
-      <div className="styled__catalog--grid">
+      <div className="styled-catalog__grid">
       <BookCard />
       <BookCard />
       <BookCard />
@@ -19,7 +19,7 @@ const Catalog = () => {
       <BookCard />
       <BookCard />
       </div>
-      <div className="styled_catalog--pagination">Пагинация</div>
+      <div className="styled-catalog__pagination">Пагинация</div>
     </StyledCatalog>
   );
 };

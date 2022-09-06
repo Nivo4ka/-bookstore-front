@@ -7,7 +7,7 @@ export const StyledCatalog = styled.div`
   /* justify-content: space-between; */
   width: 100%;
 
-  .styled__catalog--grid{
+  .styled-catalog__grid{
     display: grid;
     grid-template-columns: repeat(4, calc(25% - 15px)); 
     grid-column-gap: 20px;
@@ -18,7 +18,7 @@ export const StyledCatalog = styled.div`
     width: auto;
   }
 
-  .styled_catalog--pagination{
+  .styled-catalog__pagination{
     width: 100%;
     background-color: aqua;
     height: 30px;

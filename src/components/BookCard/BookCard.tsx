@@ -5,6 +5,7 @@ import heart from '../../images/icons/Heart.svg';
 import bookimg from '../../images/TheCryingbook.svg';
 import { StyledBookCard } from './BookCard.styles';
 import ImgButton from '../ImgButton/ImgButton';
+import Button from '../Button/Button';
 
 interface IBook {
   title: string;
@@ -27,12 +28,12 @@ const BookCard = () => {
       <ImgButton
         src={heart}
         isNotSelected
-        className="styled__bookcard--favorite"
+        className="styled-bookcard__favorite"
       />
-      <img className="styled__bookcard--bookimg" src={books.img} alt={books.title} />
-      <p className="styled__bookcard--title">{books.title}</p>
-      <p className="styled__bookcard--autor">{books.autor}</p>
-      <div className="styled__bookcard--rating__area">
+      <img className="styled-bookcard__bookimg" src={books.img} alt={books.title} />
+      <p className="styled-bookcard__title">{books.title}</p>
+      <p className="styled-bookcard__autor">{books.autor}</p>
+      <div className="styled-bookcard__rating-area">
         <ul>
           <li>
             <img src={star2} alt="star2" />
@@ -52,7 +53,7 @@ const BookCard = () => {
         </ul>
         <p>{books.rating}.0</p>
       </div>
-      <button className="styled__primary__button">$ {books.price} USD</button>
+      <Button>$ {books.price} USD</Button>
     </StyledBookCard>
   );
 };

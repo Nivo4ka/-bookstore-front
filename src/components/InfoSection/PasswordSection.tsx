@@ -3,6 +3,7 @@ import type { FormikErrors } from 'formik';
 import view from '../../images/icons/View.svg';
 import hide from '../../images/icons/Hide.svg';
 import Input from '../Input/Input';
+import { StyledInfoSection } from './InfoSection.styles';
 
 type PropsType = {
   // onClick?: () => void;
@@ -20,27 +21,24 @@ type PropsType = {
 
 const PasswordSection: React.FC<PropsType> = (props) => {
   return (
-    <div>
+    <StyledInfoSection>
       {
-        props.isChangeInfoOrPassword !== 'password' &&
-        (<div className="styled__user__page--personal__information">
-          <div className="styled__user__page--div__container">
+        props.isChangeInfoOrPassword !== 'password'
+          ? (<div className="styled-user-page__personal-information">
+          <div className="styled-user-page__div-container">
             <img src={hide} alt="hide" />
-            <div className="styled__text__div"
+            <div className="styled-user-page__text-div"
               id="password"
             >
               <input type="password" disabled value="password" />
             </div>
-            <label className="styled__label" htmlFor="password">Password</label>
+            <label className="div-container__label" htmlFor="password">Password</label>
           </div>
-         </div>)
-      }
-      {
-        props.isChangeInfoOrPassword === 'password' &&
-        (<div className="styled__user__page--personal__information">
+             </div>)
+          : (<div className="styled-user-page__personal-information">
           <Input
             onChange={props.onChange}
-            className="styled__user__page-styled__text__input"
+            className="styled-user-page__styled-text-input"
             value={props.password}
             placeHolder="Password"
             nameInput="password"
@@ -52,7 +50,7 @@ const PasswordSection: React.FC<PropsType> = (props) => {
           />
           <Input
             onChange={props.onChange}
-            className="styled__user__page-styled__text__input"
+            className="styled-user-page__styled-text-input"
             value={props.newPassword}
             placeHolder="New password"
             nameInput="newPassword"
@@ -64,7 +62,7 @@ const PasswordSection: React.FC<PropsType> = (props) => {
           />
           <Input
             onChange={props.onChange}
-            className="styled__user__page-styled__text__input"
+            className="styled-user-page__styled-text-input"
             value={props.repeatNewPassword}
             placeHolder="Password replay"
             nameInput="repeatNewPassword"
@@ -74,9 +72,9 @@ const PasswordSection: React.FC<PropsType> = (props) => {
             type2="text"
             error={props.errors?.repeatNewPassword}
           />
-         </div>)
+             </div>)
       }
-    </div>
+    </StyledInfoSection>
   );
 };
 

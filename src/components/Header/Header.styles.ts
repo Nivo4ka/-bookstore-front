@@ -18,7 +18,7 @@ export const StyledHeader = styled.div`
     line-height: 24px;
     color: #000000;
   }
-  .styled__header-catalog_input_area{
+  .styled-header__input-area{
     position: relative;
     display: flex;
     flex-direction: row;
@@ -27,19 +27,9 @@ export const StyledHeader = styled.div`
       margin-right: 43px;
     }
   }
-  .styled__header-input_area{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    img{
-      position: absolute;
-      left: 26px;
-    }
-  }
 
-  .styled__header--search__input{
-    width: 566px;
+  .styled-header__search-input{
+    width: 566px !important;
     :focus{
       background: #FFFFFF;
     }
@@ -48,23 +38,11 @@ export const StyledHeader = styled.div`
     }
   }
 
-  .styled__header--profile{
-    background: #344966;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  .styled-header__img-button{
     margin-left: 27px;
   }
 
-  .styled__header-img-button{
-    margin-left: 27px;
-  }
-
-  .styled-header_menu{
+  .styled-header__menu{
     display: flex;
     flex-direction: row;
   }

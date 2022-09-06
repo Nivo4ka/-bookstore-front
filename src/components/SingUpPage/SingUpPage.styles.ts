@@ -18,16 +18,4 @@ export const StyledSingUpPage = styled.div`
     margin-block-start: 0;
     margin-block-end: 60px;
   }
-
-  .styled__singup__page--input__container{
-    position: relative;
-    display: flex;
-    align-items: center;
-    img{
-      position: absolute;
-      left: 26px;
-    }
-
-  }
-
 `;

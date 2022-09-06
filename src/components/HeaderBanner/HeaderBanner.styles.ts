@@ -12,7 +12,7 @@ export const StyledHeaderBanner = styled.div`
   height: 400px;
   background-repeat: no-repeat;
   background-color: #F0F4EF;
-  margin-bottom: 130px;
+  margin-bottom: 120px;
   background-image:url(${books});
   background-size: auto;
   background-position: bottom left;
@@ -32,6 +32,9 @@ export const StyledHeaderBanner = styled.div`
 
   h2{
     margin-bottom: 10px;
+  }
+  a{
+    text-decoration: none;
   }
   p{
     width: 217px;

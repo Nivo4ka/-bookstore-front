@@ -5,7 +5,7 @@ export const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  .styled__app--container{
+  .styled-app__container{
     width: 1280px;
     margin: 0 auto;
     display: flex;
@@ -15,7 +15,7 @@ export const StyledApp = styled.div`
     box-sizing: border-box;
     min-height: calc(100vh - 341px);
   }
-  .loading__container{
+  .loading-container{
     width: 100%;
     height: 100vh;
     display: flex;

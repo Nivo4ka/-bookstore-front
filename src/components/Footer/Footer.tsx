@@ -6,7 +6,7 @@ import map from '../../images/map.svg';
 const Footer = () => {
   return (
     <StyledFooter>
-      <div className="styled__footer--container">
+      <div className="styled-footer__container">
         <div>
           <img src={logo2} alt="logo" />
           <p>tranthuy.nute@gmail.com</p>

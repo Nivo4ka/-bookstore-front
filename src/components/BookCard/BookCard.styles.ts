@@ -4,26 +4,26 @@ export const StyledBookCard = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  .styled__bookcard--favorite{
+  .styled-bookcard__favorite{
     position: absolute;
     top: 20px;
     left: 20px;
   }
 
-  .styled__bookcard--bookimg{
+  .styled-bookcard__bookimg{
     border-radius: 16px;
     object-fit: cover;
     height: 100%;
 
   }
 
-  .styled__bookcard--title{
+  .styled-bookcard__title{
     margin: 30px 0 0 0;
   }
-  .styled__bookcard--autor{
+  .styled-bookcard__autor{
     color: #B9BAC4;
   }
-  .styled__bookcard--rating__area{
+  .styled-bookcard__rating-area{
     display: flex;
     flex-direction: row;
     align-items: center;

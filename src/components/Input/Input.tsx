@@ -18,7 +18,7 @@ interface IProps {
 const Input: React.FC<IProps> = (props) => {
   const [togglePassword, setTogglePassword] = useState(true);
   const onClickImg = () => {
-    if (props.nameInput.includes('assword')) {
+    if (/password/i.test(props.nameInput)) {
       setTogglePassword(!togglePassword);
     }
   };
@@ -28,7 +28,7 @@ const Input: React.FC<IProps> = (props) => {
       error={props.error || ''}
       name={props.nameInput}
     >
-      <div className="styled__input--container">
+      <div className="styled-input__container">
         <img
           src={togglePassword ? props.icon1 : props.icon2}
           alt={togglePassword ? props.icon1 : props.icon2}
@@ -37,20 +37,22 @@ const Input: React.FC<IProps> = (props) => {
         <input
           type={togglePassword ? props.type1 : props.type2}
           name={props.nameInput}
-          className={`styled__text__input ${props.className}`}
+          className={`styled-input__input ${props.className}`}
           id={props.nameInput}
           onChange={props.onChange}
           value={props.value}
           required
         />
-        <label className="styled__label" htmlFor={props.nameInput}>{props.placeHolder}</label>
+        <label className="styled-input__label" htmlFor={props.nameInput}>{props.placeHolder}</label>
       </div>
-      <div
-        className="error__info"
-        id={`${props.nameInput}__error`}
-      >
-        {props.error}
-      </div>
+      {props.error &&
+        (<div
+          className="styled-input__error-info"
+          id={`${props.nameInput}__error`}
+        >
+          {props.error}
+         </div>)
+      }
 
     </StyledInput>
   );

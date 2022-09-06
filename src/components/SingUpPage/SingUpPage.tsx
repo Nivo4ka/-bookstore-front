@@ -77,7 +77,6 @@ const SingUpPage = () => {
           />
           <Input
             onChange={formik.handleChange}
-            className="styled__user__page-styled__text__input"
             value={formik.values.password}
             placeHolder="Password"
             nameInput="password"
@@ -89,7 +88,6 @@ const SingUpPage = () => {
           />
           <Input
             onChange={formik.handleChange}
-            className="styled__user__page-styled__text__input"
             value={formik.values.repeatPassword}
             placeHolder="Password replay"
             nameInput="repeatPassword"

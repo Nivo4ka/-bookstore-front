@@ -9,6 +9,7 @@ import { StyledHeader } from './Header.styles';
 import { useAppSelector } from '../../store/hooks';
 import Button from '../Button/Button';
 import ImgButton from '../ImgButton/ImgButton';
+import Input from '../Input/Input';
 
 const Header = () => {
   const userInfo = useAppSelector((state) => state.user.user);
@@ -36,32 +37,37 @@ const Header = () => {
   return (
     <StyledHeader>
       <img src={logo} alt="logo-img" onClick={goToMainPage} />
-      <div className="styled__header-catalog_input_area">
+      <div className="styled-header__input-area">
         <p>Catalog</p>
-        <div className="styled__header-input_area">
-          <img className="" src={search} alt="seach" />
-          <input className="styled__text__input styled__header--search__input" id="search" type="text" required />
-          <label className="styled__label" htmlFor="search">Search</label>
-        </div>
+        <Input
+            // onChange={formik.handleChange}
+            // value={formik.values.email}
+            placeHolder="Search"
+            nameInput="search"
+            icon1={search}
+            type1="text"
+            // error={formik.errors.email}
+            className="styled-header__search-input"
+          />
       </div>
 
       {
         userInfo?.email
-          ? (<div className="styled-header_menu">
+          ? (<div className="styled-header__menu">
             <ImgButton
               src={profile}
               onClick={goToUserPage}
-              className="styled__header-img-button"
+              className="styled-header__img-button"
             />
             <ImgButton
               src={heart}
               onClick={goToUserPage}
-              className="styled__header-img-button"
+              className="styled-header__img-button"
             />
             <ImgButton
               src={cart}
               onClick={goToUserPage}
-              className="styled__header-img-button"
+              className="styled-header__img-button"
             />
              </div>)
           : <Button onClick={goToLogIn}>Log In/ Sing Up</Button>
