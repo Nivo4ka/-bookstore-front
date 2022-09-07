@@ -45,14 +45,12 @@ const Input: React.FC<IProps> = (props) => {
         />
         <label className="styled-input__label" htmlFor={props.nameInput}>{props.placeHolder}</label>
       </div>
-      {props.error &&
-        (<div
-          className="styled-input__error-info"
-          id={`${props.nameInput}__error`}
-        >
-          {props.error}
-         </div>)
-      }
+      <div
+        className="styled-input__error-info"
+        id={`${props.nameInput}__error`}
+      >
+        {props.error}
+      </div>
 
     </StyledInput>
   );

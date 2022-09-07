@@ -1,102 +1,62 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyledFilter } from './Filter.styles';
-import forward from '../../images/icons/Forward.svg';
-import forwardLast from '../../images/icons/ForwardLast.svg';
 import DropDownList from '../DropDownList/DropDownList';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { changeGenres, changePrice, changeSortBy } from '../../store/slices/filter/filterSlice';
+import SortGenres from '../Sorts/SortGenres';
+import SortPrice from '../Sorts/SortPrice';
+import type { IPrice } from '../../types/filterTypes';
+import MultiRangeSlider from '../MultiRangeSlider/MultiRangeSlider';
 
 const Filter = () => {
-  const [genreFilter, setGenreFilter] = useState([
-    {
-      id: 1,
-      name: 'Fiction',
-      isCheck: false,
-    },
-    {
-      id: 2,
-      name: 'Non—fiction',
-      isCheck: false,
-    },
-    {
-      id: 3,
-      name: 'Light fiction',
-      isCheck: false,
-    },
-    {
-      id: 4,
-      name: 'Science-fiction',
-      isCheck: false,
-    },
-    {
-      id: 5,
-      name: 'Fantasy',
-      isCheck: false,
-    },
-    {
-      id: 6,
-      name: 'Business & Finance',
-      isCheck: false,
-    },
-    {
-      id: 7,
-      name: 'Politics',
-      isCheck: false,
-    },
-  ]);
-  const [sortByFilter, setSortByFilter] = useState([
-    {
-      id: 1,
-      name: 'Price',
-      isCheck: false,
-    },
-    {
-      id: 2,
-      name: 'Name',
-      isCheck: false,
-    },
-    {
-      id: 3,
-      name: 'Author name',
-      isCheck: false,
-    },
-    {
-      id: 4,
-      name: 'Rating',
-      isCheck: false,
-    },
-    {
-      id: 5,
-      name: 'Date of issue',
-      isCheck: false,
-    },
-  ]);
-  const onchangeGenre = (index: number) => {
-    genreFilter[index].isCheck = !genreFilter[index].isCheck;
-    setGenreFilter([...genreFilter]);
+  const dispatch = useAppDispatch();
+  const filter = useAppSelector((state) => state.filter);
+
+  const onChangeGenres = (index: number) => {
+    dispatch(changeGenres(index));
   };
 
-  const onchangeSortBy = (index: number) => {
-    const sorted = sortByFilter.map((item) => {
-      const qwe = item;
-      qwe.isCheck = false;
-      return qwe;
-    });
-    sorted[index].isCheck = !sorted[index].isCheck;
-    setGenreFilter([...sorted]);
+  const onChangeSortBy = (index: number) => {
+    dispatch(changeSortBy(index));
+  };
+
+  const onChangePrice = (values: IPrice) => {
+    dispatch(changePrice(values));
   };
 
   return (
     <StyledFilter>
       <h2 id="mainCatalog">Catalog</h2>
       <div className="styled-filter__filter-area">
-        <DropDownList name="Genre" icon={forward} arrFilter={genreFilter} onChangeFilter={onchangeGenre} />
-        <DropDownList name="Price" icon={forward} onChangeFilter={onchangeSortBy} />
         <DropDownList
-          name="Sort by price"
-          icon={forwardLast}
+          name="Genre"
+        >
+          <SortGenres
+            onChangeCheck={onChangeGenres}
+            arrFilter={filter.genres}
+          />
+        </DropDownList>
+        <DropDownList
+          name="Price"
+        // onChangeFilter={onchangeSortBy}
+        >
+          <MultiRangeSlider
+            min={0}
+            max={1000}
+            values={filter.price}
+            onChange={onChangePrice}
+          />
+        </DropDownList>
+        <DropDownList
+          name={`Sort by ${filter.sortBy.selectedSort.toLowerCase()}`}
           className="styled-drop-down-list__name_last-child"
-          arrFilter={sortByFilter}
-          onChangeFilter={onchangeSortBy}
-        />
+        >
+          <SortPrice
+            onChangeCheck={onChangeSortBy}
+            arrFilter={filter.sortBy.arrSort}
+            selectedSortBy={filter.sortBy.selectedSort}
+          />
+        </DropDownList>
       </div>
     </StyledFilter>
   );

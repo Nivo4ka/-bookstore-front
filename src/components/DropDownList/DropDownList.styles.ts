@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const StyledDropDownList = styled.div<{ isActive: boolean }>`
+export const StyledDropDownList = styled.div<{ isActive: boolean; name: string }>`
   position: relative;
   .styled-drop-down-list__name{
     position: relative;
@@ -12,6 +12,7 @@ export const StyledDropDownList = styled.div<{ isActive: boolean }>`
     justify-content: space-between;
     width: 196px;
     height: fit-content;
+    cursor: pointer;
     p{
       font-size: 18px;
       padding: 10px 0 10px 15px;
@@ -32,8 +33,11 @@ export const StyledDropDownList = styled.div<{ isActive: boolean }>`
 
   .styled-drop-down-list__name_last-child{
     background: none;
+    white-space: nowrap;
+    width: fit-content;
     p{
       color: #0D1821;
+      margin-right: 20px;
     }
   }
 
@@ -41,53 +45,20 @@ export const StyledDropDownList = styled.div<{ isActive: boolean }>`
     position: absolute;
     display: none;
     flex-direction: row;
-    opacity: 0;
     align-items: center;
     top: 76px;
     margin-left: 20px;
     z-index: -1;
-    transition: 100ms ease all;
-    transform: translateY(-50%);
+    transition: 10ms ease all;
     ${(p) => {
     if (p.isActive) {
       return css`
         display: flex;
         z-index: 1;
-        animation: output 1s forwards;
         `;
-    }
-    if (!p.isActive) {
-      return css`
-      display: flex;
-      animation: inside 1s forwards;
-      `;
     }
   }}
   }
-
-  @keyframes output {
-  0% {
-    transform: translateY(-50%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-    
-  }
-}
-
-@keyframes inside {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-50%);
-    opacity: 0;
-    display: none;
-  }
-}
 
   .list__decoration{
     position: absolute;
@@ -95,26 +66,14 @@ export const StyledDropDownList = styled.div<{ isActive: boolean }>`
     left: 7px;
     border: 15px solid transparent;
     border-bottom: 15px solid #F0F4EF;
-    /* border: 20px solid transparent; border-bottom: 20px solid green; */
   }
 
-  .list__main-info{
-    padding: 10px;
-    background-color: #F0F4EF;
-    border-radius: 16px;
-    
-    p{
-      display: inline-block;
-      margin: 5px 78px 5px 5px;
-      white-space: nowrap;
-    }
-    li{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      input{
-        margin: 0 5px;
-      }
-    }
+  .main-info__price-area{
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    width: 300px;
+    height: 500px;
+
   }
 `;
