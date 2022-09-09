@@ -1,11 +1,12 @@
 import React from 'react';
+import type { ISort } from '../../types/filterTypes';
 import { StyledSort } from './Sorts.styles';
 
 interface IProps {
   // onClick: React.MouseEventHandler<HTMLParagraphElement> (index: number) => void;
   onChangeCheck: (index: number) => void;
   selectedSortBy: string;
-  arrFilter: string[];
+  arrFilter: ISort[];
 }
 
 const SortPrice: React.FC<IProps> = (props) => {
@@ -15,9 +16,9 @@ const SortPrice: React.FC<IProps> = (props) => {
         {props.arrFilter.map((item, index) => (
           <li key={index}>
             <p
-              className={item === props.selectedSortBy ? 'styled-sort__p' : 'styled-sort__p styled-sort__p_disabled'}
+              className={item.currentValue === props.selectedSortBy ? 'styled-sort__p' : 'styled-sort__p styled-sort__p_disabled'}
               onClick={() => props.onChangeCheck(index)}
-            >{item}
+            >{item.title}
             </p>
           </li>
         ))}

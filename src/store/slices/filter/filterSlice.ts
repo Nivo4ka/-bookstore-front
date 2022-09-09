@@ -32,15 +32,75 @@ const initialState: IFilter = {
     {
       name: 'Politics',
       isCheck: false,
+    },
+    {
+      name: 'Travel books',
+      isCheck: false,
+    },
+    {
+      name: 'Autobiography',
+      isCheck: false,
+    },
+    {
+      name: 'History',
+      isCheck: false,
+    },
+    {
+      name: 'Thriller / Mystery',
+      isCheck: false,
+    },
+    {
+      name: 'Romance',
+      isCheck: false,
+    },
+    {
+      name: 'Satire',
+      isCheck: false,
+    },
+    {
+      name: 'Horror',
+      isCheck: false,
+    },
+    {
+      name: 'Health / Medicine',
+      isCheck: false,
+    },
+    {
+      name: 'Children’s books',
+      isCheck: false,
+    },
+    {
+      name: 'Encyclopedia',
+      isCheck: false,
     }],
   price: {
     min: 1,
     max: 1000,
   },
   sortBy: {
-    arrSort: ['Price', 'Name', 'Author name', 'Rating', 'Date of issue'],
+    arrSort: [
+      {
+        title: 'Price',
+        currentValue: 'price',
+      },
+      {
+        title: 'Name',
+        currentValue: 'title',
+      },
+      {
+        title: 'Author name',
+        currentValue: 'autor',
+      },
+      {
+        title: 'Rating',
+        currentValue: 'rating',
+      },
+      {
+        title: 'Date of issue',
+        currentValue: 'creationDate',
+      }],
     direction: 'desc',
-    selectedSort: 'Price',
+    selectedSort: 'price',
   },
 };
 
@@ -54,10 +114,10 @@ export const filterSlice = createSlice({
       }
     },
     changeSortBy: (state, action: PayloadAction<number>) => {
-      if (state.sortBy.selectedSort === state.sortBy.arrSort[action.payload]) {
+      if (state.sortBy.selectedSort === state.sortBy.arrSort[action.payload].currentValue) {
         state.sortBy.direction = state.sortBy.direction === 'desc' ? 'asc' : 'desc';
       } else {
-        state.sortBy.selectedSort = state.sortBy.arrSort[action.payload];
+        state.sortBy.selectedSort = state.sortBy.arrSort[action.payload].currentValue;
         state.sortBy.direction = 'desc';
       }
     },

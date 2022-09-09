@@ -47,9 +47,11 @@ export const StyledInfoSection = styled.div`
     margin-bottom: 20px;
     display: flex;
     box-sizing: border-box;
-    img{
+    svg{
       position: absolute;
       left: 26px;
+      stroke: #B9BAC3;
+      color: #B9BAC3;
     }
     .div-container__label{
       position: absolute;

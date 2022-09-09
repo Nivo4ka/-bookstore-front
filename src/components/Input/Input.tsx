@@ -1,3 +1,4 @@
+import type { PureComponent } from 'react';
 import React, { useState } from 'react';
 import { StyledInput } from './Input.styles';
 
@@ -8,14 +9,15 @@ interface IProps {
   value?: string;
   placeHolder?: string;
   nameInput: string;
-  icon1?: string;
-  icon2?: string;
-  type1?: string;
+  Icon1: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  Icon2?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  type1: string;
   type2?: string;
   error?: string;
 }
 
 const Input: React.FC<IProps> = (props) => {
+  const { Icon1, Icon2 } = props;
   const [togglePassword, setTogglePassword] = useState(true);
   const onClickImg = () => {
     if (/password/i.test(props.nameInput)) {
@@ -29,11 +31,7 @@ const Input: React.FC<IProps> = (props) => {
       name={props.nameInput}
     >
       <div className="styled-input__container">
-        <img
-          src={togglePassword ? props.icon1 : props.icon2}
-          alt={togglePassword ? props.icon1 : props.icon2}
-          onClick={onClickImg}
-        />
+        {togglePassword ? <Icon1 onClick={onClickImg} /> : Icon2 && <Icon2 onClick={onClickImg} />}
         <input
           type={togglePassword ? props.type1 : props.type2}
           name={props.nameInput}

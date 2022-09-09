@@ -3,9 +3,8 @@ import { StyledImgButton } from './ImgButton.styles';
 
 type PropsType = {
   onClick?: () => void;
-  src?: string;
   isNotSelected?: boolean;
-  className?:string;
+  className?: string;
 } & React.PropsWithChildren;
 
 const ImgButton: React.FC<PropsType> = (props) => {
@@ -15,7 +14,8 @@ const ImgButton: React.FC<PropsType> = (props) => {
       isNotSelected={props.isNotSelected || false}
       className={props.className}
     >
-      <img src={props.src} alt={props.src} />
+      {props.children}
+      {/* <img src={props.src} alt={props.src} /> */}
     </StyledImgButton>
   );
 };

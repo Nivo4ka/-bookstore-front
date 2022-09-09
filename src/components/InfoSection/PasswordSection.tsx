@@ -1,7 +1,7 @@
 import React from 'react';
 import type { FormikErrors } from 'formik';
-import view from '../../images/icons/View.svg';
-import hide from '../../images/icons/Hide.svg';
+import { ReactComponent as View } from '../../images/icons/View.svg';
+import { ReactComponent as Hide } from '../../images/icons/Hide.svg';
 import Input from '../Input/Input';
 import { StyledInfoSection } from './InfoSection.styles';
 
@@ -26,7 +26,7 @@ const PasswordSection: React.FC<PropsType> = (props) => {
         props.isChangeInfoOrPassword !== 'password'
           ? (<div className="styled-user-page__personal-information">
           <div className="styled-user-page__div-container">
-            <img src={hide} alt="hide" />
+            <Hide />
             <div className="styled-user-page__text-div"
               id="password"
             >
@@ -42,8 +42,8 @@ const PasswordSection: React.FC<PropsType> = (props) => {
             value={props.password}
             placeHolder="Password"
             nameInput="password"
-            icon1={hide}
-            icon2={view}
+            Icon1={Hide}
+            Icon2={View}
             type1="password"
             type2="text"
             error={props.errors?.password}
@@ -54,8 +54,8 @@ const PasswordSection: React.FC<PropsType> = (props) => {
             value={props.newPassword}
             placeHolder="New password"
             nameInput="newPassword"
-            icon1={hide}
-            icon2={view}
+            Icon1={Hide}
+            Icon2={View}
             type1="password"
             type2="text"
             error={props.errors?.newPassword}
@@ -66,8 +66,8 @@ const PasswordSection: React.FC<PropsType> = (props) => {
             value={props.repeatNewPassword}
             placeHolder="Password replay"
             nameInput="repeatNewPassword"
-            icon1={hide}
-            icon2={view}
+            Icon1={Hide}
+            Icon2={View}
             type1="password"
             type2="text"
             error={props.errors?.repeatNewPassword}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import camera from '../../images/icons/Camera.svg';
+import { ReactComponent as Camera } from '../../images/icons/Camera.svg';
 import { StyledUserPage } from './UserPage.styles';
 import Button from '../Button/Button';
 import InfoSection from '../InfoSection/InfoSection';
@@ -117,10 +117,12 @@ const UserPage = () => {
           />)}
         <label htmlFor="file">
           <ImgButton
-            src={camera}
+            // src={camera}
             // isNotSelected
             className="styled-user-page__change-img"
-          />
+          >
+            <Camera />
+          </ImgButton>
           <input className="styled-user-page__input-file" type="file" id="file" name="file" onChange={onChangeImg} />
         </label>
       </div>

@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { StyledLogInPage } from './LogInPage.styles';
 import man from '../../images/man.svg';
-import mail from '../../images/icons/Mail.svg';
-import view from '../../images/icons/View.svg';
-import hide from '../../images/icons/Hide.svg';
+import { ReactComponent as Mail } from '../../images/icons/Mail.svg';
+import { ReactComponent as View } from '../../images/icons/View.svg';
+import { ReactComponent as Hide } from '../../images/icons/Hide.svg';
 import loginByPassEmail from '../../store/slices/user/thunks/login';
 import { useAppDispatch } from '../../store/hooks';
 import Input from '../Input/Input';
@@ -63,7 +63,7 @@ const LogInPage = () => {
             value={formik.values.email}
             placeHolder="Email"
             nameInput="email"
-            icon1={mail}
+            Icon1={Mail}
             type1="text"
             error={formik.errors.email}
           />
@@ -72,8 +72,8 @@ const LogInPage = () => {
             value={formik.values.password}
             placeHolder="Password"
             nameInput="password"
-            icon1={hide}
-            icon2={view}
+            Icon1={Hide}
+            Icon2={View}
             type1="password"
             type2="text"
             error={formik.errors.password}

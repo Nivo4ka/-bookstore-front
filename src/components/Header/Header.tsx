@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../../images/logo.svg';
-import search from '../../images/icons/Search.svg';
-import profile from '../../images/icons/User_profile2.svg';
-import heart from '../../images/icons/Heart.svg';
-import cart from '../../images/icons/Cart.svg';
+import { ReactComponent as Logo } from '../../images/logo.svg';
+import { ReactComponent as Search } from '../../images/icons/Search.svg';
+import { ReactComponent as Profile } from '../../images/icons/User_profile2.svg';
+import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
+import { ReactComponent as Cart } from '../../images/icons/Cart.svg';
 import { StyledHeader } from './Header.styles';
 import { useAppSelector } from '../../store/hooks';
 import Button from '../Button/Button';
@@ -36,39 +36,41 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <img src={logo} alt="logo-img" onClick={goToMainPage} />
+      <Logo onClick={goToMainPage} />
       <div className="styled-header__input-area">
         <p>Catalog</p>
         <Input
-            // onChange={formik.handleChange}
-            // value={formik.values.email}
-            placeHolder="Search"
-            nameInput="search"
-            icon1={search}
-            type1="text"
-            // error={formik.errors.email}
-            className="styled-header__search-input"
-          />
+          // onChange={formik.handleChange}
+          // value={formik.values.email}
+          placeHolder="Search"
+          nameInput="search"
+          Icon1={Search}
+          type1="text"
+          className="styled-header__search-input"
+        />
       </div>
 
       {
         userInfo?.email
           ? (<div className="styled-header__menu">
             <ImgButton
-              src={profile}
               onClick={goToUserPage}
               className="styled-header__img-button"
-            />
+            >
+              <Cart />
+            </ImgButton>
             <ImgButton
-              src={heart}
               onClick={goToUserPage}
               className="styled-header__img-button"
-            />
+            >
+              <Heart />
+            </ImgButton>
             <ImgButton
-              src={cart}
               onClick={goToUserPage}
               className="styled-header__img-button"
-            />
+            >
+              <Profile />
+            </ImgButton>
              </div>)
           : <Button onClick={goToLogIn}>Log In/ Sing Up</Button>
       }

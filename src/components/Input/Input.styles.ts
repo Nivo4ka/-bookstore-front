@@ -16,9 +16,10 @@ export const StyledInput = styled.div<{ error?: string; name: string }>`
   }
 }
   
-  img{
+  svg{
     position: absolute;
     left: 26px;
+    stroke: #B9BAC3;
   }
   .styled-input__label{
     position: absolute;
@@ -57,6 +58,9 @@ export const StyledInput = styled.div<{ error?: string; name: string }>`
     :valid{
       height: 42px;
       padding:22px 0 0 64px;
+    }
+    :focus ~ svg{
+      stroke: #344966;
     }
     :valid ~ .styled-input__label {
       font-size: 14px;
