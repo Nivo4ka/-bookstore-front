@@ -18,9 +18,4 @@ export const StyledCatalog = styled.div`
     width: auto;
   }
 
-  .styled-catalog__pagination{
-    width: 100%;
-    background-color: aqua;
-    height: 30px;
-  }
 `;

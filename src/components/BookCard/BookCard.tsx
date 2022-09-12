@@ -16,20 +16,22 @@ type PropsType = {
 const BookCard: React.FC<PropsType> = (props) => {
   return (
     <StyledBookCard>
-      <ImgButton
-        isNotSelected
-        className="styled-bookcard__favorite"
-      >
-        <Heart />
-      </ImgButton>
-      <img className="styled-bookcard__bookimg" src={props.book.cover} alt={props.book.title} />
+      <div className="styled-bookcard__cover">
+        <ImgButton
+          isNotSelected
+          className="styled-bookcard__favorite"
+        >
+          <Heart />
+        </ImgButton>
+        {props.book.cover && <img className="styled-bookcard__bookimg" src={props.book.cover} alt={props.book.title} />}
+      </div>
       <p className="styled-bookcard__title">{props.book.title}</p>
       <p className="styled-bookcard__autor">{props.book.autor}</p>
       <div className="styled-bookcard__rating-area">
         <ul>
           <li>
             {/* <img src={star2} alt="star2" /> */}
-            <Logo stroke="red" fill="red" />
+            <Logo />
           </li>
           <li>
             <img src={star} alt="star" />

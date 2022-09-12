@@ -23,11 +23,15 @@ export interface IFilter {
   genres: IGenre[];
   price: IPrice;
   sortBy: ISortBy;
+  search: string;
+  page: string;
+  pageSize: string;
 }
 
 export interface IFilterRequest {
   genres?: string;
-  // price: string;
+  minPrice: string;
+  maxPrice: string;
   sortBy: string;
   page?: string;
   pageSize?: string;

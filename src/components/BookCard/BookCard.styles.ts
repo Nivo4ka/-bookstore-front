@@ -1,20 +1,39 @@
 import styled from 'styled-components';
+import disabled from '../../images/icons/Disabled.svg';
 
 export const StyledBookCard = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+
+  .styled-bookcard__cover{
+    position: relative;
+    width: 305px;
+    height: 448px;
+    background: #C4C4C4;
+    border-radius: 16px;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    background-size: 100px;
+    background-image:url(${disabled});
+    background-position: center center;
+    overflow: hodden;
+  }
   .styled-bookcard__favorite{
     position: absolute;
     top: 20px;
     left: 20px;
+    transition: 200ms ease all;
+    :hover{
+      opacity: 1;
+    }
   }
 
   .styled-bookcard__bookimg{
-    border-radius: 16px;
     object-fit: cover;
+    border-radius:16px;
+    width: 100%;
     height: 100%;
-
   }
 
   .styled-bookcard__title{
@@ -37,6 +56,10 @@ export const StyledBookCard = styled.div`
     }
     li{
       display: inline;
+      svg{
+        stroke: #BFCC94;
+        fill: #BFCC94;
+      }
     }
     p{
       font-size: 16px;

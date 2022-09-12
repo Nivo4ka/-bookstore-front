@@ -11,6 +11,7 @@ export const StyledSlider = styled.div`
   .slider {
     position: relative;
     width: 379px;
+
   }
 
   .slider__track,

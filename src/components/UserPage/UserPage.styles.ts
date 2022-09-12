@@ -20,7 +20,6 @@ export const StyledUserPage = styled.div`
     background-size: 151px;
     background-image:url(${profile});
     background-position: center center;
-    overflow: hodden;
     .styled-user-page__avatar{
       object-fit: cover;
       border-radius:16px;

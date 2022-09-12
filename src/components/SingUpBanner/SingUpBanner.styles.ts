@@ -12,6 +12,7 @@ export const StyledSingUpBanner = styled.div`
   background-repeat: no-repeat;
   background-color: #F0F4EF;
   margin-bottom: 150px;
+  margin-top: 62px;
   background-size: auto;
   background-image:url(${fairy});
   background-position: bottom right;

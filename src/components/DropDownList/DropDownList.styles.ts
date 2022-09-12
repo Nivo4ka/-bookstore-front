@@ -18,9 +18,10 @@ export const StyledDropDownList = styled.div<{ isActive: boolean; name: string }
       padding: 10px 0 10px 15px;
     }
 
-    img{
+    svg{
     margin-right: 8px;
     transition: 200ms ease all;
+    stroke: ${(p) => (!p.name.includes('Sort by') ? '#344966' : '#0D1821')};
     ${(p) => {
     if (p.isActive) {
       return css`

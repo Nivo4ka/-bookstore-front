@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import forward from '../../images/icons/Forward.svg';
-import forwardLast from '../../images/icons/ForwardLast.svg';
+import { ReactComponent as Forward } from '../../images/icons/Forward.svg';
 import { StyledDropDownList } from './DropDownList.styles';
 
 type PropsType = {
@@ -25,7 +24,7 @@ const DropDownList: React.FC<PropsType> = (props) => {
         onClick={onchangeFilter}
       >
         <p>{props.name}</p>
-        <img src={props.name?.includes('Sort by') ? forwardLast : forward} alt={forward} />
+        <Forward />
       </div>
 
       <div className="styled-drop-down-list__list">

@@ -1,10 +1,9 @@
-import type { PureComponent } from 'react';
 import React, { useState } from 'react';
 import { StyledInput } from './Input.styles';
 
 interface IProps {
   // onClick?: () => void;
-  onChange?: (e: React.ChangeEvent) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   value?: string;
   placeHolder?: string;
@@ -14,6 +13,7 @@ interface IProps {
   type1: string;
   type2?: string;
   error?: string;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>)=>void;
 }
 
 const Input: React.FC<IProps> = (props) => {
@@ -31,7 +31,6 @@ const Input: React.FC<IProps> = (props) => {
       name={props.nameInput}
     >
       <div className="styled-input__container">
-        {togglePassword ? <Icon1 onClick={onClickImg} /> : Icon2 && <Icon2 onClick={onClickImg} />}
         <input
           type={togglePassword ? props.type1 : props.type2}
           name={props.nameInput}
@@ -40,8 +39,13 @@ const Input: React.FC<IProps> = (props) => {
           onChange={props.onChange}
           value={props.value}
           required
+          onKeyDown={props.onKeyDown}
         />
         <label className="styled-input__label" htmlFor={props.nameInput}>{props.placeHolder}</label>
+        {togglePassword
+          ? <Icon1 onClick={onClickImg} className="styled-input__svg" />
+          : Icon2 && (<Icon2 onClick={onClickImg} className="styled-input__svg" />)
+        }
       </div>
       <div
         className="styled-input__error-info"

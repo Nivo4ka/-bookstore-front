@@ -4,8 +4,8 @@ import Filter from '../Filter/Filter';
 import BookCard from '../BookCard/BookCard';
 import { StyledCatalog } from './Catalog.styles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { StyledApp } from '../../App.styles';
 import getAllBooks from '../../store/slices/book/thunks/getAllBooks';
+import Pagination from '../Pagination/Pagination';
 
 const Catalog = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +14,7 @@ const Catalog = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    (async () => {
+    const timer = setTimeout(() => ((async () => {
       try {
         await dispatch(getAllBooks()).unwrap();
       } catch (err) {
@@ -24,7 +24,23 @@ const Catalog = () => {
       } finally {
         setIsLoading(false);
       }
-    })();
+    })()),
+    500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // (async () => {
+    //   try {
+    //     await dispatch(getAllBooks()).unwrap();
+    //   } catch (err) {
+    //     toast.error(err.message, {
+    //       position: 'top-center',
+    //     });
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // })();
   }, [dispatch, filter]);
 
   if (isLoading) {
@@ -36,11 +52,11 @@ const Catalog = () => {
     <StyledCatalog>
       <Filter />
       <div className="styled-catalog__grid">
-        {books.books.length && books.books.map((item, index) => (
+        {!!books.books.length && books.books.map((item, index) => (
           <BookCard key={index} book={item} />
         ))}
       </div>
-      <div className="styled-catalog__pagination">Пагинация</div>
+      <Pagination />
     </StyledCatalog>
   );
 };

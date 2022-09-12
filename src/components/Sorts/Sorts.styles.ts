@@ -5,7 +5,7 @@ export const StyledSort = styled.div`
   background-color: #F0F4EF;
   border-radius: 16px;
   
-  p{
+  p {
     font-size: 16px;
     line-height: 28px;
     display: inline-block;
@@ -14,18 +14,22 @@ export const StyledSort = styled.div`
     cursor: default;
   }
 
-  .styled-sort__p{
-    cursor: pointer;
+  .styled-sort {
+    &__p {
+      cursor: pointer;
+  
+      &_disabled {
+        color: #B9BAC3;
+      }
+    }
   }
 
-  .styled-sort__p_disabled{
-    color: #B9BAC3;
-  }
-  li{
+  li {
     display: flex;
     flex-direction: row;
     align-items: center;
-    input{
+
+    input {
       margin: 0 5px;
     }
   }

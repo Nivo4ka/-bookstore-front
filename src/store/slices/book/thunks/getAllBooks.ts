@@ -12,9 +12,12 @@ const getAllBooks = createAsyncThunk(
       const request: IFilterRequest = {
         sortBy: filter.sortBy.selectedSort,
         direction: filter.sortBy.direction,
+        minPrice: `${filter.price.min}`,
+        maxPrice: `${filter.price.max}`,
       };
       const genresStr = filter.genres.reduce((acc, item) => (item.isCheck ? (`${acc},${item.name}`) : acc), '');
       request.genres = genresStr;
+      request.search = filter.search;
       const data = await services.getAllBooks(request);
       return data.data;
     } catch (err) {

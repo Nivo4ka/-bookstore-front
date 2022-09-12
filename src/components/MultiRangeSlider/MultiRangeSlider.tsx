@@ -54,6 +54,7 @@ const MultiRangeSlider: React.FC<IProps> = ({ min, max, onChange, values }) => {
         min={min}
         max={max}
         value={minVal}
+        step="0.1"
         onChange={(event) => {
           const value = Math.min(Number(event.target.value), maxVal - 1);
           setMinVal(value);
@@ -67,6 +68,7 @@ const MultiRangeSlider: React.FC<IProps> = ({ min, max, onChange, values }) => {
         min={min}
         max={max}
         value={maxVal}
+        step="0.1"
         onChange={(event) => {
           const value = Math.max(Number(event.target.value), minVal + 1);
           setMaxVal(value);
