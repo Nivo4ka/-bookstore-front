@@ -1,33 +1,33 @@
-export interface IUser {
+export type UserType = {
   id: number;
   fullName: string;
   avatar: string;
   email: string;
-}
+};
 
-export interface IUserLogin {
+export type UserLoginType = {
   email: string;
   password: string;
   repeatPassword?: string;
-}
+};
 
-export interface IUserLoginByToken {
+export type UserLoginByTokenType = {
   token: string;
-}
+};
 
-export interface IUserPatch {
+export type UserPatchType = {
   fullName?: string;
   email?: string;
   password?: string;
   newPassword?: string;
   repeatNewPassword?: string;
-}
+};
 
-export interface IUserPatchImg {
+export type UserPatchImgType = {
   file: ArrayBuffer | string;
-}
+};
 
-export interface IUserData {
-  token?: string;
-  user?: IUser;
-}
+export type UserDataType = {
+  token: string;
+  user: UserType;
+};

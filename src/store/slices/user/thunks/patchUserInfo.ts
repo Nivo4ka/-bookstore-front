@@ -1,14 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import services from '../../../../api/services/user.service';
-import type { IUserPatch } from '../../../../types/user.datatype';
+import api from '../../../../api/services/userApi';
+import type { UserPatchType } from '../../../../types/userTypes';
 
 const patchUserInfo = createAsyncThunk(
   'user/patchInfo',
-  async (values: IUserPatch) => {
-    const data = await services.patchUserInfo(values);
-    // if (data.data.token) {
-    //   localStorage.setItem('token', data.data.token || '');
-    // }
+  async (values: UserPatchType) => {
+    const data = await api.patchUserInfo(values);
 
     return data.data.user;
   },

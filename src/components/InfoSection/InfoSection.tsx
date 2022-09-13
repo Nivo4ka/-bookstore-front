@@ -2,8 +2,8 @@ import React from 'react';
 import type { FormikErrors } from 'formik';
 import { ReactComponent as Mail } from '../../images/icons/Mail.svg';
 import { ReactComponent as Profile } from '../../images/icons/User_profile.svg';
-import Input from '../Input/Input';
-import { StyledInfoSection } from './InfoSection.styles';
+import Input from '../Input';
+import StyledInfoSection from './InfoSection.styles';
 
 type PropsType = {
   onChange?: (e: React.ChangeEvent) => void;

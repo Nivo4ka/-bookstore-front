@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import disabled from '../../images/icons/Disabled.svg';
 
-export const StyledBookCard = styled.div`
+export default styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
 
-  .styled-bookcard__cover{
+  .styled-bookcard__cover {
     position: relative;
     width: 305px;
     height: 448px;
@@ -15,7 +15,7 @@ export const StyledBookCard = styled.div`
     background-repeat: no-repeat;
     margin-bottom: 10px;
     background-size: 100px;
-    background-image:url(${disabled});
+    background-image: url(${disabled});
     background-position: center center;
     overflow: hodden;
   }

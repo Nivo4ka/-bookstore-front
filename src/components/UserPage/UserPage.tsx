@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { ReactComponent as Camera } from '../../images/icons/Camera.svg';
-import { StyledUserPage } from './UserPage.styles';
+import StyledUserPage from './UserPage.styles';
 import Button from '../Button/Button';
 import InfoSection from '../InfoSection/InfoSection';
 import PasswordSection from '../InfoSection/PasswordSection';
@@ -46,7 +46,7 @@ const patchPasswordSchema = yup.object().shape({
 
 const UserPage = () => {
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector((state) => state.user.user);
+  const userInfo = useAppSelector((state) => state.user);
   const [isChangeInfoOrPassword, setIsChangeInfoOrPassword] = useState('none');
 
   const formikInfo = useFormik({

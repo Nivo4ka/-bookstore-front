@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyledHeaderBanner } from './HeaderBanner.styles';
+import StyledHeaderBanner from './HeaderBanner.styles';
 import womanWithBook from '../../images/2009.i305 1.svg';
-import Button from '../Button/Button';
+import Button from '../Button';
 
 const HeaderBanner = () => {
   return (

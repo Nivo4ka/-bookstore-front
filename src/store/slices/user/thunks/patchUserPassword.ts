@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
-import services from '../../../../api/services/user.service';
-import type { IUserPatch } from '../../../../types/user.datatype';
+import api from '../../../../api/services/userApi';
+import type { UserPatchType } from '../../../../types/userTypes';
 
 const patchUserPassword = createAsyncThunk(
   'user/patchPassword',
-  async (values: IUserPatch) => {
+  async (values: UserPatchType) => {
     try {
-      const data = await services.patchUserPassword(values);
+      const data = await api.patchUserPassword(values);
 
       return data.data.user;
     } catch (err) {

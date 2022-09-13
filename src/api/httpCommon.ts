@@ -15,12 +15,4 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-instance.interceptors.response.use((config) => {
-  const token = config.data.token;
-  if (token) {
-    localStorage.setItem('token', token);
-  }
-  return config;
-});
-
 export default instance;

@@ -1,12 +1,11 @@
 import React from 'react';
-import type { ISort } from '../../types/filterTypes';
-import { StyledSort } from './Sorts.styles';
+import type { SortType } from '../../types/filterTypes';
+import StyledSort from './Sorts.styles';
 
 interface IProps {
-  // onClick: React.MouseEventHandler<HTMLParagraphElement> (index: number) => void;
   onChangeCheck: (index: number) => void;
   selectedSortBy: string;
-  arrFilter: ISort[];
+  arrFilter: SortType[];
 }
 
 const SortPrice: React.FC<IProps> = (props) => {

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const StyledCheckBox = styled.div<{ value: boolean }>`
+export default styled.div<{ value: boolean }>`
 
   input{
     display: none;

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const StyledImgButton = styled.div<{ isNotSelected: boolean }>`
+export default styled.div<{ isNotSelected: boolean }>`
   background: #344966;
   border-radius: 50%;
   width: 48px;
@@ -12,7 +12,7 @@ export const StyledImgButton = styled.div<{ isNotSelected: boolean }>`
   ${(p) => {
     if (p.isNotSelected) {
       return css`
-      opacity: 0.5;
+      opacity: 0.8;
       `;
     }
   }}

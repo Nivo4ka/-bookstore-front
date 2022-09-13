@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledButton } from './Button.styles';
+import StyledButton from './Button.styles';
 
 type PropsType = {
   onClick?: () => void;

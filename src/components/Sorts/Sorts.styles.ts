@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSort = styled.div`
+export default styled.div`
   padding: 10px;
   background-color: #F0F4EF;
   border-radius: 16px;

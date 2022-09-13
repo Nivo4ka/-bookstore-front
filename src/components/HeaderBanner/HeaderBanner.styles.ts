@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import books from '../../images/unsplash_DgQf1dUKUTM.svg';
 
-export const StyledHeaderBanner = styled.div`
+export default styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;

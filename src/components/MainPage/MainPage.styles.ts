@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const StyledMain = styled.div`
+export default styled.div`
   width: 100%;
 `;

@@ -1,9 +1,9 @@
 // import type { PayloadAction } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { IFilter, IPrice } from '../../../types/filterTypes';
+import type { FilterType, PriceType } from '../../../types/filterTypes';
 
-const initialState: IFilter = {
+const initialState: FilterType = {
   genres:
     [{
       name: 'Fiction',
@@ -75,7 +75,7 @@ const initialState: IFilter = {
     }],
   price: {
     min: 1.0,
-    max: 1000.0,
+    max: 100.0,
   },
   sortBy: {
     arrSort: [
@@ -104,7 +104,7 @@ const initialState: IFilter = {
   },
   search: '',
   page: '1',
-  pageSize: '12',
+  pageSize: '8',
 };
 
 export const filterSlice = createSlice({
@@ -114,27 +114,22 @@ export const filterSlice = createSlice({
     changeGenres: (state, action: PayloadAction<number>) => {
       if (action.payload < state.genres.length) {
         state.genres[action.payload].isCheck = !state.genres[action.payload].isCheck;
-        state.page = '1';
       }
     },
     changeSortBy: (state, action: PayloadAction<number>) => {
       if (state.sortBy.selectedSort === state.sortBy.arrSort[action.payload].currentValue) {
         state.sortBy.direction = state.sortBy.direction === 'desc' ? 'asc' : 'desc';
-        state.page = '1';
       } else {
         state.sortBy.selectedSort = state.sortBy.arrSort[action.payload].currentValue;
         state.sortBy.direction = 'asc';
-        state.page = '1';
       }
     },
-    changePrice: (state, action: PayloadAction<IPrice>) => {
+    changePrice: (state, action: PayloadAction<PriceType>) => {
       state.price.min = action.payload.min;
       state.price.max = action.payload.max;
-      state.page = '1';
     },
     changeSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
-      state.page = '1';
     },
     changePage: (state, action: PayloadAction<string>) => {
       state.page = action.payload;

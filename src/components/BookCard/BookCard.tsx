@@ -1,15 +1,14 @@
 import React from 'react';
 import star from '../../images/icons/Star.svg';
-// import star2 from '../../images/icons/Star2.svg';
-import { ReactComponent as Logo } from '../../images/icons/Star2.svg';
+import { ReactComponent as Star2 } from '../../images/icons/Star2.svg';
 import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
-import { StyledBookCard } from './BookCard.styles';
-import ImgButton from '../ImgButton/ImgButton';
-import Button from '../Button/Button';
-import type { IBook } from '../../types/bookTypes';
+import StyledBookCard from './BookCard.styles';
+import ImgButton from '../ImgButton';
+import Button from '../Button';
+import type { BookType } from '../../types/bookTypes';
 
 type PropsType = {
-  book: IBook;
+  book: BookType;
 
 } & React.PropsWithChildren;
 
@@ -30,8 +29,7 @@ const BookCard: React.FC<PropsType> = (props) => {
       <div className="styled-bookcard__rating-area">
         <ul>
           <li>
-            {/* <img src={star2} alt="star2" /> */}
-            <Logo />
+            <Star2 />
           </li>
           <li>
             <img src={star} alt="star" />

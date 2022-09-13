@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { ReactComponent as Search } from '../../images/icons/Search.svg';
 import { ReactComponent as Profile } from '../../images/icons/User_profile2.svg';
 import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
 import { ReactComponent as Cart } from '../../images/icons/Cart.svg';
-import { StyledHeader } from './Header.styles';
+import StyledHeader from './Header.styles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import Button from '../Button/Button';
-import ImgButton from '../ImgButton/ImgButton';
-import Input from '../Input/Input';
+import Button from '../Button';
+import ImgButton from '../ImgButton';
+import Input from '../Input';
 import { changeSearch } from '../../store/slices/filter/filterSlice';
 
 const Header = () => {
-  const userInfo = useAppSelector((state) => state.user.user);
+  const userInfo = useAppSelector((state) => state.user);
   const search = useAppSelector((state) => state.filter.search);
   const navigate = useNavigate();
   const location = useLocation();

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import profile from '../../images/icons/User_profile.svg';
 
-export const StyledUserPage = styled.div`
+export default styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;

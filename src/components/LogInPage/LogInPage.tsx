@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { StyledLogInPage } from './LogInPage.styles';
+import StyledLogInPage from './LogInPage.styles';
 import man from '../../images/man.svg';
 import { ReactComponent as Mail } from '../../images/icons/Mail.svg';
 import { ReactComponent as View } from '../../images/icons/View.svg';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyledInput } from './Input.styles';
+import StyledInput from './Input.styles';
 
 interface IProps {
   // onClick?: () => void;

@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
-import services from '../../../../api/services/user.service';
-import type { IUserLogin } from '../../../../types/user.datatype';
+import api from '../../../../api/services/authApi';
+import type { UserLoginType } from '../../../../types/userTypes';
 
 const singUpByPassEmail = createAsyncThunk(
   'user/singup',
-  async (values: IUserLogin) => {
+  async (values: UserLoginType) => {
     try {
-      const data = await services.singUp(values);
+      const data = await api.singUp(values);
       localStorage.setItem('token', data.data.token || '');
       return data.data.user;
     } catch (err) {

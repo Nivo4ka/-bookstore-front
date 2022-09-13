@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const StyledInput = styled.div<{ error?: string; name: string }>`
+export default styled.div<{ error?: string; name: string }>`
   .styled-input__container{
     position: relative;
     display: flex;

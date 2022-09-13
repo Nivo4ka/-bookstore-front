@@ -1,26 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as Forward } from '../../images/icons/Forward.svg';
 import { ReactComponent as Back } from '../../images/icons/Back.svg';
 import { ReactComponent as Ellipse } from '../../images/icons/Ellipse.svg';
-import type { IBook } from '../../types/bookTypes';
-import { StyledPagination } from './Pagination.styles';
+import StyledPagination from './Pagination.styles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { changePage, changePageForward, changePageBack } from '../../store/slices/filter/filterSlice';
 
-type PropsType = {
-  book?: IBook;
-
-} & React.PropsWithChildren;
-
-const Pagination: React.FC<PropsType> = (props) => {
+const Pagination = () => {
   const dispatch = useAppDispatch();
   const countBooks = useAppSelector((state) => state.books.count);
   const filter = useAppSelector((state) => state.filter);
   const countPages = Math.ceil(countBooks / +filter.pageSize);
-  const arr: string[] = [];
-  for (let i = 0; i < countPages; i++) {
-    arr.push(`${i + 1}`);
-  }
+  const [arr, setArr] = useState<string[]>([]);
+
+  useEffect(() => {
+    const arrqwe: string[] = [];
+    for (let i = 0; i < countPages; i++) {
+      arrqwe.push(`${i + 1}`);
+    }
+    setArr([...arrqwe]);
+  }, [countPages, filter.page]);
 
   const onChangePage = (item: string) => {
     dispatch(changePage(item));

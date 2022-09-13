@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledFooter } from './Footer.styles';
+import StyledFooter from './Footer.styles';
 import logo2 from '../../images/logo2.svg';
 import map from '../../images/map.svg';
 

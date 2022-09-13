@@ -2,8 +2,8 @@ import React from 'react';
 import type { FormikErrors } from 'formik';
 import { ReactComponent as View } from '../../images/icons/View.svg';
 import { ReactComponent as Hide } from '../../images/icons/Hide.svg';
-import Input from '../Input/Input';
-import { StyledInfoSection } from './InfoSection.styles';
+import Input from '../Input';
+import StyledPaaswordSection from './InfoSection.styles';
 
 type PropsType = {
   // onClick?: () => void;
@@ -21,7 +21,7 @@ type PropsType = {
 
 const PasswordSection: React.FC<PropsType> = (props) => {
   return (
-    <StyledInfoSection>
+    <StyledPaaswordSection>
       {
         props.isChangeInfoOrPassword !== 'password'
           ? (<div className="styled-user-page__personal-information">
@@ -74,7 +74,7 @@ const PasswordSection: React.FC<PropsType> = (props) => {
           />
              </div>)
       }
-    </StyledInfoSection>
+    </StyledPaaswordSection>
   );
 };
 

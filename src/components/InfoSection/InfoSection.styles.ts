@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledInfoSection = styled.div`
+export default styled.div`
 
   .styled-user-page__text-div{
     background: #F0F4EF;

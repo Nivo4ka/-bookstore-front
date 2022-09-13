@@ -1,22 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import Filter from '../Filter/Filter';
-import BookCard from '../BookCard/BookCard';
-import { StyledCatalog } from './Catalog.styles';
+import { useSearchParams } from 'react-router-dom';
+import BookCard from '../BookCard';
+import StyledCatalog from './Catalog.styles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import getAllBooks from '../../store/slices/book/thunks/getAllBooks';
-import Pagination from '../Pagination/Pagination';
+import type { DirectionType, FilterRequestType } from '../../types/filterTypes';
 
 const Catalog = () => {
   const [isLoading, setIsLoading] = useState(true);
   const filter = useAppSelector((state) => state.filter);
   const books = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const timer = setTimeout(() => ((async () => {
       try {
-        await dispatch(getAllBooks()).unwrap();
+        const request: FilterRequestType = {
+          sortBy: searchParams.get('sortBy') || 'price',
+          direction: searchParams.get('direction') as DirectionType || 'asc',
+          minPrice: searchParams.get('minPrice') || '1',
+          maxPrice: searchParams.get('maxPrice') || '100',
+          search: searchParams.get('search') || '',
+          page: searchParams.get('page') || '1',
+          pageSize: searchParams.get('pageSize') || '8',
+          genres: searchParams.get('genres') || '',
+        };
+
+        await dispatch(getAllBooks(request)).unwrap();
+        setSearchParams(request);
       } catch (err) {
         toast.error(err.message, {
           position: 'top-center',
@@ -25,23 +38,16 @@ const Catalog = () => {
         setIsLoading(false);
       }
     })()),
-    500);
+    200);
 
     return () => {
       clearTimeout(timer);
     };
-    // (async () => {
-    //   try {
-    //     await dispatch(getAllBooks()).unwrap();
-    //   } catch (err) {
-    //     toast.error(err.message, {
-    //       position: 'top-center',
-    //     });
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // })();
-  }, [dispatch, filter]);
+  }, [dispatch, searchParams, setSearchParams]);
+
+  useEffect(() => {
+    // console.log(searchParams.getAll('sortBy'));
+  }, [searchParams]);
 
   if (isLoading) {
     return (
@@ -50,15 +56,21 @@ const Catalog = () => {
   }
   return (
     <StyledCatalog>
-      <Filter />
+      {/* <Filter /> */}
       <div className="styled-catalog__grid">
         {!!books.books.length && books.books.map((item, index) => (
           <BookCard key={index} book={item} />
         ))}
       </div>
-      <Pagination />
+      {/* <Pagination /> */}
     </StyledCatalog>
   );
 };
+
+export type SchemaFiledType = {
+  [key: string]: string;
+};
+
+export type ParamType = Record<string, SchemaFiledType>;
 
 export default Catalog;

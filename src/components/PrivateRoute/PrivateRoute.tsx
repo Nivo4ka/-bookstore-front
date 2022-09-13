@@ -9,7 +9,7 @@ type PropsType = {
 };
 
 const PrivateRoute: React.FC<PropsType> = (props) => {
-  const userInfo = useAppSelector((state) => state.user.user?.email);
+  const userInfo = useAppSelector((state) => state.user.email);
   const location = useLocation();
   if (props.isNeedAuth) {
     return userInfo ? props.children : <Navigate to={props.to || '/log-in'} state={{ from: location }} replace />;

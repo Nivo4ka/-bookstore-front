@@ -4,17 +4,15 @@ import loginByPassEmail from './thunks/login';
 import singUpByPassEmail from './thunks/singup';
 import loginByToken from './thunks/loginByToken';
 import patchUserInfo from './thunks/patchUserInfo';
-import type { IUserData } from '../../../types/user.datatype';
+import type { UserType } from '../../../types/userTypes';
 import patchUserPassword from './thunks/patchUserPassword';
 import patchUserImg from './thunks/patchUserImg';
 
-const initialState: IUserData = {
-  user: {
-    id: 0,
-    fullName: '',
-    avatar: '',
-    email: '',
-  },
+const initialState: UserType = {
+  id: 0,
+  fullName: '',
+  avatar: '',
+  email: '',
 };
 
 export const userSlice = createSlice({
@@ -23,27 +21,57 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loginByPassEmail.fulfilled, (state, action) => {
-      if (action.payload) state.user = action.payload;
+      if (action.payload) {
+        state.id = action.payload.id;
+        state.fullName = action.payload.fullName;
+        state.avatar = action.payload.avatar;
+        state.email = action.payload.email;
+      }
     });
 
     builder.addCase(singUpByPassEmail.fulfilled, (state, { payload }) => {
-      if (payload) state.user = payload;
+      if (payload) {
+        state.id = payload.id;
+        state.fullName = payload.fullName;
+        state.avatar = payload.avatar;
+        state.email = payload.email;
+      }
     });
 
     builder.addCase(loginByToken.fulfilled, (state, { payload }) => {
-      if (payload) state.user = payload;
+      if (payload) {
+        state.id = payload.id;
+        state.fullName = payload.fullName;
+        state.avatar = payload.avatar;
+        state.email = payload.email;
+      }
     });
 
     builder.addCase(patchUserInfo.fulfilled, (state, { payload }) => {
-      if (payload) state.user = payload;
+      if (payload) {
+        state.id = payload.id;
+        state.fullName = payload.fullName;
+        state.avatar = payload.avatar;
+        state.email = payload.email;
+      }
     });
 
     builder.addCase(patchUserImg.fulfilled, (state, { payload }) => {
-      if (payload) state.user = payload;
+      if (payload) {
+        state.id = payload.id;
+        state.fullName = payload.fullName;
+        state.avatar = payload.avatar;
+        state.email = payload.email;
+      }
     });
 
     builder.addCase(patchUserPassword.fulfilled, (state, { payload }) => {
-      if (payload) state.user = payload;
+      if (payload) {
+        state.id = payload.id;
+        state.fullName = payload.fullName;
+        state.avatar = payload.avatar;
+        state.email = payload.email;
+      }
     });
   },
 });

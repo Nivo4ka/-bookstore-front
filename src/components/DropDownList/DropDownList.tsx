@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ReactComponent as Forward } from '../../images/icons/Forward.svg';
-import { StyledDropDownList } from './DropDownList.styles';
+import StyledDropDownList from './DropDownList.styles';
 
 type PropsType = {
-  onClick?: () => void;
+  onClick: (value: number) => void;
   className?: string;
   name?: string;
+  currentValue: number;
+  filterPoint: number;
 } & React.PropsWithChildren;
 
 const DropDownList: React.FC<PropsType> = (props) => {
-  const [listIsActive, setListIsActive] = useState(false);
-  const onchangeFilter = () => {
-    setListIsActive(!listIsActive);
-  };
-
   return (
     <StyledDropDownList
-      isActive={listIsActive}
+      isActive={props.filterPoint === props.currentValue}
       name={props.name || ''}
     >
       <div
         className={`styled-drop-down-list__name ${props.className}`}
-        onClick={onchangeFilter}
+        onClick={() => props.onClick(props.currentValue)}
       >
         <p>{props.name}</p>
         <Forward />
@@ -29,7 +26,7 @@ const DropDownList: React.FC<PropsType> = (props) => {
 
       <div className="styled-drop-down-list__list">
         <div className="list__decoration" />
-          {props.children}
+        {props.children}
       </div>
 
     </StyledDropDownList>

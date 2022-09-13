@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledPagination = styled.div`
+export default styled.div`
   width: 100%;
   height: 30px;
   display: flex;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSlider = styled.div`
+export default styled.div`
   height: fit-content;
   display: flex;
   align-items: center;

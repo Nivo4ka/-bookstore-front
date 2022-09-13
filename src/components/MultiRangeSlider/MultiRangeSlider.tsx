@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-import { StyledSlider } from './MultiRangeSlider.styles';
+import StyledSlider from './MultiRangeSlider.styles';
 
 interface IProps {
   onChange: (options: { min: number; max: number}) => void;

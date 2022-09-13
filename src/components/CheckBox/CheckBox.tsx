@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledCheckBox } from './CheckBox.styles';
+import StyledCheckBox from './CheckBox.styles';
 import check from '../../images/icons/Check.svg';
 
 interface IProps {
