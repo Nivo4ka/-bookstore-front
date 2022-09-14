@@ -9,13 +9,12 @@ import type { DirectionType, FilterRequestType } from '../../types/filterTypes';
 
 const Catalog = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const filter = useAppSelector((state) => state.filter);
   const books = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const timer = setTimeout(() => ((async () => {
+    (async () => {
       try {
         const request: FilterRequestType = {
           sortBy: searchParams.get('sortBy') || 'price',
@@ -29,7 +28,7 @@ const Catalog = () => {
         };
 
         await dispatch(getAllBooks(request)).unwrap();
-        setSearchParams(request);
+        // setSearchParams(request);
       } catch (err) {
         toast.error(err.message, {
           position: 'top-center',
@@ -37,17 +36,8 @@ const Catalog = () => {
       } finally {
         setIsLoading(false);
       }
-    })()),
-    200);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    })();
   }, [dispatch, searchParams, setSearchParams]);
-
-  useEffect(() => {
-    // console.log(searchParams.getAll('sortBy'));
-  }, [searchParams]);
 
   if (isLoading) {
     return (
@@ -56,13 +46,11 @@ const Catalog = () => {
   }
   return (
     <StyledCatalog>
-      {/* <Filter /> */}
       <div className="styled-catalog__grid">
         {!!books.books.length && books.books.map((item, index) => (
           <BookCard key={index} book={item} />
         ))}
       </div>
-      {/* <Pagination /> */}
     </StyledCatalog>
   );
 };

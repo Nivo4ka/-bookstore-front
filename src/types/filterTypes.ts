@@ -1,11 +1,10 @@
 export type GenreType = {
   name: string;
-  isCheck: boolean;
+  id: number;
 };
 
-export type PriceType = {
-  min: number;
-  max: number;
+export type GenresType = {
+  genres: GenreType[];
 };
 
 export type SortType = {
@@ -13,21 +12,6 @@ export type SortType = {
   currentValue: string;
 };
 export type DirectionType = 'asc' | 'desc';
-
-export type SortByType = {
-  arrSort: SortType[];
-  direction: DirectionType;
-  selectedSort: string;
-};
-
-export type FilterType = {
-  genres: GenreType[];
-  price: PriceType;
-  sortBy: SortByType;
-  search: string;
-  page: string;
-  pageSize: string;
-};
 
 export type FilterRequestType = {
   genres?: string;

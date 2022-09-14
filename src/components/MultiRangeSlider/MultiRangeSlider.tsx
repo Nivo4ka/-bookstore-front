@@ -1,27 +1,36 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import useDebounce from '../../useDebounce';
 import StyledSlider from './MultiRangeSlider.styles';
 
 interface IProps {
-  onChange: (options: { min: number; max: number}) => void;
   min: number;
   max: number;
-  values: { min: number; max: number};
+  minPrice: number;
+  maxPrice: number;
+  onChange: (options: { min: number; max: number }) => void;
 }
 
-const MultiRangeSlider: React.FC<IProps> = ({ min, max, onChange, values }) => {
-  const [minVal, setMinVal] = useState(values.min);
-  const [maxVal, setMaxVal] = useState(values.max);
-  const minValRef = useRef(values.min);
-  const maxValRef = useRef(values.max);
+const MultiRangeSlider: React.FC<IProps> = ({ min, max, minPrice, maxPrice, onChange }) => {
+  const [minVal, setMinVal] = useState(minPrice);
+  const [maxVal, setMaxVal] = useState(maxPrice);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentMinVal = useDebounce(minVal);
+  const currentMaxVal = useDebounce(maxVal);
+
+  const minValRef = useRef(minPrice);
+  const maxValRef = useRef(maxPrice);
   const range = useRef<HTMLDivElement>(null);
 
-  // Convert to percentage
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
     [min, max],
   );
 
-  // Set width of the range to decrease from the left side
+  useEffect(() => {
+    onChange({ max: currentMaxVal, min: currentMinVal });
+  }, [currentMinVal, currentMaxVal, onChange, setSearchParams, searchParams]);
+
   useEffect(() => {
     const minPercent = getPercent(minVal);
     const maxPercent = getPercent(maxValRef.current);
@@ -32,7 +41,6 @@ const MultiRangeSlider: React.FC<IProps> = ({ min, max, onChange, values }) => {
     }
   }, [minVal, getPercent]);
 
-  // Set width of the range to decrease from the right side
   useEffect(() => {
     const minPercent = getPercent(minValRef.current);
     const maxPercent = getPercent(maxVal);
@@ -41,11 +49,6 @@ const MultiRangeSlider: React.FC<IProps> = ({ min, max, onChange, values }) => {
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
   }, [maxVal, getPercent]);
-
-  // Get min and max values when their state changes
-  useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
 
   return (
     <StyledSlider>

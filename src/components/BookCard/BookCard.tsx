@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import star from '../../images/icons/Star.svg';
 import { ReactComponent as Star2 } from '../../images/icons/Star2.svg';
 import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
@@ -6,6 +7,7 @@ import StyledBookCard from './BookCard.styles';
 import ImgButton from '../ImgButton';
 import Button from '../Button';
 import type { BookType } from '../../types/bookTypes';
+import { useAppSelector } from '../../store/hooks';
 
 type PropsType = {
   book: BookType;
@@ -13,12 +15,24 @@ type PropsType = {
 } & React.PropsWithChildren;
 
 const BookCard: React.FC<PropsType> = (props) => {
+  const navigate = useNavigate();
+  const userInfo = useAppSelector((state) => state.user);
+
+  const onClickFavorite = () => {
+    if (userInfo.email) {
+      // do something
+    } else {
+      navigate('/log-in');
+    }
+  };
+
   return (
     <StyledBookCard>
       <div className="styled-bookcard__cover">
         <ImgButton
           isNotSelected
           className="styled-bookcard__favorite"
+          onClick={onClickFavorite}
         >
           <Heart />
         </ImgButton>

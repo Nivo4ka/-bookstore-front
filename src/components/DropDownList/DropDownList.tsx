@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { ReactComponent as Forward } from '../../images/icons/Forward.svg';
+import useComponentVisible from '../../useComponentVisible';
 import StyledDropDownList from './DropDownList.styles';
 
 type PropsType = {
-  onClick: (value: number) => void;
   className?: string;
   name?: string;
-  currentValue: number;
-  filterPoint: number;
 } & React.PropsWithChildren;
 
 const DropDownList: React.FC<PropsType> = (props) => {
+  const [isfilterOpen, setIsFilterOpen] = useState(false);
+  const wrapperRef = useRef(null);
+  const onClose = () => {
+    setIsFilterOpen(false);
+  };
+
+  const onOpen = () => {
+    setIsFilterOpen(!isfilterOpen);
+  };
+
+  useComponentVisible(wrapperRef, onClose);
+
   return (
     <StyledDropDownList
-      isActive={props.filterPoint === props.currentValue}
+      isActive={isfilterOpen}
       name={props.name || ''}
+      ref={wrapperRef}
     >
       <div
         className={`styled-drop-down-list__name ${props.className}`}
-        onClick={() => props.onClick(props.currentValue)}
+        onClick={onOpen}
       >
         <p>{props.name}</p>
         <Forward />

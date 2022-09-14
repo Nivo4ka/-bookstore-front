@@ -1,39 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ReactComponent as Forward } from '../../images/icons/Forward.svg';
 import { ReactComponent as Back } from '../../images/icons/Back.svg';
 import { ReactComponent as Ellipse } from '../../images/icons/Ellipse.svg';
 import StyledPagination from './Pagination.styles';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { changePage, changePageForward, changePageBack } from '../../store/slices/filter/filterSlice';
+import { useAppSelector } from '../../store/hooks';
 
 const Pagination = () => {
-  const dispatch = useAppDispatch();
   const countBooks = useAppSelector((state) => state.books.count);
-  const filter = useAppSelector((state) => state.filter);
-  const countPages = Math.ceil(countBooks / +filter.pageSize);
-  const [arr, setArr] = useState<string[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(+(searchParams.get('page') || '1'));
+  const [currentPageSize] = useState(+(searchParams.get('pageSize') || '8'));
+  const countPages = Math.ceil(countBooks / currentPageSize);
+  const [arr, setArr] = useState<number[]>([]);
 
-  useEffect(() => {
-    const arrqwe: string[] = [];
-    for (let i = 0; i < countPages; i++) {
-      arrqwe.push(`${i + 1}`);
+  const onChangePage = useCallback((item: number) => {
+    setCurrentPage(item);
+    searchParams.set('page', `${item}`);
+    if (item === 1) {
+      searchParams.delete('page');
     }
-    setArr([...arrqwe]);
-  }, [countPages, filter.page]);
-
-  const onChangePage = (item: string) => {
-    dispatch(changePage(item));
-  };
+    setSearchParams(searchParams);
+  }, [searchParams, setSearchParams]);
 
   const onChangePageBack = () => {
-    dispatch(changePageBack());
+    if (+currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      searchParams.set('page', `${currentPage - 1}`);
+      if ((currentPage - 1) === 1) {
+        searchParams.delete('page');
+      }
+      setSearchParams(searchParams);
+    }
   };
 
   const onChangePageForward = () => {
-    if (+filter.page < countPages) {
-      dispatch(changePageForward());
+    if (+currentPage < countPages) {
+      setCurrentPage(currentPage + 1);
+      searchParams.set('page', `${currentPage + 1}`);
+      if ((currentPage + 1) === 1) {
+        searchParams.delete('page');
+      }
+      setSearchParams(searchParams);
     }
   };
+
+  useEffect(() => {
+    const arrqwe: number[] = [];
+    for (let i = 0; i < countPages; i++) {
+      arrqwe.push(i + 1);
+    }
+    setArr([...arrqwe]);
+    if (countBooks <= (currentPageSize * (currentPage - 1))) {
+      onChangePage(1);
+    }
+  }, [countBooks, countPages, currentPage, currentPageSize, onChangePage]);
 
   return (
     <StyledPagination>
@@ -42,7 +63,7 @@ const Pagination = () => {
         {arr.map((item, index) => (
           <Ellipse
             key={index}
-            className={item === filter.page ? 'pagination__point pagination__point_choice' : 'pagination__point'}
+            className={item === currentPage ? 'pagination__point pagination__point_choice' : 'pagination__point'}
             onClick={() => onChangePage(item)}
           />
         ))}

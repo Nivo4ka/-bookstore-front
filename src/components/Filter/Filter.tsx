@@ -1,37 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import StyledFilter from './Filter.styles';
 import DropDownList from '../DropDownList';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { changeGenres, changePrice, changeSortBy } from '../../store/slices/filter/filterSlice';
 import SortGenres from '../Sorts/SortGenres';
-import SortPrice from '../Sorts/SortPrice';
-import type { PriceType } from '../../types/filterTypes';
+import SortPrice from '../Sorts/SortBy';
 import MultiRangeSlider from '../MultiRangeSlider';
 
+const arrSort = [
+  {
+    title: 'Price',
+    currentValue: 'price',
+  },
+  {
+    title: 'Name',
+    currentValue: 'title',
+  },
+  {
+    title: 'Author name',
+    currentValue: 'autor',
+  },
+  {
+    title: 'Rating',
+    currentValue: 'rating',
+  },
+  {
+    title: 'Date of issue',
+    currentValue: 'creationDate',
+  }];
+
 const Filter = () => {
-  const dispatch = useAppDispatch();
-  const filter = useAppSelector((state) => state.filter);
-  const [filterPoint, setFilterPoint] = useState<number>(-1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const minPrice = +(searchParams.get('minPrice') || '1');
+  const maxPrice = +(searchParams.get('maxPrice') || '100');
 
-  const onClickFilter = (value: number) => {
-    if (filterPoint === value) {
-      setFilterPoint(-1);
-    } else {
-      setFilterPoint(value);
+  const onChangePrice = (options: { min: number; max: number }) => {
+    if (!(+(searchParams.get('minPrice') || '1') === options.min)) {
+      if (options.min === 1) {
+        searchParams.delete('minPrice');
+      } else {
+        searchParams.set('minPrice', `${options.min}`);
+      }
+      setSearchParams(searchParams);
     }
-  };
 
-  // const onChangeGenres = (index: number) => {
-  //   genres[index].isCheck = !genres[index].isCheck;
-  //   dispatch(changeGenres(index));
-  // };
-
-  const onChangeSortBy = (index: number) => {
-    dispatch(changeSortBy(index));
-  };
-
-  const onChangePrice = (values: PriceType) => {
-    dispatch(changePrice(values));
+    if (!(+(searchParams.get('maxPrice') || '100') === options.max)) {
+      if (options.max === 100) {
+        searchParams.delete('maxPrice');
+      } else {
+        searchParams.set('maxPrice', `${options.max}`);
+      }
+      setSearchParams(searchParams);
+    }
   };
 
   return (
@@ -40,40 +59,25 @@ const Filter = () => {
       <div className="styled-filter__filter-area">
         <DropDownList
           name="Genre"
-          onClick={onClickFilter}
-          currentValue={1}
-          filterPoint={filterPoint}
         >
-          <SortGenres
-            // onChangeCheck={onChangeGenres}
-            // arrFilter={genres}
-          />
+          <SortGenres />
         </DropDownList>
         <DropDownList
           name="Price"
-          onClick={onClickFilter}
-          currentValue={2}
-          filterPoint={filterPoint}
         >
           <MultiRangeSlider
-            min={0}
+            min={1}
             max={100}
-            values={filter.price}
             onChange={onChangePrice}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
           />
         </DropDownList>
         <DropDownList
-          name={`Sort by ${filter.sortBy.selectedSort.toLowerCase()}`}
+          name={`Sort by ${arrSort.find((sort) => sort.currentValue === (searchParams.get('sortBy') || 'price'))?.title.toLowerCase()}`}
           className="styled-drop-down-list__name_last-child"
-          onClick={onClickFilter}
-          currentValue={3}
-          filterPoint={filterPoint}
         >
-          <SortPrice
-            onChangeCheck={onChangeSortBy}
-            arrFilter={filter.sortBy.arrSort}
-            selectedSortBy={filter.sortBy.selectedSort}
-          />
+          <SortPrice />
         </DropDownList>
       </div>
     </StyledFilter >

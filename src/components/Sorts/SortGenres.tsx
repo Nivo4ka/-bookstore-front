@@ -1,19 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CheckBox from '../CheckBox/CheckBox';
 import StyledSort from './Sorts.styles';
-
-interface IFilter {
-  name: string;
-  isCheck: boolean;
-}
-
-interface IProps {
-  onClick?: () => void;
-  onChangeCheck?: (index: number) => void;
-  name?: string;
-  arrFilter?: string[];
-}
 
 const genres = [
   'Fiction',
@@ -35,19 +23,30 @@ const genres = [
   'Encyclopedia',
 ];
 
-const SortGenres: React.FC<IProps> = (props) => {
+const SortGenres = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  let currentGenres = '';
-  currentGenres = searchParams.get('genres') || '';
-  console.log(currentGenres);
+  const [currentGenres, setCurrentGenres] = useState('');
+
+  useEffect(() => {
+    setCurrentGenres(searchParams.get('genres') || '');
+  }, [searchParams]);
 
   const onChangeCheck = (item: string) => {
+    let newArr = '';
     if (currentGenres.includes(item)) {
-      // const genresStr = currentGenres.reduce((acc, elem) =>
-      // (elem !== item ? (`${acc},${elem}`) : acc), '');
-      searchParams.delete('genres');
-      searchParams.set('genres', currentGenres);
+      const newGenres = currentGenres.split(',');
+      newGenres.splice(newGenres.indexOf(item), 1);
+      newArr = newGenres.join();
+    } else if (currentGenres.length === 0) {
+      newArr = `${item}`;
+    } else {
+      newArr = `${currentGenres},${item}`;
     }
+    searchParams.set('genres', newArr);
+    if (newArr === '') {
+      searchParams.delete('genres');
+    }
+    setSearchParams(searchParams);
   };
 
   return (

@@ -1,26 +1,43 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { ReactComponent as Search } from '../../images/icons/Search.svg';
 import { ReactComponent as Profile } from '../../images/icons/User_profile2.svg';
 import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
 import { ReactComponent as Cart } from '../../images/icons/Cart.svg';
 import StyledHeader from './Header.styles';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 import Button from '../Button';
 import ImgButton from '../ImgButton';
 import Input from '../Input';
-import { changeSearch } from '../../store/slices/filter/filterSlice';
+import useDebounce from '../../useDebounce';
 
 const Header = () => {
   const userInfo = useAppSelector((state) => state.user);
-  const search = useAppSelector((state) => state.filter.search);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get('search') || '');
+  const currentSearch = useDebounce(search);
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useAppDispatch();
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (currentSearch !== '') {
+      searchParams.set('search', currentSearch);
+    } else {
+      searchParams.delete('search');
+    }
+    if (location.pathname === '/') {
+      setSearchParams(searchParams);
+    }
+  }, [currentSearch, location.pathname, searchParams, setSearchParams]);
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changeSearch(e.target.value));
+    setSearch(e.target.value);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -52,16 +69,16 @@ const Header = () => {
       <Logo onClick={goToMainPage} />
       <div className="styled-header__input-area">
         <p>Catalog</p>
-          <Input
-            onChange={onChangeSearch}
-            value={search}
-            placeHolder="Search"
-            nameInput="search"
-            Icon1={Search}
-            type1="text"
-            className="styled-header__search-input"
-            onKeyDown={onKeyDown}
-          />
+        <Input
+          onChange={onChangeSearch}
+          value={search}
+          placeHolder="Search"
+          nameInput="search"
+          Icon1={Search}
+          type1="text"
+          className="styled-header__search-input"
+          onKeyDown={onKeyDown}
+        />
       </div>
 
       {
