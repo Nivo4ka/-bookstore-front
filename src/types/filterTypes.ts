@@ -3,8 +3,13 @@ export type GenreType = {
   id: number;
 };
 
-export type GenresType = {
+export type GenresResponseType={
   genres: GenreType[];
+};
+
+export type FilterType = {
+  genres: GenreType[];
+  arrSort: SortType[];
 };
 
 export type SortType = {

@@ -8,7 +8,12 @@ export type BookType = {
   cover?: string;
 };
 
+export type BookResponseType = {
+  book: BookType;
+};
+
 export type BooksType = {
   books: BookType[];
   count: number;
+  book?: BookType;
 };

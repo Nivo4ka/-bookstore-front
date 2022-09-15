@@ -6,12 +6,27 @@ import StyledCatalog from './Catalog.styles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import getAllBooks from '../../store/slices/book/thunks/getAllBooks';
 import type { DirectionType, FilterRequestType } from '../../types/filterTypes';
+import Filter from '../Filter';
+import Pagination from '../Pagination';
+import getGenres from '../../store/slices/filter/thunks/getGenres';
 
 const Catalog = () => {
   const [isLoading, setIsLoading] = useState(true);
   const books = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await dispatch(getGenres()).unwrap();
+      } catch (err) {
+        toast.error(err.message, {
+          position: 'top-center',
+        });
+      }
+    })();
+  }, [dispatch]);
 
   useEffect(() => {
     (async () => {
@@ -28,7 +43,6 @@ const Catalog = () => {
         };
 
         await dispatch(getAllBooks(request)).unwrap();
-        // setSearchParams(request);
       } catch (err) {
         toast.error(err.message, {
           position: 'top-center',
@@ -46,11 +60,13 @@ const Catalog = () => {
   }
   return (
     <StyledCatalog>
+      <Filter />
       <div className="styled-catalog__grid">
         {!!books.books.length && books.books.map((item, index) => (
           <BookCard key={index} book={item} />
         ))}
       </div>
+      <Pagination />
     </StyledCatalog>
   );
 };

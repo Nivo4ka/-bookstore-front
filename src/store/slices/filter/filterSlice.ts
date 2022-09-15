@@ -1,9 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { GenresType } from '../../../types/filterTypes';
+import type { FilterType } from '../../../types/filterTypes';
 import getGenres from './thunks/getGenres';
 
-const initialState: GenresType = {
+const initialState: FilterType = {
   genres: [],
+  arrSort: [
+    {
+      title: 'Price',
+      currentValue: 'price',
+    },
+    {
+      title: 'Name',
+      currentValue: 'title',
+    },
+    {
+      title: 'Author name',
+      currentValue: 'autor',
+    },
+    {
+      title: 'Rating',
+      currentValue: 'rating',
+    },
+    {
+      title: 'Date of issue',
+      currentValue: 'creationDate',
+    }],
 };
 
 export const filterSlice = createSlice({
@@ -12,7 +33,7 @@ export const filterSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(getGenres.fulfilled, (state, action) => {
-      if (action.payload) state.genres = action.payload;
+      if (action.payload.genres) state.genres = action.payload.genres;
     });
   },
 });

@@ -57,7 +57,6 @@ const MultiRangeSlider: React.FC<IProps> = ({ min, max, minPrice, maxPrice, onCh
         min={min}
         max={max}
         value={minVal}
-        step="0.1"
         onChange={(event) => {
           const value = Math.min(Number(event.target.value), maxVal - 1);
           setMinVal(value);
@@ -71,7 +70,6 @@ const MultiRangeSlider: React.FC<IProps> = ({ min, max, minPrice, maxPrice, onCh
         min={min}
         max={max}
         value={maxVal}
-        step="0.1"
         onChange={(event) => {
           const value = Math.max(Number(event.target.value), minVal + 1);
           setMaxVal(value);
@@ -83,8 +81,8 @@ const MultiRangeSlider: React.FC<IProps> = ({ min, max, minPrice, maxPrice, onCh
       <div className="slider">
         <div className="slider__track" />
         <div ref={range} className="slider__range" />
-        <p className="slider__left-value">{`$ ${minVal}`}</p>
-        <p className="slider__right-value">{`$ ${maxVal}`}</p>
+        <p className="slider__left-value">{`$ ${minVal.toFixed(2)}`}</p>
+        <p className="slider__right-value">{`$ ${maxVal.toFixed(2)}`}</p>
       </div>
     </StyledSlider>
   );

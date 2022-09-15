@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import star from '../../images/icons/Star.svg';
-import { ReactComponent as Star2 } from '../../images/icons/Star2.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import StarRatingComponent from 'react-star-rating-component';
+import { ReactComponent as Star } from '../../images/icons/Star.svg';
 import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
 import StyledBookCard from './BookCard.styles';
 import ImgButton from '../ImgButton';
@@ -17,6 +17,7 @@ type PropsType = {
 const BookCard: React.FC<PropsType> = (props) => {
   const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.user);
+  const rating = 3;
 
   const onClickFavorite = () => {
     if (userInfo.email) {
@@ -36,31 +37,24 @@ const BookCard: React.FC<PropsType> = (props) => {
         >
           <Heart />
         </ImgButton>
-        {props.book.cover && <img className="styled-bookcard__bookimg" src={props.book.cover} alt={props.book.title} />}
+        <Link className="styled-bookcard__bookimg" to={`/book/${props.book.id}`}>
+          {props.book.cover && <img className="styled-bookcard__bookimg" src={props.book.cover} alt={props.book.title} />}
+        </Link>
       </div>
       <p className="styled-bookcard__title">{props.book.title}</p>
       <p className="styled-bookcard__autor">{props.book.autor}</p>
       <div className="styled-bookcard__rating-area">
-        <ul>
-          <li>
-            <Star2 />
-          </li>
-          <li>
-            <img src={star} alt="star" />
-          </li>
-          <li>
-            <img src={star} alt="star" />
-          </li>
-          <li>
-            <img src={star} alt="star" />
-          </li>
-          <li>
-            <img src={star} alt="star" />
-          </li>
-        </ul>
-        <p>1.0</p>
+        <StarRatingComponent
+          name={`rating${props.book.id}`}
+          starCount={5}
+          value={rating}
+          renderStarIcon={() => <Star className="styled-bookcard__rating-area__star" />}
+          starColor="#BFCC94"
+          emptyStarColor="#0000"
+        />
+        <p>{rating.toFixed(1)}</p>
       </div>
-      <Button>$ {props.book.price} USD</Button>
+      <Button>$ {props.book.price.toFixed(2)} USD</Button>
     </StyledBookCard>
   );
 };

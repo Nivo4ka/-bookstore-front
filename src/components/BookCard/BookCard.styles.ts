@@ -18,6 +18,7 @@ export default styled.div`
     background-image: url(${disabled});
     background-position: center center;
     overflow: hodden;
+    cursor: pointer;
   }
   .styled-bookcard__favorite{
     position: absolute;
@@ -38,6 +39,9 @@ export default styled.div`
 
   .styled-bookcard__title{
     margin: 30px 0 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .styled-bookcard__autor{
     color: #B9BAC4;
@@ -49,6 +53,10 @@ export default styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 20px 0;
+    &__star{
+      stroke: #BFCC94;
+      margin-right: 25px;
+    }
     ul{
       width: 100%;
       display: flex;
@@ -65,7 +73,7 @@ export default styled.div`
       font-size: 16px;
       line-height: 24px;
       color: #B9BAC4;
-      margin: 0 7px 0 25px;
+      margin: 0 7px 0 0;
     }
   }
 `;

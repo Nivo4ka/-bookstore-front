@@ -5,30 +5,10 @@ import DropDownList from '../DropDownList';
 import SortGenres from '../Sorts/SortGenres';
 import SortPrice from '../Sorts/SortBy';
 import MultiRangeSlider from '../MultiRangeSlider';
-
-const arrSort = [
-  {
-    title: 'Price',
-    currentValue: 'price',
-  },
-  {
-    title: 'Name',
-    currentValue: 'title',
-  },
-  {
-    title: 'Author name',
-    currentValue: 'autor',
-  },
-  {
-    title: 'Rating',
-    currentValue: 'rating',
-  },
-  {
-    title: 'Date of issue',
-    currentValue: 'creationDate',
-  }];
+import { useAppSelector } from '../../store/hooks';
 
 const Filter = () => {
+  const arrSort = useAppSelector((state) => state.filter.arrSort);
   const [searchParams, setSearchParams] = useSearchParams();
   const minPrice = +(searchParams.get('minPrice') || '1');
   const maxPrice = +(searchParams.get('maxPrice') || '100');

@@ -1,7 +1,7 @@
 import instance from '../httpCommon';
 import type { UserDataType, UserPatchImgType, UserPatchType } from '../../types/userTypes';
 
-const USER_PATH = '/auth';
+const USER_PATH = '/user';
 
 const patchUserInfo = (data: UserPatchType) => {
   return instance.patch<UserDataType>(`${USER_PATH}/me`, data);

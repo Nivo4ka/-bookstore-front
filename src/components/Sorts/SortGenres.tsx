@@ -1,31 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useAppSelector } from '../../store/hooks';
 import CheckBox from '../CheckBox/CheckBox';
 import StyledSort from './Sorts.styles';
 
-const genres = [
-  'Fiction',
-  'Non—fiction',
-  'Light fiction',
-  'Science-fiction',
-  'Fantasy',
-  'Business & Finance',
-  'Politics',
-  'Travel books',
-  'Autobiography',
-  'History',
-  'Thriller / Mystery',
-  'Romance',
-  'Satire',
-  'Horror',
-  'Health / Medicine',
-  'Children’s books',
-  'Encyclopedia',
-];
-
 const SortGenres = () => {
+  const genres = useAppSelector((state) => state.filter.genres);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentGenres, setCurrentGenres] = useState('');
+  const [currentGenres, setCurrentGenres] = useState(searchParams.get('genres') || '');
+  const newGenres = currentGenres.split(',');
 
   useEffect(() => {
     setCurrentGenres(searchParams.get('genres') || '');
@@ -34,7 +17,6 @@ const SortGenres = () => {
   const onChangeCheck = (item: string) => {
     let newArr = '';
     if (currentGenres.includes(item)) {
-      const newGenres = currentGenres.split(',');
       newGenres.splice(newGenres.indexOf(item), 1);
       newArr = newGenres.join();
     } else if (currentGenres.length === 0) {
@@ -55,11 +37,11 @@ const SortGenres = () => {
         {genres.map((item, index) => (
           <li key={index}>
             <CheckBox
-              value={currentGenres.includes(item)}
+              value={newGenres.includes(`${item.id}`)}
               index={index}
-              onChange={() => onChangeCheck(item)}
+              onChange={() => onChangeCheck(`${item.id}`)}
             />
-            <p>{item}</p>
+            <p>{item.name}</p>
           </li>
         ))}
       </ul>

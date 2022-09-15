@@ -17,6 +17,7 @@ import { useAppDispatch } from './store/hooks';
 import loginByToken from './store/slices/user/thunks/loginByToken';
 
 import loading from './images/icons/Loading.svg';
+import BookPage from './components/BookPage/BookPage';
 
 const arrRoutes = [
   {
@@ -43,6 +44,10 @@ const arrRoutes = [
       <PrivateRoute isNeedAuth>
         <UserPage />
       </PrivateRoute>,
+  },
+  {
+    path: '/book/:bookId',
+    element: <BookPage />,
   },
 ];
 

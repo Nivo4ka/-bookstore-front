@@ -3,7 +3,7 @@ import fairy from '../../images/fairy.svg';
 
 export default styled.div`
   padding-top: 62px;
-  padding-bottom: 150px;
+  padding-bottom: 100px;
   
   .styled-singup-banner__back{
     display: flex;
