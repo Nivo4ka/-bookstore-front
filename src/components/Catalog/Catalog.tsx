@@ -32,14 +32,14 @@ const Catalog = () => {
     (async () => {
       try {
         const request: FilterRequestType = {
-          sortBy: searchParams.get('sortBy') || 'price',
-          direction: searchParams.get('direction') as DirectionType || 'asc',
-          minPrice: searchParams.get('minPrice') || '1',
-          maxPrice: searchParams.get('maxPrice') || '100',
-          search: searchParams.get('search') || '',
-          page: searchParams.get('page') || '1',
-          pageSize: searchParams.get('pageSize') || '8',
-          genres: searchParams.get('genres') || '',
+          sortBy: searchParams.get('sortBy') || undefined,
+          direction: searchParams.get('direction') as DirectionType || undefined,
+          minPrice: searchParams.get('minPrice') || undefined,
+          maxPrice: searchParams.get('maxPrice') || undefined,
+          search: searchParams.get('search') || undefined,
+          page: searchParams.get('page') || undefined,
+          pageSize: searchParams.get('pageSize') || undefined,
+          genres: searchParams.get('genres') || undefined,
         };
 
         await dispatch(getAllBooks(request)).unwrap();

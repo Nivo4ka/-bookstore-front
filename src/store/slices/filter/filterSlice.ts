@@ -19,11 +19,7 @@ const initialState: FilterType = {
     },
     {
       title: 'Rating',
-      currentValue: 'rating',
-    },
-    {
-      title: 'Date of issue',
-      currentValue: 'creationDate',
+      currentValue: 'ratings',
     }],
 };
 

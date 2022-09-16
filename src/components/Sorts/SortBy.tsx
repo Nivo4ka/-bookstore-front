@@ -1,31 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useAppSelector } from '../../store/hooks';
 import StyledSort from './Sorts.styles';
-
-const arrSort = [
-  {
-    title: 'Price',
-    currentValue: 'price',
-  },
-  {
-    title: 'Name',
-    currentValue: 'title',
-  },
-  {
-    title: 'Author name',
-    currentValue: 'autor',
-  },
-  {
-    title: 'Rating',
-    currentValue: 'rating',
-  },
-  {
-    title: 'Date of issue',
-    currentValue: 'creationDate',
-  }];
 
 const SortPrice = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const arrSort = useAppSelector((state) => state.filter.arrSort);
   const [currentSortBy, setCurrentSortBy] = useState('price');
   const [currentDirection, setCurrentDirection] = useState('asc');
   const isFirstRender = useRef(true);

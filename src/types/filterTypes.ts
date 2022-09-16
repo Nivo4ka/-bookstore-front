@@ -16,15 +16,15 @@ export type SortType = {
   title: string;
   currentValue: string;
 };
-export type DirectionType = 'asc' | 'desc';
+export type DirectionType = 'ASC' | 'DESC';
 
 export type FilterRequestType = {
   genres?: string;
-  minPrice: string;
-  maxPrice: string;
-  sortBy: string;
+  minPrice?: string;
+  maxPrice?: string;
+  sortBy?: string;
   page?: string;
   pageSize?: string;
-  direction: DirectionType;
+  direction?: DirectionType;
   search?: string;
 };

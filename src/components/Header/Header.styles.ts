@@ -40,6 +40,10 @@ export default styled.div`
 
   .styled-header__img-button{
     margin-left: 27px;
+    svg{
+      stroke: #F0F4EF;
+      fill: #0000;
+    }
   }
 
   .styled-header__menu{

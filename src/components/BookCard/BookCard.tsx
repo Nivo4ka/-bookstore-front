@@ -2,12 +2,15 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import StarRatingComponent from 'react-star-rating-component';
 import { ReactComponent as Star } from '../../images/icons/Star.svg';
+import { ReactComponent as HalfStar } from '../../images/icons/HalfStar.svg';
 import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
 import StyledBookCard from './BookCard.styles';
 import ImgButton from '../ImgButton';
 import Button from '../Button';
 import type { BookType } from '../../types/bookTypes';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import deleteFavorite from '../../store/slices/user/thunks/deleteFavorite';
+import addToFavorite from '../../store/slices/user/thunks/addToFavorite';
 
 type PropsType = {
   book: BookType;
@@ -17,14 +20,30 @@ type PropsType = {
 const BookCard: React.FC<PropsType> = (props) => {
   const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.user);
-  const rating = 3;
+  const dispatch = useAppDispatch();
+  let rating = 0;
+
+  if (props.book.ratings.length) {
+    rating = props.book.ratings.reduce((acc, item) => {
+      return acc + item.grade;
+    }, 0) / props.book.ratings.length;
+  }
 
   const onClickFavorite = () => {
     if (userInfo.email) {
-      // do something
+      if (isBookFavorite()) {
+        dispatch(deleteFavorite(props.book.id));
+      } else {
+        dispatch(addToFavorite(props.book.id));
+      }
     } else {
       navigate('/log-in');
     }
+  };
+
+  const isBookFavorite = () => {
+    const qwe = userInfo.favorites.findIndex((item) => item.bookId === props.book.id);
+    return qwe !== -1;
   };
 
   return (
@@ -32,7 +51,7 @@ const BookCard: React.FC<PropsType> = (props) => {
       <div className="styled-bookcard__cover">
         <ImgButton
           isNotSelected
-          className="styled-bookcard__favorite"
+          className={isBookFavorite() ? 'styled-bookcard__favorite' : 'styled-bookcard__not-favorite'}
           onClick={onClickFavorite}
         >
           <Heart />
@@ -49,6 +68,7 @@ const BookCard: React.FC<PropsType> = (props) => {
           starCount={5}
           value={rating}
           renderStarIcon={() => <Star className="styled-bookcard__rating-area__star" />}
+          renderStarIconHalf={() => <HalfStar className="styled-bookcard__rating-area__star" />}
           starColor="#BFCC94"
           emptyStarColor="#0000"
         />

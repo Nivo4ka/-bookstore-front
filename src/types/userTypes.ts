@@ -3,6 +3,25 @@ export type UserType = {
   fullName: string;
   avatar: string;
   email: string;
+  favorites: FavoriteType[];
+  cart: CartType[];
+};
+
+export type FavoriteResponseType = {
+  favorites: FavoriteType[];
+};
+
+export type FavoriteType = {
+  id: number;
+  bookId: number;
+  userId: number;
+};
+
+export type CartType = {
+  id: number;
+  bookId: number;
+  userId: number;
+  count: number;
 };
 
 export type UserLoginType = {

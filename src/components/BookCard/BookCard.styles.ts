@@ -20,13 +20,31 @@ export default styled.div`
     overflow: hodden;
     cursor: pointer;
   }
-  .styled-bookcard__favorite{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    transition: 200ms ease all;
-    :hover{
+  .styled-bookcard {
+    &__favorite {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      transition: 200ms ease all;
       opacity: 1;
+      svg{
+        stroke: #F0F4EF;
+        fill: #F0F4EF;
+      }
+    }
+    &__not-favorite {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      transition: 200ms ease all;
+      :hover{
+        opacity: 1;
+      }
+      svg {
+        stroke: #F0F4EF;
+        fill: #0000;
+        
+      }
     }
   }
 
