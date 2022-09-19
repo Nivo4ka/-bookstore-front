@@ -4,6 +4,7 @@ import StyledButton from './Button.styles';
 type PropsType = {
   onClick?: () => void;
   type?: 'submit' | 'button';
+  disabled?: boolean;
 } & React.PropsWithChildren;
 
 const Button: React.FC<PropsType> = (props) => {
@@ -11,6 +12,7 @@ const Button: React.FC<PropsType> = (props) => {
     <StyledButton
       onClick={props.onClick}
       type={props.type}
+      disabled={props.disabled}
     >
       {props.children}
     </StyledButton>

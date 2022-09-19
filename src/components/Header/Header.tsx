@@ -94,7 +94,12 @@ const Header = () => {
               onClick={goToUserPage}
               className="styled-header__img-button"
             >
-              <Heart />
+              <div className="styled">
+                <Heart />
+                <div>
+                  <p>{userInfo.favorites.length}</p>
+                </div>
+              </div>
             </ImgButton>
             <ImgButton
               onClick={goToUserPage}

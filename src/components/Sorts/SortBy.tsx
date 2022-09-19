@@ -16,17 +16,17 @@ const SortPrice = () => {
       return;
     }
     setCurrentSortBy(searchParams.get('sortBy') || 'price');
-    setCurrentDirection(searchParams.get('direction') || 'asc');
+    setCurrentDirection(searchParams.get('direction') || 'ASC');
   }, [searchParams]);
 
   const onChangeCheck = (item: string) => {
     if (currentSortBy === item) {
-      searchParams.set('direction', currentDirection === 'desc' ? 'asc' : 'desc');
+      searchParams.set('direction', currentDirection === 'DESC' ? 'ASC' : 'DESC');
     } else {
       searchParams.set('sortBy', item);
-      searchParams.set('direction', 'asc');
+      searchParams.set('direction', 'ASC');
     }
-    if (searchParams.get('direction') === 'asc') {
+    if (searchParams.get('direction') === 'ASC') {
       searchParams.delete('direction');
     }
     if (searchParams.get('sortBy') === 'price') {

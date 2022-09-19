@@ -10,7 +10,7 @@ const Pagination = () => {
   const countBooks = useAppSelector((state) => state.books.count);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(+(searchParams.get('page') || '1'));
-  const [currentPageSize] = useState(+(searchParams.get('pageSize') || `${countBooks}`));
+  const [currentPageSize] = useState(+(searchParams.get('pageSize') || '8'));
   const countPages = Math.ceil(countBooks / currentPageSize);
   const [arr, setArr] = useState<number[]>([]);
 

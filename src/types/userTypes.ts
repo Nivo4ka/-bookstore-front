@@ -5,6 +5,18 @@ export type UserType = {
   email: string;
   favorites: FavoriteType[];
   cart: CartType[];
+  ratings: RatingType[];
+};
+
+export type RatingType = {
+  id: number;
+  bookId: number;
+  userId: number;
+  grade: number;
+};
+
+export type RatingResponseType = {
+  ratings: RatingType[];
 };
 
 export type FavoriteResponseType = {

@@ -21,13 +21,6 @@ const BookCard: React.FC<PropsType> = (props) => {
   const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  let rating = 0;
-
-  if (props.book.ratings.length) {
-    rating = props.book.ratings.reduce((acc, item) => {
-      return acc + item.grade;
-    }, 0) / props.book.ratings.length;
-  }
 
   const onClickFavorite = () => {
     if (userInfo.email) {
@@ -66,13 +59,13 @@ const BookCard: React.FC<PropsType> = (props) => {
         <StarRatingComponent
           name={`rating${props.book.id}`}
           starCount={5}
-          value={rating}
+          value={props.book.rating}
           renderStarIcon={() => <Star className="styled-bookcard__rating-area__star" />}
           renderStarIconHalf={() => <HalfStar className="styled-bookcard__rating-area__star" />}
           starColor="#BFCC94"
           emptyStarColor="#0000"
         />
-        <p>{rating.toFixed(1)}</p>
+        <p>{props.book.rating.toFixed(1)}</p>
       </div>
       <Button>$ {props.book.price.toFixed(2)} USD</Button>
     </StyledBookCard>

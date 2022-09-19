@@ -19,7 +19,7 @@ const initialState: FilterType = {
     },
     {
       title: 'Rating',
-      currentValue: 'ratings',
+      currentValue: 'rating',
     }],
 };
 

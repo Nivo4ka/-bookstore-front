@@ -15,7 +15,6 @@ const ImgButton: React.FC<PropsType> = (props) => {
       className={props.className}
     >
       {props.children}
-      {/* <img src={props.src} alt={props.src} /> */}
     </StyledImgButton>
   );
 };

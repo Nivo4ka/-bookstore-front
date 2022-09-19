@@ -1,10 +1,3 @@
-export type RatingType = {
-  id: number;
-  bookId: number;
-  userId: number;
-  grade: number;
-};
-
 export type BookType = {
   id: number;
   title: string;
@@ -13,7 +6,7 @@ export type BookType = {
   genre: string;
   description?: string;
   cover?: string;
-  ratings: RatingType[];
+  rating: number;
 };
 
 export type BookResponseType = {

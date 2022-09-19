@@ -32,13 +32,13 @@ const Catalog = () => {
     (async () => {
       try {
         const request: FilterRequestType = {
-          sortBy: searchParams.get('sortBy') || undefined,
+          sortBy: searchParams.get('sortBy') || 'price',
           direction: searchParams.get('direction') as DirectionType || undefined,
           minPrice: searchParams.get('minPrice') || undefined,
           maxPrice: searchParams.get('maxPrice') || undefined,
           search: searchParams.get('search') || undefined,
           page: searchParams.get('page') || undefined,
-          pageSize: searchParams.get('pageSize') || undefined,
+          pageSize: searchParams.get('pageSize') || '8',
           genres: searchParams.get('genres') || undefined,
         };
 

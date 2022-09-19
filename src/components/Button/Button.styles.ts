@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-export default styled.button`
+export default styled.button<{ disabled?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px 50px;
-  background: #344966;
+  background: ${(p) => (p.disabled ? '#B9BAC4' : '#344966')};
+  /* background: #344966; */
   border-radius: 16px;
   color: #F0F4EF;
   border: none;

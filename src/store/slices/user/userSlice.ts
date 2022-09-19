@@ -9,6 +9,7 @@ import patchUserPassword from './thunks/patchUserPassword';
 import patchUserImg from './thunks/patchUserImg';
 import addToFavorite from './thunks/addToFavorite';
 import deleteFavorite from './thunks/deleteFavorite';
+import addRating from './thunks/addRating';
 
 const initialState: UserType = {
   id: 0,
@@ -17,6 +18,7 @@ const initialState: UserType = {
   email: '',
   favorites: [],
   cart: [],
+  ratings: [],
 };
 
 export const userSlice = createSlice({
@@ -32,6 +34,7 @@ export const userSlice = createSlice({
         state.email = action.payload.email;
         state.favorites = action.payload.favorites;
         state.cart = action.payload.cart;
+        state.ratings = action.payload.ratings;
       }
     });
 
@@ -43,6 +46,7 @@ export const userSlice = createSlice({
         state.email = payload.email;
         state.favorites = payload.favorites;
         state.cart = payload.cart;
+        state.ratings = payload.ratings;
       }
     });
 
@@ -54,6 +58,7 @@ export const userSlice = createSlice({
         state.email = payload.email;
         state.favorites = payload.favorites;
         state.cart = payload.cart;
+        state.ratings = payload.ratings;
       }
     });
 
@@ -65,6 +70,7 @@ export const userSlice = createSlice({
         state.email = payload.email;
         state.favorites = payload.favorites;
         state.cart = payload.cart;
+        state.ratings = payload.ratings;
       }
     });
 
@@ -76,6 +82,7 @@ export const userSlice = createSlice({
         state.email = payload.email;
         state.favorites = payload.favorites;
         state.cart = payload.cart;
+        state.ratings = payload.ratings;
       }
     });
 
@@ -87,6 +94,7 @@ export const userSlice = createSlice({
         state.email = payload.email;
         state.favorites = payload.favorites;
         state.cart = payload.cart;
+        state.ratings = payload.ratings;
       }
     });
 
@@ -100,6 +108,10 @@ export const userSlice = createSlice({
       if (payload) {
         state.favorites = payload;
       }
+    });
+
+    builder.addCase(addRating.fulfilled, (state, action) => {
+      if (action.payload) state.ratings = action.payload;
     });
   },
 });

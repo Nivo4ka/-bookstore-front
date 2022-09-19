@@ -13,6 +13,9 @@ export const bookSlice = createSlice({
   name: 'bookSlice',
   initialState,
   reducers: {
+    deleteInfoBook: (state) => {
+      state.book = {} as BookType;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllBooks.fulfilled, (state, action) => {
@@ -24,5 +27,7 @@ export const bookSlice = createSlice({
     });
   },
 });
+
+export const { deleteInfoBook } = bookSlice.actions;
 
 export default bookSlice.reducer;

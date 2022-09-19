@@ -90,7 +90,7 @@ const App = () => {
         </Routes>
       </div>
       <Footer />
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </StyledApp>
   );
 };
