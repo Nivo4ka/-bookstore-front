@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { BooksType, BookType } from '../../../types/bookTypes';
 import getAllBooks from './thunks/getAllBooks';
 import getBookById from './thunks/getBookById';
+import getBooksByArray from './thunks/getBooksByArray';
 
 const initialState: BooksType = {
   books: [],
@@ -24,6 +25,9 @@ export const bookSlice = createSlice({
     });
     builder.addCase(getBookById.fulfilled, (state, action) => {
       if (action.payload.book) state.book = action.payload.book;
+    });
+    builder.addCase(getBooksByArray.fulfilled, (state, action) => {
+      if (action.payload) state.books = action.payload;
     });
   },
 });

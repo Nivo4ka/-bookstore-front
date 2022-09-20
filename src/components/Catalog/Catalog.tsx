@@ -21,9 +21,7 @@ const Catalog = () => {
       try {
         await dispatch(getGenres()).unwrap();
       } catch (err) {
-        toast.error(err.message, {
-          position: 'top-center',
-        });
+        toast.error(err.message);
       }
     })();
   }, [dispatch]);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import books from '../../images/unsplash_DgQf1dUKUTM.svg';
+import books from '../../images/booksLite.svg';
 
 export default styled.div`
   display: flex;

@@ -64,6 +64,14 @@ const Header = () => {
     navigate('/user-page');
   };
 
+  const goToFavoritePage = () => {
+    navigate('/favorite-page');
+  };
+
+  const goToCartPage = () => {
+    navigate('/cart-page');
+  };
+
   return (
     <StyledHeader>
       <Logo onClick={goToMainPage} />
@@ -85,20 +93,29 @@ const Header = () => {
         userInfo?.email
           ? (<div className="styled-header__menu">
             <ImgButton
-              onClick={goToUserPage}
+              onClick={goToCartPage}
               className="styled-header__img-button"
             >
-              <Cart />
+              <div className="styled-header__favorite-area">
+                <Cart />
+                {!!userInfo.cart.length &&
+                  (<div className="styled-header__favorite-info">
+                    <p>{userInfo.cart.length}</p>
+                   </div>)
+                }
+              </div>
             </ImgButton>
             <ImgButton
-              onClick={goToUserPage}
+              onClick={goToFavoritePage}
               className="styled-header__img-button"
             >
-              <div className="styled">
+              <div className="styled-header__favorite-area">
                 <Heart />
-                <div>
-                  <p>{userInfo.favorites.length}</p>
-                </div>
+                {!!userInfo.favorites.length &&
+                  (<div className="styled-header__favorite-info">
+                    <p>{userInfo.favorites.length}</p>
+                   </div>)
+                }
               </div>
             </ImgButton>
             <ImgButton

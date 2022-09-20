@@ -5,6 +5,8 @@ type PropsType = {
   onClick?: () => void;
   type?: 'submit' | 'button';
   disabled?: boolean;
+  secondary?: boolean;
+  className?: string;
 } & React.PropsWithChildren;
 
 const Button: React.FC<PropsType> = (props) => {
@@ -13,6 +15,8 @@ const Button: React.FC<PropsType> = (props) => {
       onClick={props.onClick}
       type={props.type}
       disabled={props.disabled}
+      className={`${props.className}`}
+      secondary={props.secondary}
     >
       {props.children}
     </StyledButton>

@@ -2,24 +2,36 @@ import styled from 'styled-components';
 import disabled from '../../images/icons/Disabled.svg';
 
 export default styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  position: relative;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 289px;
+  padding-top: 30px;
 
-  .styled-bookcard__cover {
+  .styled-bookplate__cover {
     position: relative;
-    width: 305px;
-    height: 448px;
+    width: 197px;
+    height: 289px;
     background: #C4C4C4;
     border-radius: 16px;
     background-repeat: no-repeat;
-    margin-bottom: 10px;
     background-size: 100px;
     background-image: url(${disabled});
     background-position: center center;
+    overflow: hodden;
     cursor: pointer;
+  
+    .styled-bookplate__bookimg{
+      object-fit: cover;
+      border-radius:16px;
+      width: 100%;
+      height: 100%;
+    }
   }
-  .styled-bookcard {
+
+  .styled-bookplate {
     &__favorite {
       position: absolute;
       top: 20px;
@@ -47,50 +59,26 @@ export default styled.div`
     }
   }
 
-  .styled-bookcard__bookimg{
-    object-fit: cover;
-    border-radius:16px;
-    width: 100%;
+  .styled-bookplate__info {
     height: 100%;
-  }
-
-  .styled-bookcard__title{
-    margin: 30px 0 0 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .styled-bookcard__autor{
-    color: #B9BAC4;
-  }
-  .styled-bookcard__rating-area{
+    width: 80%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    width: 100%;
-    padding: 20px 0;
-    &__star{
-      stroke: #BFCC94;
-      margin-right: 25px;
-    }
-    ul{
+
+    &__text {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
-    li{
-      display: inline;
-      svg{
-        stroke: #BFCC94;
-        fill: #BFCC94;
+      p {
+        max-height: 120px;
+        color: #0D1821;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
-    p{
-      font-size: 16px;
-      line-height: 24px;
-      color: #B9BAC4;
-      margin: 0 7px 0 0;
+
+    &__button {
+      width: fit-content;
     }
   }
+
 `;

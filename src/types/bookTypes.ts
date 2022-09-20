@@ -13,6 +13,10 @@ export type BookResponseType = {
   book: BookType;
 };
 
+export type BooksResponseType = {
+  books: BookType[];
+};
+
 export type BooksType = {
   books: BookType[];
   count: number;

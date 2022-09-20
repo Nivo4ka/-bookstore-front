@@ -18,6 +18,8 @@ import loginByToken from './store/slices/user/thunks/loginByToken';
 
 import loading from './images/icons/Loading.svg';
 import BookPage from './components/BookPage/BookPage';
+import FavoritePage from './components/FavoritePage/FavoritePage';
+import CartPage from './components/CartPage/CartPage';
 
 const arrRoutes = [
   {
@@ -48,6 +50,20 @@ const arrRoutes = [
   {
     path: '/book/:bookId',
     element: <BookPage />,
+  },
+  {
+    path: '/favorite-page',
+    element:
+      <PrivateRoute isNeedAuth>
+        <FavoritePage />
+      </PrivateRoute>,
+  },
+  {
+    path: '/cart-page',
+    element:
+      <PrivateRoute isNeedAuth>
+        <CartPage />
+      </PrivateRoute>,
   },
 ];
 

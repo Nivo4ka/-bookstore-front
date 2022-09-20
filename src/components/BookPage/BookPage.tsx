@@ -66,7 +66,7 @@ const BookPage = () => {
     return qwe !== -1;
   };
 
-  const onChangeRating = async (nextValue: number, prevValue: number, name: string) => {
+  const onChangeRating = async (nextValue: number) => {
     try {
       await dispatch(addRating({ bookId: book!.id!, grade: nextValue })).unwrap();
       await dispatch(getBookById(bookId!)).unwrap();

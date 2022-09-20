@@ -1,4 +1,4 @@
-import type { BookResponseType, BooksType } from '../../types/bookTypes';
+import type { BookResponseType, BooksResponseType, BooksType } from '../../types/bookTypes';
 import type { FilterRequestType } from '../../types/filterTypes';
 import instance from '../httpCommon';
 
@@ -12,4 +12,8 @@ const getBookById = (bookId: string) => {
   return instance.get<BookResponseType>(`${BOOK_PATH}/${bookId}`);
 };
 
-export default { getAllBooks, getBookById };
+const getBooksByArray = (bookIds: string) => {
+  return instance.get<BooksResponseType>(`${BOOK_PATH}/getByArray`, { params: { bookIds } });
+};
+
+export default { getAllBooks, getBookById, getBooksByArray };
