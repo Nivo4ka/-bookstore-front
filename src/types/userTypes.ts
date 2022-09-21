@@ -23,6 +23,10 @@ export type FavoriteResponseType = {
   favorites: FavoriteType[];
 };
 
+export type CartResponseType = {
+  cart: CartType[];
+};
+
 export type FavoriteType = {
   id: number;
   bookId: number;

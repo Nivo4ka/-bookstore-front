@@ -42,11 +42,19 @@ const CartPage = () => {
       {books.length
         ? (
           <div>
-            {books.map((item) => (
-              <BookPlate key={item.id} book={item} />
-            ))}
-            <div>
-              <h2>Total: {getTotal()}</h2>
+            <div className="styled-cartpage__content">
+              {books.map((item) => (
+                <BookPlate
+                  key={item.id}
+                  book={item}
+                  isCartPage
+                  count={userInfo.cart.find((i) => i.bookId === item.id)?.count}
+                />
+              ))}
+            </div>
+            <div className="styled-cartpage__total-area">
+            <h2><span className="styled-cartpage__total-price">Total: </span>{getTotal().toFixed(2)}</h2>
+
               <div className="styled-cartpage__buttom-area">
                 <Button secondary>Continue shopping</Button>
                 <Button>Chekout</Button>
@@ -55,12 +63,12 @@ const CartPage = () => {
           </div>
         )
         : (
-          <div className="styled-favoritepage__no-books">
+          <div className="styled-cartpage__no-books">
             <BooksPlaceholder />
-            <div className="styled-favoritepage__no-books_text">
+            <div className="styled-cartpage__no-books_text">
               <h2>Your cart is empty</h2>
               <p>Add items to cart to make a purchase. Go to the catalog.</p>
-              <Button className="styled-favoritepage__no-books_button" onClick={goToCatalog}>Go to catalog</Button>
+              <Button className="styled-cartpage__no-books_button" onClick={goToCatalog}>Go to catalog</Button>
             </div>
           </div>
         )

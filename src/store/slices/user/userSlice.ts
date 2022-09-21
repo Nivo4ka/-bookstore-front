@@ -10,6 +10,9 @@ import patchUserImg from './thunks/patchUserImg';
 import addToFavorite from './thunks/addToFavorite';
 import deleteFavorite from './thunks/deleteFavorite';
 import addRating from './thunks/addRating';
+import addToCart from './thunks/addToCart';
+import deleteFromCart from './thunks/deleteFromCart';
+import changeCount from './thunks/changeCount';
 
 const initialState: UserType = {
   id: 0,
@@ -112,6 +115,24 @@ export const userSlice = createSlice({
 
     builder.addCase(addRating.fulfilled, (state, action) => {
       if (action.payload) state.ratings = action.payload;
+    });
+
+    builder.addCase(addToCart.fulfilled, (state, { payload }) => {
+      if (payload) {
+        state.cart = payload;
+      }
+    });
+
+    builder.addCase(changeCount.fulfilled, (state, { payload }) => {
+      if (payload) {
+        state.cart = payload;
+      }
+    });
+
+    builder.addCase(deleteFromCart.fulfilled, (state, { payload }) => {
+      if (payload) {
+        state.cart = payload;
+      }
     });
   },
 });

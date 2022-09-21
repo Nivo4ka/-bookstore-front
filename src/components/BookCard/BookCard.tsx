@@ -11,6 +11,8 @@ import type { BookType } from '../../types/bookTypes';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import deleteFavorite from '../../store/slices/user/thunks/deleteFavorite';
 import addToFavorite from '../../store/slices/user/thunks/addToFavorite';
+import addToCart from '../../store/slices/user/thunks/addToCart';
+import BookCover from '../BookCover/BookCover';
 
 type PropsType = {
   book: BookType;
@@ -24,7 +26,7 @@ const BookCard: React.FC<PropsType> = (props) => {
 
   const onClickFavorite = () => {
     if (userInfo.email) {
-      if (isBookFavorite()) {
+      if (isBookFavorite) {
         dispatch(deleteFavorite(props.book.id));
       } else {
         dispatch(addToFavorite(props.book.id));
@@ -34,25 +36,26 @@ const BookCard: React.FC<PropsType> = (props) => {
     }
   };
 
-  const isBookFavorite = () => {
-    const qwe = userInfo.favorites.findIndex((item) => item.bookId === props.book.id);
-    return qwe !== -1;
+  const isBookFavorite = userInfo
+    .favorites.findIndex((item) => item.bookId === props.book.id) !== -1;
+
+  const isBookInCart = userInfo.cart.findIndex((item) => item.bookId === props.book.id) === -1;
+
+  const onAddToCart = () => {
+    if (userInfo.email) {
+      dispatch(addToCart(props.book.id));
+    } else {
+      navigate('/log-in');
+    }
   };
 
   return (
     <StyledBookCard>
-      <div className="styled-bookcard__cover">
-        <ImgButton
-          isNotSelected
-          className={isBookFavorite() ? 'styled-bookcard__favorite' : 'styled-bookcard__not-favorite'}
-          onClick={onClickFavorite}
-        >
-          <Heart />
-        </ImgButton>
-        <Link className="styled-bookcard__bookimg" to={`/book/${props.book.id}`}>
-          {props.book.cover && <img className="styled-bookcard__bookimg" src={props.book.cover} alt={props.book.title} />}
-        </Link>
-      </div>
+      <BookCover
+        book={props.book}
+        isBookFavorite={isBookFavorite}
+        onClickFavorite={onClickFavorite}
+      />
       <p className="styled-bookcard__title">{props.book.title}</p>
       <p className="styled-bookcard__autor">{props.book.autor}</p>
       <div className="styled-bookcard__rating-area">
@@ -67,7 +70,12 @@ const BookCard: React.FC<PropsType> = (props) => {
         />
         <p>{props.book.rating.toFixed(1)}</p>
       </div>
-      <Button>$ {props.book.price.toFixed(2)} USD</Button>
+      <Button
+        onClick={onAddToCart}
+        secondary={!isBookInCart}
+      >
+        $ {props.book.price.toFixed(2)} USD
+      </Button>
     </StyledBookCard>
   );
 };

@@ -60,7 +60,7 @@ export default styled.div`
   }
 
   .styled-bookplate__info {
-    height: 100%;
+    height: 289px;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -73,7 +73,51 @@ export default styled.div`
         color: #0D1821;
         overflow: hidden;
         text-overflow: ellipsis;
+        position: relative;
       }
+      .styled-bookplate__description:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 25px;
+        background: linear-gradient(180deg, transparent, #fff 80%);
+      }
+    }
+
+    .styled-bookplate__count-area {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 200px;
+      justify-content: space-between;
+
+      p {
+        color: #0D1821;
+      }
+      
+      div {
+        height: 32px;
+        width: 32px;
+        background: #F0F4EF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      svg {
+        cursor: pointer;
+      }
+
+    }
+
+    .styled-bookplate__price {
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 54px;
     }
 
     &__button {

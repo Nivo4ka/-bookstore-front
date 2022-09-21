@@ -4,13 +4,19 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import Button from '../Button/Button';
 import ImgButton from '../ImgButton/ImgButton';
 import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
+import { ReactComponent as DeleteIcon } from '../../images/icons/Delete.svg';
 import type { BookType } from '../../types/bookTypes';
 import deleteFavorite from '../../store/slices/user/thunks/deleteFavorite';
 import addToFavorite from '../../store/slices/user/thunks/addToFavorite';
 import StyledBookPlate from './BookPlate.styles';
+import changeCount from '../../store/slices/user/thunks/changeCount';
+import deleteFromCart from '../../store/slices/user/thunks/deleteFromCart';
+import addToCart from '../../store/slices/user/thunks/addToCart';
 
 type PropsType = {
   book: BookType;
+  isCartPage?: boolean;
+  count?: number;
 };
 
 const BookPlate: React.FC<PropsType> = (props) => {
@@ -25,6 +31,30 @@ const BookPlate: React.FC<PropsType> = (props) => {
       } else {
         dispatch(addToFavorite(props.book.id));
       }
+    } else {
+      navigate('/log-in');
+    }
+  };
+
+  const onChangeCount = (count: number) => {
+    if (userInfo.email) {
+      dispatch(changeCount({ bookId: props.book.id, count }));
+    } else {
+      navigate('/log-in');
+    }
+  };
+
+  const onDeletefromCart = () => {
+    if (userInfo.email) {
+      dispatch(deleteFromCart(props.book.id));
+    } else {
+      navigate('/log-in');
+    }
+  };
+
+  const onAddToCart = () => {
+    if (userInfo.email) {
+      dispatch(addToCart(props.book.id));
     } else {
       navigate('/log-in');
     }
@@ -53,9 +83,36 @@ const BookPlate: React.FC<PropsType> = (props) => {
         <div className="styled-bookplate__info__text">
           <h2>{props.book.title}</h2>
           <p>{props.book.autor}</p>
-          <p>{props.book.description}</p>
+          {!props.isCartPage &&
+            <p className="styled-bookplate__description">{props.book.description}</p>
+          }
         </div>
-        <Button className="styled-bookplate__info__button" disabled={!isBookInCart}>{isBookInCart ? `$ ${props.book.price.toFixed(2)} USD` : 'Already in the cart'}</Button>
+        {props.isCartPage &&
+          (
+            <div className="styled-bookplate__count-area">
+              <div onClick={() => onChangeCount(-1)}>
+                <p>-</p>
+              </div>
+              <p>{props.count}</p>
+              <div onClick={() => onChangeCount(1)}>
+                <p>+</p>
+              </div>
+              <DeleteIcon onClick={onDeletefromCart} />
+            </div>
+          )
+        }
+        {props.isCartPage
+          ? <h2 className="styled-bookplate__price">{`$ ${props.book.price.toFixed(2)} USD`}</h2>
+          : (
+            <Button
+              className="styled-bookplate__info__button"
+              onClick={onAddToCart}
+              disabled={!isBookInCart}
+            >
+              {isBookInCart ? `$ ${props.book.price.toFixed(2)} USD` : 'Already in the cart'}
+            </Button>
+          )
+        }
       </div>
     </StyledBookPlate>
   );

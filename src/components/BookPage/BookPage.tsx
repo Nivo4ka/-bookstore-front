@@ -16,6 +16,7 @@ import addToFavorite from '../../store/slices/user/thunks/addToFavorite';
 import deleteFavorite from '../../store/slices/user/thunks/deleteFavorite';
 import { deleteInfoBook } from '../../store/slices/book/bookSlice';
 import addRating from '../../store/slices/user/thunks/addRating';
+import addToCart from '../../store/slices/user/thunks/addToCart';
 
 const BookPage = () => {
   const dispatch = useAppDispatch();
@@ -62,8 +63,8 @@ const BookPage = () => {
   };
 
   const isBookFavorite = () => {
-    const qwe = userInfo.favorites.findIndex((item) => item.bookId === book?.id);
-    return qwe !== -1;
+    const medium = userInfo.favorites.findIndex((item) => item.bookId === book?.id);
+    return medium !== -1;
   };
 
   const onChangeRating = async (nextValue: number) => {
@@ -73,6 +74,14 @@ const BookPage = () => {
       setIsLoading(false);
     } catch (err) {
       toast.error(err.message);
+    }
+  };
+
+  const onAddToCart = () => {
+    if (userInfo.email) {
+      dispatch(addToCart(book!.id));
+    } else {
+      navigate('/log-in');
     }
   };
 
@@ -112,7 +121,7 @@ const BookPage = () => {
                 starColor="#BFCC94"
                 emptyStarColor="#0000"
               />
-              <p>{book!.rating.toFixed(1)}</p>
+              <p>{(book!.rating || 0).toFixed(1)}</p>
               <StarRatingComponent
                 name="rating"
                 starCount={5}
@@ -137,18 +146,18 @@ const BookPage = () => {
                 starColor="#BFCC94"
                 emptyStarColor="#0000"
               />
-              <p>{book!.rating.toFixed(1)}</p>
+              <p>{(book!.rating || 0).toFixed(1)}</p>
                </div>)}
           <p className="styled-bookpage__description-title">Description</p>
           <p className="styled-bookpage__description">{book?.description}</p>
           <div className="styled-bookpage__button-area">
             <div className="styled-bookpage__button-area__button">
               <p className="styled-bookpage__description">Paperback</p>
-              <Button disabled>Not available</Button>
+              <Button onClick={onAddToCart} disabled>Not available</Button>
             </div>
             <div>
               <p className="styled-bookpage__description">Hardcover</p>
-              <Button>$ {book?.price.toFixed(2)} USD</Button>
+              <Button onClick={onAddToCart}>$ {(book?.price || 0).toFixed(2)} USD</Button>
             </div>
           </div>
         </div>
