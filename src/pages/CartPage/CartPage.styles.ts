@@ -20,7 +20,7 @@ export default styled.div`
   .styled-cartpage__content {
     >div:not(:last-child) {
       padding-bottom: 30px;
-      border-bottom: 1px solid #D6D8E7;
+      border-bottom: 1px solid ${(p) => p.theme.mainTheme.color.lightGrey};
     }
   }
 
@@ -51,7 +51,6 @@ export default styled.div`
       p {
         max-width: 465px;
       }
-
     }
 
     &_button {

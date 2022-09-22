@@ -1,49 +1,50 @@
 import styled, { css } from 'styled-components';
 
 export default styled.div<{ value: boolean }>`
-
-  input{
+  input {
     display: none;
   }
-  label{
-    background-color: aqua;
+
+  label {
     height: 24px;
   }
-  div{
+
+  div {
     height: 24px;
     width: 24px;
-    background-color: ${(p) => (p.value ? '#344966' : '#FFFFFF')};
+    background-color: ${(p) => (p.value ? p.theme.mainTheme.color.darkBlue : p.theme.mainTheme.color.white)};
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 200ms ease all;
     cursor: pointer;
-    img{
+
+    img {
       margin: 0;
       width: 15px;
       height: auto;
       ${(p) => {
     if (!p.value) {
       return css`
-            display: none;
-            `;
+        display: none;
+      `;
     }
   }}
   }
     ${(p) => {
     if (!p.value) {
       return css`
-        border: 1px solid #344966;
+        border: 1px solid ${p.theme.mainTheme.color.darkBlue};
         :hover{
-          background-color: #B9BAC3;
+          background-color: ${p.theme.mainTheme.color.darkGrey};
         }
         `;
     }
   }}
 
-    :active{
-      outline: 8px solid ${(p) => (p.value ? '#D6D8E7' : '#FFFFFF')};
+    :active {
+      outline: 8px solid ${(p) => (p.value ? p.theme.mainTheme.color.lightGrey : p.theme.mainTheme.color.white)};
     }
   }
 

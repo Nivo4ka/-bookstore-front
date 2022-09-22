@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
-import MainPage from './components/MainPage/MainPage';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import SingUpPage from './components/SingUpPage/SingUpPage';
-import LogInPage from './components/LogInPage/LogInPage';
-import UserPage from './components/UserPage/UserPage';
+import MainPage from './pages/MainPage';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import SingUpPage from './pages/SingUpPage';
+import LogInPage from './pages/LogInPage';
+import UserPage from './pages/UserPage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 import { StyledApp } from './App.styles';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch } from './store/hooks';
-import loginByToken from './store/slices/user/thunks/loginByToken';
+import userThunks from './store/slices/user/thunks/index';
 
 import loading from './images/icons/Loading.svg';
-import BookPage from './components/BookPage/BookPage';
-import FavoritePage from './components/FavoritePage/FavoritePage';
-import CartPage from './components/CartPage/CartPage';
+import BookPage from './pages/BookPage';
+import FavoritePage from './pages/FavoritePage';
+import CartPage from './pages/CartPage';
 
 const arrRoutes = [
   {
@@ -75,7 +75,7 @@ const App = () => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          await dispatch(loginByToken()).unwrap();
+          await dispatch(userThunks.loginByToken()).unwrap();
         } catch (err) {
           toast.error(err.message, {
             position: 'top-center',

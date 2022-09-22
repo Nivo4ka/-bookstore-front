@@ -10,7 +10,7 @@ import { useAppSelector } from '../../store/hooks';
 import Button from '../Button';
 import ImgButton from '../ImgButton';
 import Input from '../Input';
-import useDebounce from '../../useDebounce';
+import useDebounce from '../../utils/useDebounce';
 
 const Header = () => {
   const userInfo = useAppSelector((state) => state.user);

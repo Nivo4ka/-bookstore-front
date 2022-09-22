@@ -2,26 +2,28 @@ import styled, { css } from 'styled-components';
 
 export default styled.div<{ isActive: boolean; name: string }>`
   position: relative;
-  .styled-drop-down-list__name{
+
+  .styled-drop-down-list__name {
     position: relative;
     margin-left: 20px;
     background-color: #F0F4EF;
-    border-radius: 16px;
+    border-radius: ${(p) => p.theme.borderRadius};
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 196px;
     height: fit-content;
     cursor: pointer;
-    p{
+
+    p {
       font-size: 18px;
       padding: 10px 0 10px 15px;
     }
 
-    svg{
+    svg {
     margin-right: 8px;
     transition: 200ms ease all;
-    stroke: ${(p) => (!p.name.includes('Sort by') ? '#344966' : '#0D1821')};
+    stroke: ${(p) => (!p.name.includes('Sort by') ? p.theme.mainTheme.color.darkBlue : p.theme.mainTheme.color.dark)};
     ${(p) => {
     if (p.isActive) {
       return css`
@@ -32,17 +34,18 @@ export default styled.div<{ isActive: boolean; name: string }>`
   }
   }
 
-  .styled-drop-down-list__name_last-child{
+  .styled-drop-down-list__name_last-child {
     background: none;
     white-space: nowrap;
     width: fit-content;
-    p{
-      color: #0D1821;
+
+    p {
+      color: ${(p) => p.theme.mainTheme.color.dark};
       margin-right: 20px;
     }
   }
 
-  .styled-drop-down-list__list{
+  .styled-drop-down-list__list {
     position: absolute;
     display: none;
     flex-direction: row;
@@ -61,20 +64,19 @@ export default styled.div<{ isActive: boolean; name: string }>`
   }}
   }
 
-  .list__decoration{
+  .list__decoration {
     position: absolute;
     top: -23px;
     left: 7px;
     border: 15px solid transparent;
-    border-bottom: 15px solid #F0F4EF;
+    border-bottom: 15px solid ${(p) => p.theme.mainTheme.color.light};
   }
 
-  .main-info__price-area{
+  .main-info__price-area {
     display: flex;
     flex-direction: row;
     white-space: nowrap;
     width: 300px;
     height: 500px;
-
   }
 `;

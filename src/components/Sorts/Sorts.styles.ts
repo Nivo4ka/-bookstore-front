@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export default styled.div`
   padding: 10px;
-  background-color: #F0F4EF;
-  border-radius: 16px;
+  background-color: ${(p) => p.theme.mainTheme.color.light};
+  border-radius: ${(p) => p.theme.borderRadius};
   
   p {
     font-size: 16px;
@@ -19,7 +19,7 @@ export default styled.div`
       cursor: pointer;
   
       &_disabled {
-        color: #B9BAC3;
+        color: ${(p) => p.theme.mainTheme.color.darkGrey};
       }
     }
   }

@@ -4,8 +4,8 @@ export const StyledApp = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  .styled-app__container{
+  
+  .styled-app__container {
     width: 1280px;
     margin: 0 auto;
     display: flex;
@@ -14,19 +14,25 @@ export const StyledApp = styled.div`
     justify-content: flex-start;
     box-sizing: border-box;
     min-height: calc(100vh - 341px);
+    
+    @media (max-width: 1295px) {
+      width: 805px;
+    }
   }
-  .loading-container{
+
+  .loading-container {
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    .loading{
+
+    .loading {
       width: 60px;
-      /* width: 100%; */
       animation: loading-anim 1.2s linear infinite;
     }
-    @keyframes loading-anim{
+    
+    @keyframes loading-anim {
       0% {
         transform: rotate(0deg);
       }

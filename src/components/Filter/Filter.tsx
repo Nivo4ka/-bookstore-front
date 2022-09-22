@@ -33,6 +33,8 @@ const Filter = () => {
     }
   };
 
+  const SortByStr = arrSort.find((sort) => sort.currentValue === (searchParams.get('sortBy') || 'price'))?.title.toLowerCase();
+
   return (
     <StyledFilter>
       <h2 id="mainCatalog">Catalog</h2>
@@ -54,7 +56,7 @@ const Filter = () => {
           />
         </DropDownList>
         <DropDownList
-          name={`Sort by ${arrSort.find((sort) => sort.currentValue === (searchParams.get('sortBy') || 'price'))?.title.toLowerCase()}`}
+          name={`Sort by ${SortByStr}`}
           className="styled-drop-down-list__name_last-child"
         >
           <SortPrice />

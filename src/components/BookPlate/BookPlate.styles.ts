@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import disabled from '../../images/icons/Disabled.svg';
 
 export default styled.div`
   width: 100%;
@@ -11,52 +10,8 @@ export default styled.div`
   padding-top: 30px;
 
   .styled-bookplate__cover {
-    position: relative;
     width: 197px;
     height: 289px;
-    background: #C4C4C4;
-    border-radius: 16px;
-    background-repeat: no-repeat;
-    background-size: 100px;
-    background-image: url(${disabled});
-    background-position: center center;
-    overflow: hodden;
-    cursor: pointer;
-  
-    .styled-bookplate__bookimg{
-      object-fit: cover;
-      border-radius:16px;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .styled-bookplate {
-    &__favorite {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      transition: 200ms ease all;
-      opacity: 1;
-      svg{
-        stroke: #F0F4EF;
-        fill: #F0F4EF;
-      }
-    }
-    &__not-favorite {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      transition: 200ms ease all;
-      :hover{
-        opacity: 1;
-      }
-      svg {
-        stroke: #F0F4EF;
-        fill: #0000;
-        
-      }
-    }
   }
 
   .styled-bookplate__info {
@@ -68,13 +23,15 @@ export default styled.div`
 
     &__text {
       width: 100%;
+
       p {
         max-height: 120px;
-        color: #0D1821;
+        color: ${(p) => p.theme.mainTheme.color.dark};
         overflow: hidden;
         text-overflow: ellipsis;
         position: relative;
       }
+
       .styled-bookplate__description:after {
         content: "";
         position: absolute;
@@ -82,7 +39,7 @@ export default styled.div`
         bottom: 0;
         width: 100%;
         height: 25px;
-        background: linear-gradient(180deg, transparent, #fff 80%);
+        background: linear-gradient(180deg, transparent, ${(p) => p.theme.mainTheme.color.white} 80%);
       }
     }
 
@@ -94,7 +51,7 @@ export default styled.div`
       justify-content: space-between;
 
       p {
-        color: #0D1821;
+        color: ${(p) => p.theme.mainTheme.color.dark};
       }
       
       div {
@@ -115,7 +72,7 @@ export default styled.div`
     }
 
     .styled-bookplate__price {
-      font-weight: 500;
+      font-weight: ${(p) => p.theme.font.weightP};
       font-size: 36px;
       line-height: 54px;
     }

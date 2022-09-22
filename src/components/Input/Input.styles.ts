@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export default styled.div<{ error?: string; name: string }>`
-  .styled-input__container{
+  .styled-input__container {
     position: relative;
     display: flex;
     align-items: center;
@@ -13,101 +13,95 @@ export default styled.div<{ error?: string; name: string }>`
       margin-bottom: 20px;
       `;
     }
-  }
-}
+  }}
   
-  .styled-input__svg{
+  .styled-input__svg {
     position: absolute;
     left: 26px;
-    stroke: #B9BAC3;
-    color: #B9BAC3;
+    stroke: ${(p) => p.theme.mainTheme.color.darkGrey};
+    color: ${(p) => p.theme.mainTheme.color.darkGrey};
   }
-  .styled-input__label{
+
+  .styled-input__label {
     position: absolute;
     left: 64px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    color: #B9BAC4;
+    color: ${(p) => p.theme.mainTheme.color.darkGrey};
     font-weight: 400;
     font-size: 16px;
     transition: 200ms ease all;
     cursor: inherit;
   }
 
-  .styled-input__input{
-    background: #F0F4EF;
-    border-radius: 16px;
+  .styled-input__input {
+    background: ${(p) => p.theme.mainTheme.color.light};
+    border-radius: ${(p) => p.theme.borderRadius};
     outline: none;
     border: none;
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 28px;
     letter-spacing: 0.75px;
-    color: #0D1821;
+    color: ${(p) => p.theme.mainTheme.color.dark};
     width: 349px;
     height: 64px;
     padding:0 0 0 64px;
-    ::placeholder{
-      
+
+    :focus {
+      outline: 2px solid ${(p) => p.theme.mainTheme.color.dark};
     }
-    :focus{
-      outline: 2px solid #0D1821;
-    }
-    :valid{
+
+    :valid {
       height: 42px;
       padding:22px 0 0 64px;
     }
+
     :valid ~ .styled-input__svg {
-      stroke: #344966;
-      color: #344966;
+      stroke: ${(p) => p.theme.mainTheme.color.darkBlue};
+      color: ${(p) => p.theme.mainTheme.color.darkBlue};
     }
+
     :valid ~ .styled-input__label {
       font-size: 14px;
       line-height: 24px;
       display: flex;
       align-items: center;
       letter-spacing: 0.75px;
-      color: #344966;
+      color: ${(p) => p.theme.mainTheme.color.darkBlue};
       transform: translate(0, -12px);
     }
   }
 
-  .styled-input__error-info{
-    font-weight: 500;
+  .styled-input__error-info {
+    font-weight: ${(p) => p.theme.font.weightP};
     font-size: 14px;
     line-height: 24px;
-    color: #344966;
+    color: ${(p) => p.theme.mainTheme.color.darkBlue};
     align-items: center;
     letter-spacing: 0.75px;
     margin: 9px 0 15px 0;
     ${(p) => {
     if (p.name === 'search') {
       return css`
-      display: none;
-      `;
+        display: none;
+        `;
     }
-  }
-}
+  }}
   }
 
   ${(p) => {
     if (p.error) {
       return css`
         #${p.name}{
-          outline: 2px solid #ED2E7E;
-          background: #FFF2F7;
-          :valid ~ .styled__label{
-            color: #C30052;
+          outline: 2px solid ${(p) => p.theme.mainTheme.color.error};
+          background: ${(p) => p.theme.mainTheme.color.lightError};
+          :valid ~ .styled-input__label{
+            color: ${(p) => p.theme.mainTheme.color.error};
           }
         }
         #${p.name}__error{
-          color: #C30052;
+          color: ${(p) => p.theme.mainTheme.color.error};
         }
       `;
     }
-  }
-}
+  }}
 `;

@@ -7,7 +7,7 @@ const getBookById = createAsyncThunk(
   async (bookId: string) => {
     try {
       const data = await services.getBookById(bookId);
-      return data.data;
+      return data.data.book;
     } catch (err) {
       if (err instanceof AxiosError) {
         throw err.response?.data;

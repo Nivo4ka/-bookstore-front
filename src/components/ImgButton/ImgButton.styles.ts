@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export default styled.div<{ isNotSelected: boolean }>`
-  background: #344966;
+  background: ${(p) => p.theme.mainTheme.color.darkBlue};
   border-radius: 50%;
   width: 48px;
   height: 48px;

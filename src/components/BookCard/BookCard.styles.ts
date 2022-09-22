@@ -1,95 +1,52 @@
 import styled from 'styled-components';
-import disabled from '../../images/icons/Disabled.svg';
 
 export default styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
 
-  .styled-bookcard__cover {
-    position: relative;
-    width: 305px;
-    height: 448px;
-    background: #C4C4C4;
-    border-radius: 16px;
-    background-repeat: no-repeat;
-    margin-bottom: 10px;
-    background-size: 100px;
-    background-image: url(${disabled});
-    background-position: center center;
-    cursor: pointer;
-  }
-  .styled-bookcard {
-    &__favorite {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      transition: 200ms ease all;
-      opacity: 1;
-      svg{
-        stroke: #F0F4EF;
-        fill: #F0F4EF;
-      }
-    }
-    &__not-favorite {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      transition: 200ms ease all;
-      :hover{
-        opacity: 1;
-      }
-      svg {
-        stroke: #F0F4EF;
-        fill: #0000;
-        
-      }
-    }
-  }
-
-  .styled-bookcard__bookimg{
-    object-fit: cover;
-    border-radius:16px;
-    width: 100%;
-    height: 100%;
-  }
-
-  .styled-bookcard__title{
+  .styled-bookcard__title {
     margin: 30px 0 0 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .styled-bookcard__autor{
-    color: #B9BAC4;
+
+  .styled-bookcard__autor {
+    color: ${(p) => p.theme.mainTheme.color.darkGrey};
   }
-  .styled-bookcard__rating-area{
+  
+  .styled-bookcard__rating-area {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     padding: 20px 0;
-    &__star{
-      stroke: #BFCC94;
+
+    &__star {
+      stroke: ${(p) => p.theme.mainTheme.color.green};
       margin-right: 25px;
     }
-    ul{
+
+    ul {
       width: 100%;
       display: flex;
       justify-content: space-between;
     }
-    li{
+
+    li {
       display: inline;
       svg{
-        stroke: #BFCC94;
-        fill: #BFCC94;
+        stroke: ${(p) => p.theme.mainTheme.color.green};
+        fill: ${(p) => p.theme.mainTheme.color.green};
       }
     }
-    p{
+
+    p {
       font-size: 16px;
       line-height: 24px;
-      color: #B9BAC4;
+      color: ${(p) => p.theme.mainTheme.color.darkGrey};
       margin: 0 7px 0 0;
     }
   }

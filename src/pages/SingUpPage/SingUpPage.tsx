@@ -2,20 +2,30 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import StyledLogInPage from './LogInPage.styles';
 import man from '../../images/man.svg';
 import { ReactComponent as Mail } from '../../images/icons/Mail.svg';
 import { ReactComponent as View } from '../../images/icons/View.svg';
 import { ReactComponent as Hide } from '../../images/icons/Hide.svg';
-import loginByPassEmail from '../../store/slices/user/thunks/login';
+import StyledSingUpPage from './SingUpPage.styles';
+import userThunks from '../../store/slices/user/thunks/index';
 import { useAppDispatch } from '../../store/hooks';
-import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
-const loginSchema = yup.object().shape({
+const singupSchema = yup.object().shape({
   password: yup.string()
     .min(8, 'Too Short!')
+    .matches(/^[a-zA-Z0-9-_]{8,}$/, 'The password must consist of numbers and latin characters')
     .required('Enter your password'),
+  repeatPassword: yup.string()
+    .when('password', {
+      is: (val: string) => (!!(val && val.length > 0)),
+      then: yup.string().oneOf(
+        [yup.ref('password')],
+        'Both password need to be the same',
+      ),
+    })
+    .required('Repeat your password without errors'),
   email: yup.string().email('Invalid email').required('Enter your email'),
 });
 
@@ -23,17 +33,17 @@ interface IState {
   from?: { pathname: string };
 }
 
-const LogInPage = () => {
+const SingUpPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   const formik = useFormik({
-    initialValues: { email: '', password: '' },
-    validationSchema: loginSchema,
+    initialValues: { email: '', password: '', repeatPassword: '' },
+    validationSchema: singupSchema,
     onSubmit: async (values, { setErrors }) => {
       try {
-        await dispatch(loginByPassEmail(values)).unwrap();
+        await dispatch(userThunks.singUpByPassEmail(values)).unwrap();
         let path = '/';
         if (location.state) {
           const { from } = location.state as IState;
@@ -42,10 +52,7 @@ const LogInPage = () => {
         navigate(path);
       } catch (err) {
         if (err.message) {
-          if (err.message.includes('password')) {
-            setErrors({ password: err.message });
-          }
-          if (err.message.includes('User')) {
+          if (err.message.includes('email')) {
             setErrors({ email: err.message });
           }
         }
@@ -54,9 +61,10 @@ const LogInPage = () => {
   });
 
   return (
-    <StyledLogInPage>
+
+    <StyledSingUpPage>
       <div>
-        <h2>Log In</h2>
+        <h2>Sign Up</h2>
         <form onSubmit={formik.handleSubmit}>
           <Input
             onChange={formik.handleChange}
@@ -78,12 +86,24 @@ const LogInPage = () => {
             type2="text"
             error={formik.errors.password}
           />
-          <Button type="submit">Log In</Button>
+          <Input
+            onChange={formik.handleChange}
+            value={formik.values.repeatPassword}
+            placeHolder="Password replay"
+            nameInput="repeatPassword"
+            Icon1={Hide}
+            Icon2={View}
+            type1="password"
+            type2="text"
+            error={formik.errors.repeatPassword}
+          />
+          <Button type="submit">Sign Up</Button>
         </form>
       </div>
       <img src={man} alt="man" />
-    </StyledLogInPage>
+    </StyledSingUpPage>
+
   );
 };
 
-export default LogInPage;
+export default SingUpPage;

@@ -7,7 +7,7 @@ const getGenres = createAsyncThunk(
   async () => {
     try {
       const data = await services.getGenres();
-      return data.data;
+      return data.data.genres;
     } catch (err) {
       if (err instanceof AxiosError) {
         throw err.response?.data;

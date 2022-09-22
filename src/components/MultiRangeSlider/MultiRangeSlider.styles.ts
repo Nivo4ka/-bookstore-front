@@ -6,8 +6,8 @@ export default styled.div`
   align-items: center;
   justify-content: center;
   padding: 50px 17px 90px;
-  background-color: #F0F4EF;
-  border-radius: 16px;
+  background-color: ${(p) => p.theme.mainTheme.color.light};
+  border-radius: ${(p) => p.theme.borderRadius};
   .slider {
     position: relative;
     width: 379px;
@@ -28,13 +28,13 @@ export default styled.div`
   }
 
   .slider__track {
-    background-color: #D6D8E7;
+    background-color: ${(p) => p.theme.mainTheme.color.lightGrey};
     width: 100%;
     z-index: 1;
   }
 
   .slider__range {
-    background-color: #BFCC94;
+    background-color: ${(p) => p.theme.mainTheme.color.green};
     z-index: 2;
   }
 
@@ -55,7 +55,6 @@ export default styled.div`
     right: 0;
   }
 
-  /* Removing the default appearance */
   .thumb,
   .thumb::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -69,7 +68,7 @@ export default styled.div`
     width: 379px;
     outline: none;
     :hover~.slider .slider__range{
-        background-color: #8D9F4F;
+        background-color: ${(p) => p.theme.mainTheme.color.darkGreen};
     }
   }
 
@@ -83,7 +82,7 @@ export default styled.div`
 
   .thumb::-webkit-slider-thumb {
     background-color: #F7F7FC;
-    border: 2px solid #BFCC94;
+    border: 2px solid ${(p) => p.theme.mainTheme.color.green};
     border-radius: 50%;
     cursor: pointer;
     height: 32px;
@@ -93,21 +92,21 @@ export default styled.div`
     position: relative;
     transition: 200ms ease all;
     :hover{
-      border: 2px solid #8D9F4F;
+      border: 2px solid ${(p) => p.theme.mainTheme.color.darkGreen};
     }
     :active{
       outline: 8px solid #b9bac4cc;
     }
     :hover~div div{
 
-        background-color: #8D9F4F;
+        background-color: ${(p) => p.theme.mainTheme.color.darkGreen};
 
     }
   }
   /* For Firefox browsers */
   .thumb::-moz-range-thumb {
     background-color: #F7F7FC;
-    border: 2px solid #BFCC94;
+    border: 2px solid ${(p) => p.theme.mainTheme.color.green};
     border-radius: 50%;
     cursor: pointer;
     height: 32px;
@@ -117,7 +116,7 @@ export default styled.div`
     position: relative;
     transition: 200ms ease all;
     :hover{
-      border: 2px solid #8D9F4F;
+      border: 2px solid ${(p) => p.theme.mainTheme.color.darkGreen};
     }
     :active{
       outline: 8px solid #b9bac4cc;

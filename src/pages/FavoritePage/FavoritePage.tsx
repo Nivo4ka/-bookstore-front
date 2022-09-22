@@ -2,21 +2,21 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import Button from '../Button/Button';
-import BookPlate from '../BookPlate/BookPlate';
-import getBooksByArray from '../../store/slices/book/thunks/getBooksByArray';
+import Button from '../../components/Button';
+import BookPlate from '../../components/BookPlate';
+import bookThunks from '../../store/slices/book/thunks/index';
 import StyledFavoritePage from './FavoritePage.styles';
 import { ReactComponent as BooksPlaceholder } from '../../images/unsplash_DgQf1dUKUTM.svg';
 
 const FavoritePage = () => {
-  const userInfo = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.user);
   const books = useAppSelector((state) => state.books.books);
 
   useEffect(() => {
     try {
-      dispatch(getBooksByArray(userInfo.favorites)).unwrap();
+      dispatch(bookThunks.getBooksByArray(userInfo.favorites)).unwrap();
     } catch (err) {
       toast.error(err.message);
     }

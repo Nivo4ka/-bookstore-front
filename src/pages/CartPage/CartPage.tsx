@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import Button from '../Button/Button';
-import BookPlate from '../BookPlate/BookPlate';
-import getBooksByArray from '../../store/slices/book/thunks/getBooksByArray';
+import Button from '../../components/Button';
+import BookPlate from '../../components/BookPlate';
+import bookThunks from '../../store/slices/book/thunks/index';
 import StyledCartPage from './CartPage.styles';
 import { ReactComponent as BooksPlaceholder } from '../../images/unsplash_DgQf1dUKUTM.svg';
 
@@ -16,7 +16,7 @@ const CartPage = () => {
 
   useEffect(() => {
     try {
-      dispatch(getBooksByArray(userInfo.cart)).unwrap();
+      dispatch(bookThunks.getBooksByArray(userInfo.cart)).unwrap();
     } catch (err) {
       toast.error(err.message);
     }
@@ -26,7 +26,7 @@ const CartPage = () => {
     navigate('/');
   };
 
-  const getTotal = () => {
+  const totalSum = useMemo(() => {
     let summ = 0;
     books.reduce((acc, item) => acc + (item.price), 0);
 
@@ -35,7 +35,7 @@ const CartPage = () => {
       summ += count * i.price;
     });
     return summ;
-  };
+  }, [books, userInfo.cart]);
 
   return (
     <StyledCartPage>
@@ -53,10 +53,10 @@ const CartPage = () => {
               ))}
             </div>
             <div className="styled-cartpage__total-area">
-            <h2><span className="styled-cartpage__total-price">Total: </span>{getTotal().toFixed(2)}</h2>
+            <h2><span className="styled-cartpage__total-price">Total: </span>{totalSum.toFixed(2)}</h2>
 
               <div className="styled-cartpage__buttom-area">
-                <Button secondary>Continue shopping</Button>
+                <Button onClick={goToCatalog} secondary>Continue shopping</Button>
                 <Button>Chekout</Button>
               </div>
             </div>

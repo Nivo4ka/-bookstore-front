@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { ReactComponent as Forward } from '../../images/icons/Forward.svg';
-import useComponentVisible from '../../useComponentVisible';
+import useComponentVisible from '../../utils/useComponentVisible';
 import StyledDropDownList from './DropDownList.styles';
 
 type PropsType = {

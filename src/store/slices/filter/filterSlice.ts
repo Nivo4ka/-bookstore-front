@@ -28,8 +28,11 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(getGenres.fulfilled, (state, action) => {
-      if (action.payload.genres) state.genres = action.payload.genres;
+    builder.addCase(getGenres.fulfilled, (state, { payload }) => {
+      if (!payload) {
+        return;
+      }
+      state.genres = payload;
     });
   },
 });

@@ -1,69 +1,69 @@
 import styled from 'styled-components';
 
 export default styled.div`
-
-  .styled-user-page__text-div{
-    background: #F0F4EF;
-    border-radius: 16px;
+  .styled-user-page__text-div {
+    background: ${(p) => p.theme.mainTheme.color.light};
+    border-radius: ${(p) => p.theme.borderRadius};
     width: 522px;
     height: 64px;
     padding:30px 0 0 64px;
     box-sizing: border-box;
     text-align: start;
-    p{
+
+    p {
       font-size: 16px;
       line-height: 28px;
       letter-spacing: 0.75px;
-      color: #0D1821;
+      color: ${(p) => p.theme.mainTheme.color.dark};
       font-weight: 400;
     }
-    input{
+
+    input {
       box-sizing: border-box;
-      background: #F0F4EF;
+      background: ${(p) => p.theme.mainTheme.color.light};
       outline: none;
       border: none;
-      font-family: 'Poppins';
+      font-family: ${(p) => p.theme.font.family};
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
       line-height: 28px;
       letter-spacing: 0.75px;
-      color: #0D1821;
+      color: ${(p) => p.theme.mainTheme.color.dark};
     }
   }
 
-  .styled-user-page__personal-information{
+  .styled-user-page__personal-information {
     margin-bottom: 40px;
   }
 
-  .styled-user-page__styled-text-input{
+  .styled-user-page__styled-text-input {
     width: 458px !important;
   }
 
-  .styled-user-page__div-container{
+  .styled-user-page__div-container {
     position: relative;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     display: flex;
     box-sizing: border-box;
-    svg{
+
+    svg {
       position: absolute;
       left: 26px;
-      stroke: #B9BAC3;
-      color: #B9BAC3;
+      stroke: ${(p) => p.theme.mainTheme.color.darkGrey};
+      color: ${(p) => p.theme.mainTheme.color.darkGrey};
     }
-    .div-container__label{
+
+    .div-container__label {
       position: absolute;
       left: 64px;
-      /* top: 6px; */
       font-size: 14px;
       line-height: 24px;
       display: flex;
-      /* align-items: center; */
-
       letter-spacing: 0.75px;
-      color: #344966;
+      color: ${(p) => p.theme.mainTheme.color.darkBlue};
       transform: translate(0, -12px);
     }
   }

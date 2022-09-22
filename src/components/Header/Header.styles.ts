@@ -6,16 +6,13 @@ export default styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   margin-top: 24px;
 
   p {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: #000000;
+    color: ${(p) => p.theme.mainTheme.color.dark};
   }
 
   .styled-header__input-area {
@@ -33,10 +30,18 @@ export default styled.div`
     width: 566px !important;
 
     :focus{
-      background: #FFFFFF;
+      background: ${(p) => p.theme.mainTheme.color.white};
     }
     :valid ~ .styled__label {
-      color: #B9BAC4;
+      color: ${(p) => p.theme.mainTheme.color.darkGrey};
+    }
+
+    @media (max-width: 1295px) {
+      width: 183px !important;
+    }
+
+    @media (max-width: 840px) {
+      width: 290px !important;
     }
   }
 
@@ -44,7 +49,7 @@ export default styled.div`
     margin-left: 27px;
 
     svg {
-      stroke: #F0F4EF;
+      stroke: ${(p) => p.theme.mainTheme.color.light};
       fill: #0000;
       position: absolute;
     }
@@ -61,7 +66,7 @@ export default styled.div`
     position: absolute;
     top: -30px;
     right: -30px;
-    background: #BFCC94;
+    background: ${(p) => p.theme.mainTheme.color.green};
     border-radius: 50%;
     width: 23px;
     height: 23px;
@@ -69,7 +74,7 @@ export default styled.div`
 
     p {
       color: #344966;
-      font-weight: 700;
+      font-weight: ${(p) => p.theme.font.weightH2};
       font-size: 12px;
     }
   }

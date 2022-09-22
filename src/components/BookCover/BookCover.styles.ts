@@ -5,24 +5,27 @@ export default styled.div`
   position: relative;
   width: 305px;
   height: 448px;
-  background: #C4C4C4;
-  border-radius: 16px;
+  background: ${(p) => p.theme.mainTheme.color.darkGrey};
+  border-radius: ${(p) => p.theme.borderRadius};
   background-repeat: no-repeat;
   margin-bottom: 10px;
   background-size: 100px;
   background-image: url(${disabled});
   background-position: center center;
   cursor: pointer;
+
   .styled-bookcover {
+
     &__favorite {
       position: absolute;
       top: 20px;
       left: 20px;
       transition: 200ms ease all;
       opacity: 1;
-      svg{
-        stroke: #F0F4EF;
-        fill: #F0F4EF;
+
+      svg {
+        stroke: ${(p) => p.theme.mainTheme.color.light};
+        fill: ${(p) => p.theme.mainTheme.color.light};
       }
     }
     &__not-favorite {
@@ -30,20 +33,22 @@ export default styled.div`
       top: 20px;
       left: 20px;
       transition: 200ms ease all;
-      :hover{
+
+      :hover {
         opacity: 1;
       }
+
       svg {
-        stroke: #F0F4EF;
+        stroke: ${(p) => p.theme.mainTheme.color.light};
         fill: #0000;
         
       }
     }
   }
 
-  .styled-bookcover__bookimg{
+  .styled-bookcover__bookimg {
     object-fit: cover;
-    border-radius:16px;
+    border-radius: ${(p) => p.theme.borderRadius};
     width: 100%;
     height: 100%;
   }

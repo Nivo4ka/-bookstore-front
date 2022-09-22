@@ -9,13 +9,9 @@ export default styled.div`
   padding-bottom: 40px;
   margin: auto 0;
 
-  /* >div:last-child .styled-favoritepage__splitter {
-    display: none;
-  } */
-
   >div:not(:last-child) {
     padding-bottom: 30px;
-    border-bottom: 1px solid #D6D8E7;
+    border-bottom: 1px solid ${(p) => p.theme.mainTheme.color.lightGrey};
   }
 
   .styled-favoritepage__no-books {

@@ -15,7 +15,12 @@ interface IProps {
 const CheckBox: React.FC<IProps> = (props) => {
   return (
     <StyledCheckBox value={props.value}>
-      <input id={`${props.index}`} type="checkbox" checked={props.value} onChange={() => props.onChange(props.index)} />
+      <input
+        id={`${props.index}`}
+        type="checkbox"
+        checked={props.value}
+        onChange={() => props.onChange(props.index)}
+      />
       <label htmlFor={`${props.index}`}>
         <div>
           <img src={check} alt="check" />

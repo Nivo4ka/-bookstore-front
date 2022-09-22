@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import disabled from '../../images/icons/Disabled.svg';
 
 export default styled.div`
   display: flex;
@@ -17,51 +16,19 @@ export default styled.div`
   .styled-bookpage__cover {
     width: 370px;
     height: 550px;
-    position: relative;
-    background: #C4C4C4;
-    border-radius: 16px;
-    background-repeat: no-repeat;
-    margin-bottom: 10px;
-    background-size: 100px;
-    background-image: url(${disabled});
-    background-position: center center;
-    overflow: hodden;
-    cursor: default;
 
-    &__bookimg {
-      object-fit: cover;
-      border-radius:16px;
-      width: 100%;
-      height: 100%;
-    }
+    .styled-bookcover {
+
+      &__favorite {
+        right: 20px !important;
+        left: auto;
+      }
+
+      &__not-favorite {
+        right: 20px !important;
+        left: auto;
+      }
   }
-
-  .styled-bookpage {
-    &__favorite {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      transition: 200ms ease all;
-      opacity: 1;
-      svg{
-        stroke: #F0F4EF;
-        fill: #F0F4EF;
-      }
-    }
-    &__not-favorite {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      transition: 200ms ease all;
-      :hover{
-        opacity: 1;
-      }
-      svg {
-        stroke: #F0F4EF;
-        fill: #0000;
-        
-      }
-    }
   }
 
   .styled-bookpage__info {
@@ -80,7 +47,7 @@ export default styled.div`
     p{
       font-size: 16px;
       line-height: 30px;
-      color: #B9BAC4;
+      color: ${(p) => p.theme.mainTheme.color.darkGrey};
       margin: 0 40px 0 0;
     }
     &__to-rate {
@@ -88,7 +55,7 @@ export default styled.div`
       flex-direction: row;
       align-items: center;
       svg {
-        stroke: #B9BAC4;
+        stroke: ${(p) => p.theme.mainTheme.color.darkGrey};
         margin-right: 7px;
       }
     }
@@ -101,10 +68,10 @@ export default styled.div`
     word-wrap: break-word;
     &-title {
       margin-bottom: 10px;
-    font-size: 24px;
-    color: #0D1821;
-    line-height: 36px;
-  }
+      font-size: 24px;
+      color: ${(p) => p.theme.mainTheme.color.dark};
+      line-height: 36px;
+    }
   }
 
   .styled-bookpage__button-area {
@@ -119,6 +86,7 @@ export default styled.div`
 
     &__button {
       margin-right: 60px;
+      
       :last-child {
         margin-right: 0;
       }

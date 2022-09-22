@@ -1,7 +1,7 @@
 import React from 'react';
 import type { FormikErrors } from 'formik';
-import { ReactComponent as Mail } from '../../images/icons/Mail.svg';
-import { ReactComponent as Profile } from '../../images/icons/User_profile.svg';
+import { ReactComponent as MailIcon } from '../../images/icons/Mail.svg';
+import { ReactComponent as ProfileIcon } from '../../images/icons/User_profile.svg';
 import Input from '../Input';
 import StyledInfoSection from './InfoSection.styles';
 
@@ -23,7 +23,7 @@ const InfoSection: React.FC<PropsType> = (props) => {
         props.isChangeInfoOrPassword !== 'info'
           ? (<div className="styled-user-page__personal-information">
             <div className="styled-user-page__div-container">
-              <Profile />
+              <ProfileIcon />
               <div className="styled-user-page__text-div"
                 id="fullName"
               >
@@ -32,7 +32,7 @@ const InfoSection: React.FC<PropsType> = (props) => {
               <label className="div-container__label" htmlFor="fullName">Name</label>
             </div>
             <div className="styled-user-page__div-container">
-              <Mail />
+              <MailIcon />
               <div className="styled-user-page__text-div"
                 id="email"
               >
@@ -48,7 +48,7 @@ const InfoSection: React.FC<PropsType> = (props) => {
               value={props.fullName}
               placeHolder="Name"
               nameInput="fullName"
-              Icon1={Profile}
+              Icon1={ProfileIcon}
               type1="text"
               error={props.errors?.fullName}
             />
@@ -58,7 +58,7 @@ const InfoSection: React.FC<PropsType> = (props) => {
               value={props.email}
               placeHolder="Email"
               nameInput="email"
-              Icon1={Mail}
+              Icon1={MailIcon}
               type1="text"
               error={props.errors?.email}
             />

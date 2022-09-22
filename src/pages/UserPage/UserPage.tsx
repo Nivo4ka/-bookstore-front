@@ -4,13 +4,11 @@ import * as yup from 'yup';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { ReactComponent as Camera } from '../../images/icons/Camera.svg';
 import StyledUserPage from './UserPage.styles';
-import Button from '../Button/Button';
-import InfoSection from '../InfoSection/InfoSection';
-import PasswordSection from '../InfoSection/PasswordSection';
-import patchUserPassword from '../../store/slices/user/thunks/patchUserPassword';
-import patchUserInfo from '../../store/slices/user/thunks/patchUserInfo';
-import patchUserImg from '../../store/slices/user/thunks/patchUserImg';
-import ImgButton from '../ImgButton/ImgButton';
+import Button from '../../components/Button';
+import InfoSection from '../../components/InfoSection/InfoSection';
+import PasswordSection from '../../components/InfoSection/PasswordSection';
+import userThunks from '../../store/slices/user/thunks/index';
+import ImgButton from '../../components/ImgButton';
 
 const patchUserSchema = yup.object().shape({
   fullName: yup.string().required('Enter your name'),
@@ -52,12 +50,16 @@ const UserPage = () => {
   const formikInfo = useFormik({
     initialValues: { fullName: userInfo?.fullName || '', email: userInfo?.email || '' },
     validationSchema: patchUserSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { setErrors }) => {
       try {
-        await dispatch(patchUserInfo(values)).unwrap();
+        await dispatch(userThunks.patchUserInfo(values)).unwrap();
         setIsChangeInfoOrPassword('none');
       } catch (err) {
-        // handle error here
+        if (err.message) {
+          if (err.message.includes('email')) {
+            setErrors({ email: err.message });
+          }
+        }
       }
     },
   });
@@ -67,7 +69,7 @@ const UserPage = () => {
     validationSchema: patchPasswordSchema,
     onSubmit: async (values, { setErrors }) => {
       try {
-        await dispatch(patchUserPassword(values)).unwrap();
+        await dispatch(userThunks.patchUserPassword(values)).unwrap();
         setIsChangeInfoOrPassword('none');
       } catch (err) {
         if (err.message) {
@@ -101,7 +103,7 @@ const UserPage = () => {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
-        dispatch(patchUserImg({ file: reader.result! }));
+        dispatch(userThunks.patchUserImg({ file: reader.result! }));
       };
     }
   };

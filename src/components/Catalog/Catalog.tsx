@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import BookCard from '../BookCard';
 import StyledCatalog from './Catalog.styles';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import getAllBooks from '../../store/slices/book/thunks/getAllBooks';
+import bookThunks from '../../store/slices/book/thunks/index';
 import type { DirectionType, FilterRequestType } from '../../types/filterTypes';
 import Filter from '../Filter';
 import Pagination from '../Pagination';
@@ -40,7 +40,7 @@ const Catalog = () => {
           genres: searchParams.get('genres') || undefined,
         };
 
-        await dispatch(getAllBooks(request)).unwrap();
+        await dispatch(bookThunks.getAllBooks(request)).unwrap();
       } catch (err) {
         toast.error(err.message, {
           position: 'top-center',

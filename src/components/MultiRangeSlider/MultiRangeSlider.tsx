@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import useDebounce from '../../useDebounce';
+import useDebounce from '../../utils/useDebounce';
 import StyledSlider from './MultiRangeSlider.styles';
 
 interface IProps {

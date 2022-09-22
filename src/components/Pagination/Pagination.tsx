@@ -50,6 +50,9 @@ const Pagination = () => {
     for (let i = 0; i < countPages; i++) {
       arrqwe.push(i + 1);
     }
+    if (arrqwe.length === 0) {
+      arrqwe.push(1);
+    }
     setArr([...arrqwe]);
     if (countBooks <= (currentPageSize * (currentPage - 1))) {
       onChangePage(1);

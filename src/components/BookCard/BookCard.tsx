@@ -1,17 +1,13 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import StarRatingComponent from 'react-star-rating-component';
 import { ReactComponent as Star } from '../../images/icons/Star.svg';
 import { ReactComponent as HalfStar } from '../../images/icons/HalfStar.svg';
-import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
 import StyledBookCard from './BookCard.styles';
-import ImgButton from '../ImgButton';
 import Button from '../Button';
 import type { BookType } from '../../types/bookTypes';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import deleteFavorite from '../../store/slices/user/thunks/deleteFavorite';
-import addToFavorite from '../../store/slices/user/thunks/addToFavorite';
-import addToCart from '../../store/slices/user/thunks/addToCart';
+import userThunks from '../../store/slices/user/thunks/index';
 import BookCover from '../BookCover/BookCover';
 
 type PropsType = {
@@ -25,14 +21,12 @@ const BookCard: React.FC<PropsType> = (props) => {
   const dispatch = useAppDispatch();
 
   const onClickFavorite = () => {
-    if (userInfo.email) {
-      if (isBookFavorite) {
-        dispatch(deleteFavorite(props.book.id));
-      } else {
-        dispatch(addToFavorite(props.book.id));
-      }
-    } else {
+    if (!userInfo.email) {
       navigate('/log-in');
+    } else if (!isBookFavorite) {
+      dispatch(userThunks.addToFavorite(props.book.id));
+    } else {
+      dispatch(userThunks.deleteFavorite(props.book.id));
     }
   };
 
@@ -42,10 +36,12 @@ const BookCard: React.FC<PropsType> = (props) => {
   const isBookInCart = userInfo.cart.findIndex((item) => item.bookId === props.book.id) === -1;
 
   const onAddToCart = () => {
-    if (userInfo.email) {
-      dispatch(addToCart(props.book.id));
-    } else {
+    if (!userInfo.email) {
       navigate('/log-in');
+    } else if (!isBookInCart) {
+      navigate('/cart-page');
+    } else {
+      dispatch(userThunks.addToCart(props.book.id));
     }
   };
 
@@ -74,7 +70,7 @@ const BookCard: React.FC<PropsType> = (props) => {
         onClick={onAddToCart}
         secondary={!isBookInCart}
       >
-        $ {props.book.price.toFixed(2)} USD
+        {isBookInCart ? `$ ${props.book.price.toFixed(2)} USD` : 'Added to cart'}
       </Button>
     </StyledBookCard>
   );

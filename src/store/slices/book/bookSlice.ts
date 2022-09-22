@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { BooksType, BookType } from '../../../types/bookTypes';
-import getAllBooks from './thunks/getAllBooks';
-import getBookById from './thunks/getBookById';
-import getBooksByArray from './thunks/getBooksByArray';
+import thunks from './thunks/index';
 
 const initialState: BooksType = {
   books: [],
@@ -19,15 +17,23 @@ export const bookSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getAllBooks.fulfilled, (state, action) => {
-      if (action.payload.books) state.books = action.payload.books;
-      if (action.payload.count) state.count = action.payload.count;
+    builder.addCase(thunks.getAllBooks.fulfilled, (state, { payload }) => {
+      if (!payload) {
+        return;
+      }
+      return payload;
     });
-    builder.addCase(getBookById.fulfilled, (state, action) => {
-      if (action.payload.book) state.book = action.payload.book;
+    builder.addCase(thunks.getBookById.fulfilled, (state, { payload }) => {
+      if (!payload) {
+        return;
+      }
+      state.book = payload;
     });
-    builder.addCase(getBooksByArray.fulfilled, (state, action) => {
-      if (action.payload) state.books = action.payload;
+    builder.addCase(thunks.getBooksByArray.fulfilled, (state, { payload }) => {
+      if (!payload) {
+        return;
+      }
+      state.books = payload;
     });
   },
 });

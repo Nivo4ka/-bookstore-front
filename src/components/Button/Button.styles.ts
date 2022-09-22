@@ -6,7 +6,7 @@ export default styled.button<{ disabled?: boolean; secondary?: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 10px 50px;
-  border-radius: 16px;
+  border-radius: ${(p) => p.theme.borderRadius};
   font-size: 16px;
   line-height: 24px;
   text-align: center;
@@ -15,13 +15,13 @@ export default styled.button<{ disabled?: boolean; secondary?: boolean }>`
 ${(p) => {
     if (!p.secondary) {
       return css`
-        color: #F0F4EF;
+        color: ${(p) => p.theme.mainTheme.color.light};
         border: none;
         background: ${p.disabled ? '#B9BAC4' : '#344966'};
         ${!p.disabled && `
-          background: #344966;
+          background: ${p.theme.mainTheme.color.darkBlue};
           :hover {
-            background: #0D1821;
+            background: ${p.theme.mainTheme.color.dark};
             cursor: pointer;
           }
           :active {
@@ -35,12 +35,12 @@ ${(p) => {
     }
     return css`
       background: none;
-      border-radius: 16px;
-      border: 1px solid ${p.disabled ? '#B9BAC4' : '#0D1821'};
-      color: ${p.disabled ? '#B9BAC4' : '#0D1821'};
+      border-radius: ${(p) => p.theme.borderRadius};
+      border: 1px solid ${p.disabled ? p.theme.mainTheme.color.darkGrey : p.theme.mainTheme.color.dark};
+      color: ${p.disabled ? p.theme.mainTheme.color.darkGrey : p.theme.mainTheme.color.dark};
       ${!p.disabled && `
         :hover{
-          outline: 3px solid #0D1821;
+          outline: 3px solid ${p.theme.mainTheme.color.dark};
           background: none;
           cursor: pointer;
         }

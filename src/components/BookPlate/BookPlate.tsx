@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import Button from '../Button/Button';
-import ImgButton from '../ImgButton/ImgButton';
-import { ReactComponent as Heart } from '../../images/icons/Heart.svg';
 import { ReactComponent as DeleteIcon } from '../../images/icons/Delete.svg';
 import type { BookType } from '../../types/bookTypes';
-import deleteFavorite from '../../store/slices/user/thunks/deleteFavorite';
-import addToFavorite from '../../store/slices/user/thunks/addToFavorite';
 import StyledBookPlate from './BookPlate.styles';
-import changeCount from '../../store/slices/user/thunks/changeCount';
-import deleteFromCart from '../../store/slices/user/thunks/deleteFromCart';
-import addToCart from '../../store/slices/user/thunks/addToCart';
+import userThunks from '../../store/slices/user/thunks/index';
+import BookCover from '../BookCover/BookCover';
 
 type PropsType = {
   book: BookType;
@@ -25,38 +20,26 @@ const BookPlate: React.FC<PropsType> = (props) => {
   const dispatch = useAppDispatch();
 
   const onClickFavorite = () => {
-    if (userInfo.email) {
-      if (isBookFavorite) {
-        dispatch(deleteFavorite(props.book.id));
-      } else {
-        dispatch(addToFavorite(props.book.id));
-      }
+    if (!isBookFavorite) {
+      dispatch(userThunks.addToFavorite(props.book.id));
     } else {
-      navigate('/log-in');
+      dispatch(userThunks.deleteFavorite(props.book.id));
     }
   };
 
   const onChangeCount = (count: number) => {
-    if (userInfo.email) {
-      dispatch(changeCount({ bookId: props.book.id, count }));
-    } else {
-      navigate('/log-in');
-    }
+    dispatch(userThunks.changeCount({ bookId: props.book.id, count }));
   };
 
   const onDeletefromCart = () => {
-    if (userInfo.email) {
-      dispatch(deleteFromCart(props.book.id));
-    } else {
-      navigate('/log-in');
-    }
+    dispatch(userThunks.deleteFromCart(props.book.id));
   };
 
   const onAddToCart = () => {
-    if (userInfo.email) {
-      dispatch(addToCart(props.book.id));
+    if (!isBookInCart) {
+      navigate('/cart-page');
     } else {
-      navigate('/log-in');
+      dispatch(userThunks.addToCart(props.book.id));
     }
   };
 
@@ -67,18 +50,12 @@ const BookPlate: React.FC<PropsType> = (props) => {
 
   return (
     <StyledBookPlate>
-      <div className="styled-bookplate__cover">
-        <ImgButton
-          isNotSelected
-          className={isBookFavorite ? 'styled-bookplate__favorite' : 'styled-bookplate__not-favorite'}
-          onClick={onClickFavorite}
-        >
-          <Heart />
-        </ImgButton>
-        <Link className="styled-bookplate__bookimg" to={`/book/${props.book.id}`}>
-          {props.book.cover && <img className="styled-bookplate__bookimg" src={props.book.cover} alt={props.book.title} />}
-        </Link>
-      </div>
+      <BookCover
+        book={props.book}
+        isBookFavorite={isBookFavorite}
+        onClickFavorite={onClickFavorite}
+        className="styled-bookplate__cover"
+      />
       <div className="styled-bookplate__info">
         <div className="styled-bookplate__info__text">
           <h2>{props.book.title}</h2>
@@ -107,9 +84,9 @@ const BookPlate: React.FC<PropsType> = (props) => {
             <Button
               className="styled-bookplate__info__button"
               onClick={onAddToCart}
-              disabled={!isBookInCart}
+              secondary={!isBookInCart}
             >
-              {isBookInCart ? `$ ${props.book.price.toFixed(2)} USD` : 'Already in the cart'}
+              {isBookInCart ? `$ ${props.book.price.toFixed(2)} USD` : 'Added to cart'}
             </Button>
           )
         }
