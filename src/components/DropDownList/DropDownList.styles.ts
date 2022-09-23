@@ -16,7 +16,6 @@ export default styled.div<{ isActive: boolean; name: string }>`
     cursor: pointer;
 
     p {
-      font-size: 18px;
       padding: 10px 0 10px 15px;
     }
 
@@ -46,6 +45,7 @@ export default styled.div<{ isActive: boolean; name: string }>`
   }
 
   .styled-drop-down-list__list {
+    width: 100%;
     position: absolute;
     display: none;
     flex-direction: row;
@@ -78,5 +78,39 @@ export default styled.div<{ isActive: boolean; name: string }>`
     white-space: nowrap;
     width: 300px;
     height: 500px;
+  }
+
+  @media (max-width: 1360px) {
+    .styled-drop-down-list__list {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 840px) {
+    width: 100%;
+    .styled-drop-down-list__name {
+      width: 100%;
+      max-width: 250px;
+      p {
+        margin-right: 20px;
+      }
+    }
+
+    .list__decoration {
+      display: none;
+    }
+
+    .styled-drop-down-list__list {
+      top: 50px;
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    margin: 10px 0;
+    .styled-drop-down-list__name {
+      width: 100%;
+      max-width: 500px;
+    }
   }
 `;

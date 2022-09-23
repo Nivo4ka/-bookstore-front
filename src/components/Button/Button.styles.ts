@@ -7,11 +7,12 @@ export default styled.button<{ disabled?: boolean; secondary?: boolean }>`
   align-items: center;
   padding: 10px 50px;
   border-radius: ${(p) => p.theme.borderRadius};
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 20px;
+  line-height: ${(p) => p.theme.font.lineHeightPMiddle};
   text-align: center;
   letter-spacing: 0.75px;
   transition: all 0.05s ease;
+  white-space: nowrap;
 ${(p) => {
     if (!p.secondary) {
       return css`
@@ -54,6 +55,14 @@ ${(p) => {
     `;
   }}
   
+  @media (max-width: 1320px) {
+    font-size: ${(p) => p.theme.font.sizePMiddle};
+  }
+
+  @media (max-width: 840px) {
+    padding: 5px 19px;
+    font-size: ${(p) => p.theme.font.sizePSmall};
+  }
 
 
   

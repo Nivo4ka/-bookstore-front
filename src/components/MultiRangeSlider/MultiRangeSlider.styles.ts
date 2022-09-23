@@ -123,4 +123,23 @@ export default styled.div`
     }
   }
 
+  @media (max-width: 650px) {
+    .slider {
+      width: 303px;
+    }
+    .thumb {
+      width: 303px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    width: 100%;
+    .slider {
+      width: calc(100% - 17px);
+    }
+    .thumb {
+      width: calc(100% - 17px);
+    }
+  }
+
 `;

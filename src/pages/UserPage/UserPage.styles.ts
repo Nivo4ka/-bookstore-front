@@ -7,7 +7,7 @@ export default styled.div`
   align-items: flex-start;
   width: 100%;
   justify-content: space-between;
-  padding-right: 340px;
+  padding-right: 305px;
   margin: auto 0;
 
   .styled-user-page__user-photo {
@@ -46,6 +46,7 @@ export default styled.div`
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 30px;
+    flex-wrap: wrap;
 
     .styled-user-page__switch-to-change {
       font-size: 14px;
@@ -58,5 +59,32 @@ export default styled.div`
 
   .styled-user-page__form-container {
     margin-bottom: 100px;
+    margin-left: 15px;
+    width: 100%;
+    max-width: 522px;
+  }
+
+  @media (max-width: 1320px) {
+    padding-right: 0;
+
+    .styled-user-page__user-photo {
+      width: 255px;
+      height: 255px;
+    }
+  }
+
+  @media (max-width: 670px) {
+    flex-direction: column;
+    align-items: center;
+    .styled-user-page__form-container {
+      margin-left: 0;
+      max-width: 670px;
+    }
+
+    .styled-user-page__user-photo {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+    }
   }
 `;

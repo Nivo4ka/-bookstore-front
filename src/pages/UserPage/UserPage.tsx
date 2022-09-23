@@ -110,23 +110,25 @@ const UserPage = () => {
 
   return (
     <StyledUserPage>
-      <div className="styled-user-page__user-photo">
-        {userInfo && userInfo.avatar &&
-          (<img
-            className="styled-user-page__avatar"
-            src={userInfo?.avatar}
-            alt={userInfo.avatar}
-          />)}
-        <label htmlFor="file">
-          <ImgButton
-            // src={camera}
-            // isNotSelected
-            className="styled-user-page__change-img"
-          >
-            <Camera />
-          </ImgButton>
-          <input className="styled-user-page__input-file" type="file" id="file" name="file" onChange={onChangeImg} />
-        </label>
+      <div>
+        <div className="styled-user-page__user-photo">
+          {userInfo && userInfo.avatar &&
+            (<img
+              className="styled-user-page__avatar"
+              src={userInfo?.avatar}
+              alt={userInfo.avatar}
+            />)}
+          <label htmlFor="file">
+            <ImgButton
+              // src={camera}
+              // isNotSelected
+              className="styled-user-page__change-img"
+            >
+              <Camera />
+            </ImgButton>
+            <input className="styled-user-page__input-file" type="file" id="file" name="file" onChange={onChangeImg} />
+          </label>
+        </div>
       </div>
       <div className="styled-user-page__form-container">
         <form onSubmit={onSubmitInfoOrPassword}>

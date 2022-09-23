@@ -28,7 +28,7 @@ const Footer = () => {
         </ul>
         <div>
           <p>6391 Elgin St. Celina, Delaware 10299</p>
-          <img src={map} alt="map" />
+          <img className="styled-footer__map" src={map} alt="map" />
         </div>
       </div>
     </StyledFooter>

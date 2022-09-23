@@ -53,4 +53,19 @@ export default styled.div`
     height: 100%;
   }
 
+  @media (max-width: 1320px) {
+    width: 254px;
+    height: 375px;
+  }
+
+  @media (max-width: 840px) {
+    width: 195px;
+    height: 285px;
+  }
+
+  @media (max-width: 630px) {
+    width: 135px;
+    height: 192px;
+  }
+
 `;

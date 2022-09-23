@@ -22,11 +22,17 @@ declare module 'styled-components' {
     font: {
       family: string;
       sizeH2: string;
+      sizeH2Middle: string;
+      sizeH2Small: string;
       sizeP: string;
       sizePMiddle: string;
       sizePSmall: string;
       lineHeightH2: string;
       lineHeightP: string;
+      lineHeightH2Miggle: string;
+      lineHeightPMiddle: string;
+      lineHeightH2Small: string;
+      lineHeightPSmall: string;
       weightH2: string;
       weightP: string;
       margin: string;

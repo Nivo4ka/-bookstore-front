@@ -16,4 +16,14 @@ export default styled.div<{ isNotSelected: boolean }>`
       `;
     }
   }}
+
+  @media (max-width: 670px) {
+    width: 33px;
+    height: 33px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
 `;

@@ -29,12 +29,13 @@ const Input: React.FC<IProps> = (props) => {
     <StyledInput
       error={props.error || ''}
       name={props.nameInput}
+      className={props.className}
     >
       <div className="styled-input__container">
         <input
           type={togglePassword ? props.type1 : props.type2}
           name={props.nameInput}
-          className={`styled-input__input ${props.className}`}
+          className="styled-input__input"
           id={props.nameInput}
           onChange={props.onChange}
           value={props.value}

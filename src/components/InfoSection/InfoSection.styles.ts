@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export default styled.div`
+width: 100%;
   .styled-user-page__text-div {
     background: ${(p) => p.theme.mainTheme.color.light};
     border-radius: ${(p) => p.theme.borderRadius};
-    width: 522px;
+    width: 100%;
+    max-width: 522px;
     height: 64px;
     padding:30px 0 0 64px;
     box-sizing: border-box;
@@ -30,6 +32,7 @@ export default styled.div`
       line-height: 28px;
       letter-spacing: 0.75px;
       color: ${(p) => p.theme.mainTheme.color.dark};
+      width: 50%;
     }
   }
 
@@ -38,7 +41,7 @@ export default styled.div`
   }
 
   .styled-user-page__styled-text-input {
-    width: 458px !important;
+    max-width: 522px;
   }
 
   .styled-user-page__div-container {
@@ -65,6 +68,16 @@ export default styled.div`
       letter-spacing: 0.75px;
       color: ${(p) => p.theme.mainTheme.color.darkBlue};
       transform: translate(0, -12px);
+    }
+  }
+
+  @media (max-width: 670px) {
+    .styled-user-page__text-div {
+      max-width: 670px;
+    }
+
+    .styled-user-page__styled-text-input {
+      max-width: 670px;
     }
   }
 

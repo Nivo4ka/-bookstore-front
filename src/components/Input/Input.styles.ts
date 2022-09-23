@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components';
 
 export default styled.div<{ error?: string; name: string }>`
+  width: 100%;
+  max-width: 349px;
   .styled-input__container {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
+    /* max-width: 566px; */
   }
 
   ${(p) => {
@@ -42,7 +46,7 @@ export default styled.div<{ error?: string; name: string }>`
     line-height: 28px;
     letter-spacing: 0.75px;
     color: ${(p) => p.theme.mainTheme.color.dark};
-    width: 349px;
+    width: 100%;
     height: 64px;
     padding:0 0 0 64px;
 

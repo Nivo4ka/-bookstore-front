@@ -6,8 +6,8 @@ import StyledSort from './Sorts.styles';
 const SortPrice = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const arrSort = useAppSelector((state) => state.filter.arrSort);
-  const [currentSortBy, setCurrentSortBy] = useState('price');
-  const [currentDirection, setCurrentDirection] = useState('asc');
+  const [currentSortBy, setCurrentSortBy] = useState(searchParams.get('sortBy') || 'price');
+  const [currentDirection, setCurrentDirection] = useState(searchParams.get('direction') || 'ASC');
   const isFirstRender = useRef(true);
 
   useEffect(() => {

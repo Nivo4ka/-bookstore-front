@@ -6,9 +6,17 @@ export default styled.div`
   width: 100%;
 
   .styled-catalog__grid {
+    width: 100%;
+    max-width: 1280px;
+    justify-content: space-between;
+    /* display: flex;
+    flex-wrap: wrap;
+    column-count: auto;
+    column-gap: minmax(1px, 20px); */
     display: grid;
-    grid-template-columns: repeat(4, calc(25% - 15px)); 
-    grid-column-gap: 20px;
+    grid-template-columns: repeat(4, auto); 
+    /* column-gap: 20px; */
+    /* grid-column-gap: 20px; */
     grid-row-gap: 60px;
   }
 
@@ -16,9 +24,16 @@ export default styled.div`
     width: auto;
   }
 
-  @media (max-width: 1295px) {
+  @media (max-width: 1070px) {
     .styled-catalog__grid {
-      grid-template-columns: repeat(3, calc(33% - 15px));
+      grid-template-columns: repeat(3, auto);
+      grid-row-gap: 30px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .styled-catalog__grid {
+      grid-template-columns: repeat(2, auto);
     }
   }
 

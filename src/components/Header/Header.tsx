@@ -74,57 +74,65 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <Logo onClick={goToMainPage} />
-      <div className="styled-header__input-area">
-        <p>Catalog</p>
-        <Input
-          onChange={onChangeSearch}
-          value={search}
-          placeHolder="Search"
-          nameInput="search"
-          Icon1={Search}
-          type1="text"
-          className="styled-header__search-input"
-          onKeyDown={onKeyDown}
-        />
+      <div>
+        <Logo className="styled-header__logo" onClick={goToMainPage} />
       </div>
 
+      <div className="styled-header__input-area">
+        <p>Catalog</p>
+      </div>
+      <Input
+        onChange={onChangeSearch}
+        value={search}
+        placeHolder="Search"
+        nameInput="search"
+        Icon1={Search}
+        type1="text"
+        className="styled-header__search-input"
+        onKeyDown={onKeyDown}
+      />
       {
         userInfo?.email
-          ? (<div className="styled-header__menu">
-            <ImgButton
-              onClick={goToCartPage}
-              className="styled-header__img-button"
-            >
-              <div className="styled-header__favorite-area">
-                <Cart />
-                {!!userInfo.cart.length &&
-                  (<div className="styled-header__favorite-info">
-                    <p>{userInfo.cart.length}</p>
-                   </div>)
-                }
-              </div>
-            </ImgButton>
-            <ImgButton
-              onClick={goToFavoritePage}
-              className="styled-header__img-button"
-            >
-              <div className="styled-header__favorite-area">
-                <Heart />
-                {!!userInfo.favorites.length &&
-                  (<div className="styled-header__favorite-info">
-                    <p>{userInfo.favorites.length}</p>
-                   </div>)
-                }
-              </div>
-            </ImgButton>
-            <ImgButton
-              onClick={goToUserPage}
-              className="styled-header__img-button"
-            >
-              <Profile />
-            </ImgButton>
-             </div>)
+          ? (
+            <div className="styled-header__menu">
+              <ImgButton
+                onClick={goToCartPage}
+                className="styled-header__img-button"
+              >
+                <div className="styled-header__favorite-area">
+                  <Cart />
+                  {!!userInfo.cart.length &&
+                    (
+                      <div className="styled-header__favorite-info">
+                        <p>{userInfo.cart.length}</p>
+                      </div>
+                    )
+                  }
+                </div>
+              </ImgButton>
+              <ImgButton
+                onClick={goToFavoritePage}
+                className="styled-header__img-button"
+              >
+                <div className="styled-header__favorite-area">
+                  <Heart />
+                  {!!userInfo.favorites.length &&
+                    (
+                      <div className="styled-header__favorite-info">
+                        <p>{userInfo.favorites.length}</p>
+                      </div>
+                    )
+                  }
+                </div>
+              </ImgButton>
+              <ImgButton
+                onClick={goToUserPage}
+                className="styled-header__img-button"
+              >
+                <Profile />
+              </ImgButton>
+            </div>
+          )
           : <Button onClick={goToLogIn}>Log In/ Sing Up</Button>
       }
 

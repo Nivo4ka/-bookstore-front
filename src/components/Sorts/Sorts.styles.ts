@@ -6,7 +6,7 @@ export default styled.div`
   border-radius: ${(p) => p.theme.borderRadius};
   
   p {
-    font-size: 16px;
+    font-size: ${(p) => p.theme.font.sizePMiddle};
     line-height: 28px;
     display: inline-block;
     margin: 5px 78px 5px 5px;
@@ -31,6 +31,19 @@ export default styled.div`
 
     input {
       margin: 0 5px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    p {
+      margin-right: 50px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    width: 100%;
+    p {
+      margin-right: 0;
     }
   }
 `;

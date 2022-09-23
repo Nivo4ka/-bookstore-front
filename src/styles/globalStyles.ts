@@ -42,9 +42,31 @@ body {
     font-style: normal;
   }
 
-  @media (max-width: 1295px) {
+  @media (max-width: 930px) {
     p {
       font-size: ${(p) => p.theme.font.sizePMiddle};
+      line-height: ${(p) => p.theme.font.lineHeightPMiddle};
+    }
+
+    h2 {
+      font-size: ${(p) => p.theme.font.sizeH2Middle};
+      line-height: ${(p) => p.theme.font.lineHeightH2Miggle};
+    }
+
+    li {
+      font-size: ${(p) => p.theme.font.sizePMiddle};
+    }
+  }
+
+  @media (max-width: 670px) {
+    p {
+      font-size: ${(p) => p.theme.font.sizePSmall};
+      line-height: ${(p) => p.theme.font.lineHeightPSmall};
+    }
+
+    h2 {
+      font-size: ${(p) => p.theme.font.sizeH2Small};
+      line-height: ${(p) => p.theme.font.lineHeightH2Small};
     }
   }
 }

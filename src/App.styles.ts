@@ -6,18 +6,16 @@ export const StyledApp = styled.div`
   flex-direction: column;
   
   .styled-app__container {
-    width: 1280px;
+    max-width: 1300px;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     box-sizing: border-box;
     min-height: calc(100vh - 341px);
-    
-    @media (max-width: 1295px) {
-      width: 805px;
-    }
   }
 
   .loading-container {

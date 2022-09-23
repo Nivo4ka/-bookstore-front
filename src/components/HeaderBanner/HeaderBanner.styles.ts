@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import books from '../../images/booksLite.svg';
+import books2 from '../../images/booksLite2.svg';
 
 export default styled.div`
   display: flex;
@@ -45,9 +46,10 @@ export default styled.div`
     margin-bottom: 50px;
   }
 
-  @media (max-width: 1295px) {
+  @media (max-width: 1000px) {
     height: 289px;
     background-size: auto 218px;
+    margin-bottom: 60px;
 
     div {
       margin-left: 40px;
@@ -57,6 +59,34 @@ export default styled.div`
       right: 14px;
       width: auto;
       height: 360px;
+    }
+
+    p {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 670px) {
+    height: 505px;
+    background-image:url(${books2});
+    background-size: auto 140px;
+    background-position: top 23px right;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+
+    div {
+      margin-top: 20px;
+      margin-left: 0;
+      justify-content: flex-start;
+    }
+
+    img {
+      right: auto;
+      bottom: 0;
+      width: auto;
+      height: 262px;
     }
 
     p {
