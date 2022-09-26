@@ -50,12 +50,14 @@ const BookPlate: React.FC<PropsType> = (props) => {
 
   return (
     <StyledBookPlate>
-      <BookCover
-        book={props.book}
-        isBookFavorite={isBookFavorite}
-        onClickFavorite={onClickFavorite}
-        className="styled-bookplate__cover"
-      />
+      <div>
+        <BookCover
+          book={props.book}
+          isBookFavorite={isBookFavorite}
+          onClickFavorite={onClickFavorite}
+          className="styled-bookplate__cover"
+        />
+      </div>
       <div className="styled-bookplate__info">
         <div className="styled-bookplate__info__text">
           <h2>{props.book.title}</h2>

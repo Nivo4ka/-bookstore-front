@@ -94,15 +94,17 @@ const BookPage = () => {
   return (
     <StyledBookPage>
       <div className="styled-bookpage__book-content">
-        <BookCover
-          book={book!}
-          isBookFavorite={isBookFavorite}
-          onClickFavorite={onClickFavorite}
-          className="styled-bookpage__cover"
-        />
+        <div>
+          <BookCover
+            book={book!}
+            isBookFavorite={isBookFavorite}
+            onClickFavorite={onClickFavorite}
+            className="styled-bookpage__cover"
+          />
+        </div>
         <div className="styled-bookpage__info">
           <h2>{book?.title}</h2>
-          <p className="styled-bookpage__description">{book?.autor}</p>
+          <p>{book?.autor}</p>
           {userInfo.email
             ? (
               <div className="styled-bookpage__rating-area">
@@ -115,18 +117,20 @@ const BookPage = () => {
                   emptyStarColor="#0000"
                 />
                 <p>{(book!.rating || 0).toFixed(1)}</p>
-                <StarRatingComponent
-                  name="rating"
-                  starCount={5}
-                  value={userRating}
-                  renderStarIcon={() => <Star className="styled-bookpage__rating-area__star" />}
-                  starColor="#BFCC94"
-                  emptyStarColor="#0000"
-                  onStarClick={onChangeRating}
-                />
-                <div className="styled-bookpage__rating-area__to-rate">
-                  <Arrow />
-                  <p>Rate this book</p>
+                <div className="styled-bookpage__user-rating-area">
+                  <StarRatingComponent
+                    name="rating"
+                    starCount={5}
+                    value={userRating}
+                    renderStarIcon={() => <Star className="styled-bookpage__rating-area__star" />}
+                    starColor="#BFCC94"
+                    emptyStarColor="#0000"
+                    onStarClick={onChangeRating}
+                  />
+                  <div className="styled-bookpage__rating-area__to-rate">
+                    <Arrow />
+                    <p>Rate this book</p>
+                  </div>
                 </div>
 
               </div>
@@ -144,22 +148,43 @@ const BookPage = () => {
                 <p>{(book!.rating || 0).toFixed(1)}</p>
               </div>
             )}
-          <p className="styled-bookpage__description-title">Description</p>
-          <p className="styled-bookpage__description">{book?.description}</p>
-          <div className="styled-bookpage__button-area">
-            <div className="styled-bookpage__button-area__button">
-              <p className="styled-bookpage__description">Paperback</p>
-              <Button onClick={onAddToCart} disabled>Not available</Button>
+          <div className="styled-bookpage__description-area">
+            <p className="styled-bookpage__description-title">Description</p>
+            <p className="styled-bookpage__description">{book?.description}</p>
+            <div className="styled-bookpage__button-area">
+              <div className="styled-bookpage__button-area__button">
+                <p className="styled-bookpage__description">Paperback</p>
+                <Button onClick={onAddToCart} disabled>Not available</Button>
+              </div>
+              <div>
+                <p className="styled-bookpage__description">Hardcover</p>
+                <Button
+                  onClick={onAddToCart}
+                  secondary={!isBookInCart}
+                >
+                  {isBookInCart ? `$ ${(book?.price || 0).toFixed(2)} USD` : 'Added to cart'}
+                </Button>
+              </div>
             </div>
-            <div>
-              <p className="styled-bookpage__description">Hardcover</p>
-              <Button
-                onClick={onAddToCart}
-                secondary={!isBookInCart}
-              >
-                {isBookInCart ? `$ ${(book?.price || 0).toFixed(2)} USD` : 'Added to cart'}
-              </Button>
-            </div>
+          </div>
+        </div>
+      </div>
+      <div className="styled-bookpage__description-area-2">
+        <p className="styled-bookpage__description-title">Description</p>
+        <p className="styled-bookpage__description">{book?.description}</p>
+        <div className="styled-bookpage__button-area">
+          <div className="styled-bookpage__button-area__button">
+            <p className="styled-bookpage__description">Paperback</p>
+            <Button onClick={onAddToCart} disabled>Not available</Button>
+          </div>
+          <div>
+            <p className="styled-bookpage__description">Hardcover</p>
+            <Button
+              onClick={onAddToCart}
+              secondary={!isBookInCart}
+            >
+              {isBookInCart ? `$ ${(book?.price || 0).toFixed(2)} USD` : 'Added to cart'}
+            </Button>
           </div>
         </div>
       </div>

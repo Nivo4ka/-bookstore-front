@@ -59,6 +59,7 @@ const LogInPage = () => {
         <h2>Log In</h2>
         <form onSubmit={formik.handleSubmit}>
           <Input
+            className="styled-login__input"
             onChange={formik.handleChange}
             value={formik.values.email}
             placeHolder="Email"
@@ -68,6 +69,7 @@ const LogInPage = () => {
             error={formik.errors.email}
           />
           <Input
+            className="styled-login__input"
             onChange={formik.handleChange}
             value={formik.values.password}
             placeHolder="Password"
@@ -81,7 +83,7 @@ const LogInPage = () => {
           <Button type="submit">Log In</Button>
         </form>
       </div>
-      <img src={man} alt="man" />
+      <img className="styled-login__img" src={man} alt="man" />
     </StyledLogInPage>
   );
 };

@@ -8,7 +8,6 @@ export default styled.div<{ error?: string; name: string }>`
     display: flex;
     align-items: center;
     width: 100%;
-    /* max-width: 566px; */
   }
 
   ${(p) => {

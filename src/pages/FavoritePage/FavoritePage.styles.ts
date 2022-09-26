@@ -39,4 +39,38 @@ export default styled.div`
     }
 
   }
+
+  @media (max-width: 670px) {
+    .styled-favoritepage__no-books {
+      flex-direction: column-reverse;
+      width: 100%;
+      max-width: 670px;
+
+      &_text {
+        width: 100%;
+        height: max-content;
+        margin-left: 0;
+        button {
+          margin-bottom: 20px;
+        }
+
+        p {
+          margin: 15px 0 15px;
+        }
+      }
+      svg {
+        max-width: 450px;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  
+  @media (max-width: 390px) {
+    .styled-favoritepage__no-books_text {
+      button {
+          width: 100%;
+        }
+    }
+  }
 `;

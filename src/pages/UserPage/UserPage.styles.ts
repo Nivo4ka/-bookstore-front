@@ -84,7 +84,6 @@ export default styled.div`
     .styled-user-page__user-photo {
       width: 100%;
       max-width: 685px;
-      height: auto;
     }
   }
 `;

@@ -67,6 +67,7 @@ const SingUpPage = () => {
         <h2>Sign Up</h2>
         <form onSubmit={formik.handleSubmit}>
           <Input
+          className="styled-singup__input"
             onChange={formik.handleChange}
             value={formik.values.email}
             placeHolder="Email"
@@ -76,6 +77,7 @@ const SingUpPage = () => {
             error={formik.errors.email}
           />
           <Input
+          className="styled-singup__input"
             onChange={formik.handleChange}
             value={formik.values.password}
             placeHolder="Password"
@@ -87,6 +89,7 @@ const SingUpPage = () => {
             error={formik.errors.password}
           />
           <Input
+          className="styled-singup__input"
             onChange={formik.handleChange}
             value={formik.values.repeatPassword}
             placeHolder="Password replay"
@@ -100,7 +103,7 @@ const SingUpPage = () => {
           <Button type="submit">Sign Up</Button>
         </form>
       </div>
-      <img src={man} alt="man" />
+      <img className="styled-singup__img" src={man} alt="man" />
     </StyledSingUpPage>
 
   );

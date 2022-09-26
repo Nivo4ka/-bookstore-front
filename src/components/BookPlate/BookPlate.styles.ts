@@ -6,12 +6,12 @@ export default styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  min-height: 289px;
   padding-top: 30px;
 
   .styled-bookplate__cover {
     width: 197px;
     height: 289px;
+    margin-right: 20px;
   }
 
   .styled-bookplate__info {
@@ -47,7 +47,8 @@ export default styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
-      width: 200px;
+      max-width: 200px;
+      width: 100%;
       justify-content: space-between;
 
       p {
@@ -73,12 +74,43 @@ export default styled.div`
 
     .styled-bookplate__price {
       font-weight: ${(p) => p.theme.font.weightP};
-      font-size: 36px;
       line-height: 54px;
     }
 
     &__button {
       width: fit-content;
+    }
+  }
+
+  @media (max-width: 1320px) {
+    .styled-bookplate__cover {
+      width: 197px;
+      height: 289px;
+    }
+    .styled-bookplate__info {
+      height: 289px;
+    }
+
+  }
+
+  @media (max-width: 840px) {
+    .styled-bookplate__cover {
+      width: 160px;
+      height: 235px;
+    }
+    .styled-bookplate__info {
+      height: 235px;
+    }
+  }
+
+  @media (max-width: 630px) {
+    .styled-bookplate__cover {
+      width: 135px;
+      height: 202px;
+    }
+
+    .styled-bookplate__info {
+      height: 202px;
     }
   }
 

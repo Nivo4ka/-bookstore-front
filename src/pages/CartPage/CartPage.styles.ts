@@ -29,7 +29,6 @@ export default styled.div`
 
     .styled-cartpage__total-price {
       font-weight: 500;
-      font-size: 36px;
       line-height: 54px;
     }
   }
@@ -43,6 +42,7 @@ export default styled.div`
     align-items: center;
 
     &_text {
+      margin-left: 20px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -50,6 +50,7 @@ export default styled.div`
 
       p {
         max-width: 465px;
+        width: 100%;
       }
     }
 
@@ -57,5 +58,39 @@ export default styled.div`
       width: fit-content;
     }
 
+  }
+
+  @media (max-width: 670px) {
+    .styled-cartpage__no-books {
+      flex-direction: column-reverse;
+      width: 100%;
+      max-width: 670px;
+
+      &_text {
+        width: 100%;
+        height: max-content;
+        margin-left: 0;
+        button {
+          margin-bottom: 20px;
+        }
+
+        p {
+          margin: 15px 0 15px;
+        }
+      }
+      svg {
+        max-width: 450px;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  
+  @media (max-width: 390px) {
+    .styled-cartpage__no-books_text {
+      button {
+          width: 100%;
+        }
+    }
   }
 `;

@@ -42,7 +42,7 @@ export default styled.div`
     .styled-footer__container {
       height: 90%;
       flex-direction: column;
-      max-width: 310px;
+      max-width: 760px;
     }
   }
 `;
